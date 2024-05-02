@@ -229,7 +229,7 @@ def report_results(y_test, y_pred, epoch=None, dt=None, losses=None, method=None
             plt.plot(list(range(epoch+1)), losses)
             plt.xlabel('Epochs')
             plt.ylabel('Loss')
-            name_title = f"{dataset} clst={clustering_alg} maf_method={method}"
+            name_title = f"{dataset} | clst={clustering_alg} | maf_method={method}"
             plt.title(name_title)
             plt.savefig(os.path.join(plot_folder, dataset, f"{name}.png"))
             plt.close(fig)

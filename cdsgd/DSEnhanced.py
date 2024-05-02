@@ -313,7 +313,9 @@ class DSEnhanced:
         self.read_data()
         self.preprocess_data()
         self.train_test_split()
-        for method in self.methods_lst:    
+        for method in self.methods_lst:   
+            self.clustering_alg = None
+ 
             self.method = method
             logging.info(f"----------- Running {self.method} method -----------")
 

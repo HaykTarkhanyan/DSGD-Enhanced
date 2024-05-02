@@ -132,3 +132,137 @@
 24-05-03 02:05:07 [INFO] ------------------------------
 24-05-03 02:05:07 [INFO] Finished gaussian_df
 24-05-03 02:05:07 [INFO] Finished all MAF methods
+24-05-03 02:09:30 [INFO] Methods list: ['clustering', 'random', 'uniform']
+24-05-03 02:09:30 [INFO] Found 6 datasets
+24-05-03 02:09:31 [DEBUG] Dataset: gaussian_df | Shape: (500, 3)
+24-05-03 02:09:31 [DEBUG] (500, 3) - dropped columns with more than 20% missing values
+24-05-03 02:09:31 [DEBUG] (500, 3) - drop rows with missing values
+24-05-03 02:09:31 [DEBUG] (500, 3) drop non-numeric columns
+24-05-03 02:09:31 [INFO] ------ Dataset: gaussian_df | Shape: (500, 3) | Label ratio: 0.50 -------
+24-05-03 02:09:31 [INFO] Step 0: Data split done | 350 - 150
+24-05-03 02:09:31 [INFO] ----------- Running clustering method -----------
+24-05-03 02:09:31 [DEBUG] Step 1: Standard scaling complete
+24-05-03 02:09:31 [INFO] ----------- Running kmeans clustering -----------
+24-05-03 02:09:31 [INFO] Step 2.1: Performing kmeans clustering
+24-05-03 02:09:31 [INFO] Step 2.1: Clustering and inference done
+24-05-03 02:09:31 [INFO] Step 2.2: Evaluate clustering
+24-05-03 02:09:31 [DEBUG] Evaluation on train
+24-05-03 02:09:31 [DEBUG] 	silhouette = 0.719
+24-05-03 02:09:31 [DEBUG] 	calinski_harabasz = 1653.432
+24-05-03 02:09:31 [DEBUG] 	inertia = 182.569
+24-05-03 02:09:31 [DEBUG] Evaluation on test
+24-05-03 02:09:31 [DEBUG] 	silhouette = 0.727
+24-05-03 02:09:31 [DEBUG] 	calinski_harabasz = 764.49
+24-05-03 02:09:31 [INFO] Step 2.2: Clustering evaluation done
+24-05-03 02:09:31 [DEBUG] Evaluation on train
+24-05-03 02:09:31 [DEBUG] 	Accuracy:  1.00
+24-05-03 02:09:31 [DEBUG] 	F1 Score: 1.00
+24-05-03 02:09:31 [DEBUG] 	Confusion Matrix: 
+[[179   0]
+ [  0 171]]
+24-05-03 02:09:31 [DEBUG] Evaluation on test
+24-05-03 02:09:31 [DEBUG] 	Accuracy:  1.00
+24-05-03 02:09:31 [DEBUG] 	F1 Score: 1.00
+24-05-03 02:09:31 [DEBUG] 	Confusion Matrix: 
+[[71  0]
+ [ 0 79]]
+24-05-03 02:09:32 [INFO] Step 3: Clustering as a classifier, evaluation done
+24-05-03 02:09:32 [INFO] Step 4: Opacity calculation done
+24-05-03 02:09:32 [DEBUG] Train: 350
+24-05-03 02:09:32 [INFO] Step 5: Run DST (dataset=gaussian_df, label_for_dist=labels, clust=kmeans, breaks=3, add_mult_rules=False, maf_method=clustering)
+24-05-03 02:09:32 [DEBUG] 	Model init done
+24-05-03 02:09:57 [DEBUG] 	Model fit done
+24-05-03 02:09:57 [INFO] Step 6: Inference done
+24-05-03 02:09:57 [DEBUG] Training Time: 24.79s
+24-05-03 02:09:57 [DEBUG] Epochs: 99
+24-05-03 02:09:57 [DEBUG] Min Loss: 0.017
+24-05-03 02:09:57 [DEBUG] Loaded backend module://matplotlib_inline.backend_inline version unknown.
+24-05-03 02:09:57 [DEBUG] Loaded backend module://matplotlib_inline.backend_inline version unknown.
+24-05-03 02:09:57 [DEBUG] Accuracy:  0.99
+24-05-03 02:09:57 [DEBUG] F1 Score: 0.99
+24-05-03 02:09:57 [DEBUG] Confusion Matrix: [[69  2]
+ [ 0 79]]
+24-05-03 02:09:57 [INFO] ------------------------------
+24-05-03 02:09:57 [INFO] ----------- Running dbscan clustering -----------
+24-05-03 02:09:57 [INFO] Step 2.1: Performing dbscan clustering
+24-05-03 02:09:57 [INFO] Step 2.1: Clustering and inference done
+24-05-03 02:09:57 [INFO] Step 2.2: Evaluate clustering
+24-05-03 02:09:57 [DEBUG] Evaluation on train
+24-05-03 02:09:57 [DEBUG] 	silhouette = 0.586
+24-05-03 02:09:57 [DEBUG] 	calinski_harabasz = 711.825
+24-05-03 02:09:57 [DEBUG] Evaluation on test
+24-05-03 02:09:57 [DEBUG] 	silhouette = 0.574
+24-05-03 02:09:57 [DEBUG] 	calinski_harabasz = 359.978
+24-05-03 02:09:57 [INFO] Step 2.2: Clustering evaluation done
+24-05-03 02:09:57 [DEBUG] Evaluation on train
+24-05-03 02:09:57 [DEBUG] 	Accuracy:  0.99
+24-05-03 02:09:57 [DEBUG] 	F1 Score: 0.99
+24-05-03 02:09:57 [DEBUG] 	Confusion Matrix: 
+[[179   0]
+ [  4 167]]
+24-05-03 02:09:57 [DEBUG] Evaluation on test
+24-05-03 02:09:57 [DEBUG] 	Accuracy:  0.99
+24-05-03 02:09:57 [DEBUG] 	F1 Score: 0.99
+24-05-03 02:09:57 [DEBUG] 	Confusion Matrix: 
+[[71  0]
+ [ 1 78]]
+24-05-03 02:09:57 [INFO] Step 3: Clustering as a classifier, evaluation done
+24-05-03 02:09:58 [INFO] Step 4: Opacity calculation done
+24-05-03 02:09:58 [DEBUG] Train: 350
+24-05-03 02:09:58 [INFO] Step 5: Run DST (dataset=gaussian_df, label_for_dist=labels, clust=dbscan, breaks=3, add_mult_rules=False, maf_method=clustering)
+24-05-03 02:09:58 [DEBUG] 	Model init done
+24-05-03 02:10:23 [DEBUG] 	Model fit done
+24-05-03 02:10:23 [INFO] Step 6: Inference done
+24-05-03 02:10:23 [DEBUG] Training Time: 25.21s
+24-05-03 02:10:23 [DEBUG] Epochs: 136
+24-05-03 02:10:23 [DEBUG] Min Loss: 0.018
+24-05-03 02:10:23 [DEBUG] Accuracy:  0.99
+24-05-03 02:10:23 [DEBUG] F1 Score: 0.99
+24-05-03 02:10:23 [DEBUG] Confusion Matrix: [[69  2]
+ [ 0 79]]
+24-05-03 02:10:23 [INFO] ------------------------------
+24-05-03 02:10:23 [DEBUG] Train: 350
+24-05-03 02:10:23 [INFO] Step 5: Run DST (dataset=gaussian_df, label_for_dist=labels, clust=dbscan, breaks=3, add_mult_rules=False, maf_method=clustering)
+24-05-03 02:10:23 [DEBUG] 	Model init done
+24-05-03 02:10:51 [DEBUG] 	Model fit done
+24-05-03 02:10:51 [INFO] Step 6: Inference done
+24-05-03 02:10:51 [DEBUG] Training Time: 27.50s
+24-05-03 02:10:51 [DEBUG] Epochs: 136
+24-05-03 02:10:51 [DEBUG] Min Loss: 0.018
+24-05-03 02:10:52 [DEBUG] Accuracy:  0.99
+24-05-03 02:10:52 [DEBUG] F1 Score: 0.99
+24-05-03 02:10:52 [DEBUG] Confusion Matrix: [[69  2]
+ [ 0 79]]
+24-05-03 02:10:52 [INFO] ------------------------------
+24-05-03 02:10:52 [INFO] Finished gaussian_df
+24-05-03 02:10:52 [INFO] ----------- Running random method -----------
+24-05-03 02:10:52 [DEBUG] Train: 350
+24-05-03 02:10:52 [INFO] Step 5: Run DST (dataset=gaussian_df, label_for_dist=labels, clust=None, breaks=3, add_mult_rules=False, maf_method=random)
+24-05-03 02:10:52 [DEBUG] 	Model init done
+24-05-03 02:11:41 [DEBUG] 	Model fit done
+24-05-03 02:11:41 [INFO] Step 6: Inference done
+24-05-03 02:11:41 [DEBUG] Training Time: 49.33s
+24-05-03 02:11:41 [DEBUG] Epochs: 260
+24-05-03 02:11:41 [DEBUG] Min Loss: 0.023
+24-05-03 02:11:41 [DEBUG] Accuracy:  0.98
+24-05-03 02:11:41 [DEBUG] F1 Score: 0.98
+24-05-03 02:11:41 [DEBUG] Confusion Matrix: [[69  2]
+ [ 1 78]]
+24-05-03 02:11:41 [INFO] ------------------------------
+24-05-03 02:11:41 [INFO] Finished gaussian_df
+24-05-03 02:11:41 [INFO] ----------- Running uniform method -----------
+24-05-03 02:11:41 [DEBUG] Train: 350
+24-05-03 02:11:41 [INFO] Step 5: Run DST (dataset=gaussian_df, label_for_dist=labels, clust=None, breaks=3, add_mult_rules=False, maf_method=uniform)
+24-05-03 02:11:41 [DEBUG] 	Model init done
+24-05-03 02:12:33 [DEBUG] 	Model fit done
+24-05-03 02:12:33 [INFO] Step 6: Inference done
+24-05-03 02:12:33 [DEBUG] Training Time: 51.48s
+24-05-03 02:12:33 [DEBUG] Epochs: 190
+24-05-03 02:12:33 [DEBUG] Min Loss: 0.024
+24-05-03 02:12:33 [DEBUG] Accuracy:  0.99
+24-05-03 02:12:33 [DEBUG] F1 Score: 0.99
+24-05-03 02:12:33 [DEBUG] Confusion Matrix: [[69  2]
+ [ 0 79]]
+24-05-03 02:12:33 [INFO] ------------------------------
+24-05-03 02:12:33 [INFO] Finished gaussian_df
+24-05-03 02:12:33 [INFO] Finished all MAF methods
