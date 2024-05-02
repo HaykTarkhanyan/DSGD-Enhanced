@@ -106,13 +106,17 @@ def create_full_uncertainty():
     """
     return 0, 0, 0, 1
 
-def create_uncertainty_clustering(data, pred):
+
+def create_clustering_uncertainty(data, pred):
     assert "labels_clustering" in data.columns, "No clustering labels in data"
     
     masses = filter_by_rule(data, pred, print_results=print_results_MAF_kmeans)
     return masses
-    
-    
+
+#TODO Figure out if I should return 3 or 4 values
+def create_uniform_uncertainty():
+    return 1/3, 1/3, 1/3
+
 
 def create_random_maf(uncertainty=0.8):
     """

@@ -175,7 +175,7 @@ def get_kdist_plot(X=None, k=None, radius_nbrs=1.0):
     plt.show()
     plt.close()
 
-def run_dbscan(X_scaled, target_clusters=target_clusters, eps=eps, min_samples=min_samples, step=step, max_eps=max_eps):
+def run_dbscan(X_scaled, target_clusters=TARGET_CLUSTERS, eps=EPS, min_samples=MIN_SAMPLES, step=STEP, max_eps=MAX_EPS):
     current_clusters = 0
     while current_clusters != target_clusters and eps <= max_eps:
         # DBSCAN with current eps and min_samples

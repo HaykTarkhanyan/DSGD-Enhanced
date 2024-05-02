@@ -8,7 +8,7 @@ from scipy.stats import norm
 from itertools import count
 
 from DSRule import DSRule
-from core import create_random_maf_k, create_uncertainty_clustering
+from core import create_random_maf_k, create_clustering_uncertainty, create_uniform_uncertainty
 from utils import is_categorical
 
 
@@ -54,9 +54,11 @@ class DSModelMultiQ(nn.Module):
                 masses = m_sing + [m_uncert]
         elif method == "clustering":
             assert self.data is not None, "Data must be provided for clustering MAF method"
-            masses = create_uncertainty_clustering(self.data, pred)
+            masses = create_clustering_uncertainty(self.data, pred)
+        elif method == "uniform":
+            masses = create_uniform_uncertainty()
         else:
-            raise ValueError(f"Method {method} not available, select one from [random, clustering]")
+            raise ValueError(f"Method {method} not available, select one from [random, clustering, uniform]")
         m = torch.tensor(masses, requires_grad=True, dtype=torch.float)
         self._params.append(m)
         # self.masses = torch.cat((self.masses, m.view(1, self.k + 1)))
