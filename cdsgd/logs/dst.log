@@ -1,128 +1,134 @@
-24-05-03 00:35:57 [INFO] Found 6 datasets
-24-05-03 00:35:57 [INFO] Using the first dataset: Brain Tumor.csv
-24-05-03 00:36:28 [INFO] Found 6 datasets
-24-05-03 00:36:28 [INFO] Using the first dataset: Brain Tumor.csv
-24-05-03 00:37:06 [INFO] Found 6 datasets
-24-05-03 00:37:06 [INFO] Using the first dataset: Brain Tumor.csv
-24-05-03 00:37:11 [DEBUG] Dataset: Brain Tumor | Shape: (3762, 14)
-24-05-03 00:37:42 [INFO] Found 6 datasets
-24-05-03 00:37:42 [INFO] Using the first dataset: Brain Tumor.csv
-24-05-03 00:37:42 [DEBUG] Dataset: Brain Tumor | Shape: (3762, 14)
-24-05-03 00:37:42 [DEBUG] (3762, 14) - dropped columns with more than 20% missing values
-24-05-03 00:37:42 [DEBUG] (3762, 14) - drop rows with missing values
-24-05-03 00:38:04 [INFO] Found 6 datasets
-24-05-03 00:38:04 [INFO] Using the first dataset: Brain Tumor.csv
-24-05-03 00:38:06 [DEBUG] Dataset: Brain Tumor | Shape: (3762, 14)
-24-05-03 00:38:06 [DEBUG] (3762, 14) - dropped columns with more than 20% missing values
-24-05-03 00:38:06 [DEBUG] (3762, 14) - drop rows with missing values
-24-05-03 00:38:24 [INFO] Found 6 datasets
-24-05-03 00:38:24 [INFO] Using the first dataset: Brain Tumor.csv
-24-05-03 00:38:25 [DEBUG] Dataset: Brain Tumor | Shape: (3762, 14)
-24-05-03 00:38:25 [DEBUG] (3762, 14) - dropped columns with more than 20% missing values
-24-05-03 00:38:25 [DEBUG] (3762, 14) - drop rows with missing values
-24-05-03 00:38:25 [DEBUG] (3762, 14) drop non-numeric columns
-24-05-03 00:38:25 [INFO] ------ Dataset: Brain Tumor | Shape: (3762, 14) | Label ratio: 0.55 -------
-24-05-03 00:38:46 [INFO] Found 6 datasets
-24-05-03 00:38:46 [INFO] Using the first dataset: Brain Tumor.csv
-24-05-03 00:38:46 [DEBUG] Dataset: Brain Tumor | Shape: (3762, 14)
-24-05-03 00:38:46 [DEBUG] (3762, 14) - dropped columns with more than 20% missing values
-24-05-03 00:38:46 [DEBUG] (3762, 14) - drop rows with missing values
-24-05-03 00:38:47 [DEBUG] (3762, 14) drop non-numeric columns
-24-05-03 00:38:47 [INFO] ------ Dataset: Brain Tumor | Shape: (3762, 14) | Label ratio: 0.55 -------
-24-05-03 00:38:47 [INFO] Step 0: Data split done | 2633 - 1129
-24-05-03 00:38:47 [DEBUG] Step 1: Standard scaling complete
-24-05-03 00:48:15 [INFO] Found 6 datasets
-24-05-03 00:48:15 [INFO] Using the first dataset: Brain Tumor.csv
-24-05-03 00:49:54 [INFO] Found 6 datasets
-24-05-03 00:49:54 [INFO] Using the first dataset: Brain Tumor.csv
-24-05-03 00:50:09 [INFO] Found 6 datasets
-24-05-03 00:50:09 [INFO] Using the first dataset: Brain Tumor.csv
-24-05-03 00:50:09 [INFO] Finished all datasets
-24-05-03 00:50:15 [INFO] Found 6 datasets
-24-05-03 00:50:15 [INFO] Using the first dataset: Brain Tumor.csv
-24-05-03 00:50:15 [INFO] Finished all datasets
-24-05-03 00:55:46 [INFO] Methods list: ['uniform']
-24-05-03 00:55:46 [INFO] Found 6 datasets
-24-05-03 00:55:46 [INFO] Using the first dataset: Brain Tumor.csv
-24-05-03 00:55:46 [DEBUG] Dataset: Brain Tumor | Shape: (3762, 14)
-24-05-03 00:55:46 [DEBUG] (3762, 14) - dropped columns with more than 20% missing values
-24-05-03 00:55:46 [DEBUG] (3762, 14) - drop rows with missing values
-24-05-03 00:55:46 [DEBUG] (3762, 14) drop non-numeric columns
-24-05-03 00:55:46 [INFO] ------ Dataset: Brain Tumor | Shape: (3762, 14) | Label ratio: 0.55 -------
-24-05-03 00:55:46 [INFO] Step 0: Data split done | 2633 - 1129
-24-05-03 00:55:46 [DEBUG] Step 1: Standard scaling complete
-24-05-03 00:56:29 [INFO] Methods list: ['uniform']
-24-05-03 00:56:29 [INFO] Found 6 datasets
-24-05-03 00:56:29 [INFO] Using the first dataset: Brain Tumor.csv
-24-05-03 00:56:29 [DEBUG] Dataset: Brain Tumor | Shape: (3762, 14)
-24-05-03 00:56:29 [DEBUG] (3762, 14) - dropped columns with more than 20% missing values
-24-05-03 00:56:29 [DEBUG] (3762, 14) - drop rows with missing values
-24-05-03 00:56:29 [DEBUG] (3762, 14) drop non-numeric columns
-24-05-03 00:56:29 [INFO] ------ Dataset: Brain Tumor | Shape: (3762, 14) | Label ratio: 0.55 -------
-24-05-03 00:56:29 [INFO] Step 0: Data split done | 2633 - 1129
-24-05-03 00:56:29 [DEBUG] Step 1: Standard scaling complete
-24-05-03 00:57:55 [INFO] Methods list: ['uniform']
-24-05-03 00:57:55 [INFO] Found 6 datasets
-24-05-03 00:57:55 [INFO] Using the first dataset: Brain Tumor.csv
-24-05-03 00:57:55 [DEBUG] Dataset: Brain Tumor | Shape: (3762, 14)
-24-05-03 00:57:55 [DEBUG] (3762, 14) - dropped columns with more than 20% missing values
-24-05-03 00:57:55 [DEBUG] (3762, 14) - drop rows with missing values
-24-05-03 00:57:55 [DEBUG] (3762, 14) drop non-numeric columns
-24-05-03 00:57:55 [INFO] ------ Dataset: Brain Tumor | Shape: (3762, 14) | Label ratio: 0.55 -------
-24-05-03 00:57:55 [INFO] Step 0: Data split done | 2633 - 1129
-24-05-03 00:58:54 [INFO] Methods list: ['uniform']
-24-05-03 00:58:54 [INFO] Found 6 datasets
-24-05-03 00:58:54 [INFO] Using the first dataset: Brain Tumor.csv
-24-05-03 00:58:54 [DEBUG] Dataset: Brain Tumor | Shape: (3762, 14)
-24-05-03 00:58:54 [DEBUG] (3762, 14) - dropped columns with more than 20% missing values
-24-05-03 00:58:54 [DEBUG] (3762, 14) - drop rows with missing values
-24-05-03 00:58:54 [DEBUG] (3762, 14) drop non-numeric columns
-24-05-03 00:58:54 [INFO] ------ Dataset: Brain Tumor | Shape: (3762, 14) | Label ratio: 0.55 -------
-24-05-03 00:58:54 [INFO] Step 0: Data split done | 2633 - 1129
-24-05-03 00:58:54 [DEBUG] Train: 2633
-24-05-03 01:00:04 [INFO] Methods list: ['uniform']
-24-05-03 01:00:04 [INFO] Found 6 datasets
-24-05-03 01:00:04 [INFO] Using the first dataset: Brain Tumor.csv
-24-05-03 01:00:04 [DEBUG] Dataset: Brain Tumor | Shape: (3762, 14)
-24-05-03 01:00:04 [DEBUG] (3762, 14) - dropped columns with more than 20% missing values
-24-05-03 01:00:04 [DEBUG] (3762, 14) - drop rows with missing values
-24-05-03 01:00:04 [DEBUG] (3762, 14) drop non-numeric columns
-24-05-03 01:00:04 [INFO] ------ Dataset: Brain Tumor | Shape: (3762, 14) | Label ratio: 0.55 -------
-24-05-03 01:00:04 [INFO] Step 0: Data split done | 2633 - 1129
-24-05-03 01:00:04 [DEBUG] Train: 2633
-24-05-03 01:00:04 [INFO] Step 5: Run DST (dataset=Brain Tumor, label_for_dist=labels, clust=None, breaks=3, add_mult_rules=False, maf_method=uniform)
-24-05-03 01:00:38 [INFO] Methods list: ['uniform']
-24-05-03 01:00:38 [INFO] Found 6 datasets
-24-05-03 01:00:38 [INFO] Using the first dataset: Brain Tumor.csv
-24-05-03 01:00:38 [DEBUG] Dataset: Brain Tumor | Shape: (3762, 14)
-24-05-03 01:00:38 [DEBUG] (3762, 14) - dropped columns with more than 20% missing values
-24-05-03 01:00:38 [DEBUG] (3762, 14) - drop rows with missing values
-24-05-03 01:00:38 [DEBUG] (3762, 14) drop non-numeric columns
-24-05-03 01:00:38 [INFO] ------ Dataset: Brain Tumor | Shape: (3762, 14) | Label ratio: 0.55 -------
-24-05-03 01:00:38 [INFO] Step 0: Data split done | 2633 - 1129
-24-05-03 01:00:38 [DEBUG] Train: 2633
-24-05-03 01:00:38 [INFO] Step 5: Run DST (dataset=Brain Tumor, label_for_dist=labels, clust=None, breaks=3, add_mult_rules=False, maf_method=uniform)
-24-05-03 01:01:08 [INFO] Methods list: ['uniform']
-24-05-03 01:01:08 [INFO] Found 6 datasets
-24-05-03 01:01:08 [INFO] Using the first dataset: Brain Tumor.csv
-24-05-03 01:01:08 [DEBUG] Dataset: Brain Tumor | Shape: (3762, 14)
-24-05-03 01:01:08 [DEBUG] (3762, 14) - dropped columns with more than 20% missing values
-24-05-03 01:01:08 [DEBUG] (3762, 14) - drop rows with missing values
-24-05-03 01:01:08 [DEBUG] (3762, 14) drop non-numeric columns
-24-05-03 01:01:08 [INFO] ------ Dataset: Brain Tumor | Shape: (3762, 14) | Label ratio: 0.55 -------
-24-05-03 01:01:08 [INFO] Step 0: Data split done | 2633 - 1129
-24-05-03 01:01:08 [DEBUG] Train: 2633
-24-05-03 01:01:08 [INFO] Step 5: Run DST (dataset=Brain Tumor, label_for_dist=labels, clust=None, breaks=3, add_mult_rules=False, maf_method=uniform)
-24-05-03 01:01:08 [DEBUG] 	Model init done
-24-05-03 01:05:26 [INFO] Methods list: ['uniform']
-24-05-03 01:05:26 [INFO] Found 6 datasets
-24-05-03 01:05:26 [INFO] Using the first dataset: Brain Tumor.csv
-24-05-03 01:05:26 [DEBUG] Dataset: Brain Tumor | Shape: (3762, 14)
-24-05-03 01:05:26 [DEBUG] (3762, 14) - dropped columns with more than 20% missing values
-24-05-03 01:05:26 [DEBUG] (3762, 14) - drop rows with missing values
-24-05-03 01:05:26 [DEBUG] (3762, 14) drop non-numeric columns
-24-05-03 01:05:26 [INFO] ------ Dataset: Brain Tumor | Shape: (3762, 14) | Label ratio: 0.55 -------
-24-05-03 01:05:26 [INFO] Step 0: Data split done | 2633 - 1129
-24-05-03 01:05:26 [DEBUG] Train: 2633
-24-05-03 01:05:26 [INFO] Step 5: Run DST (dataset=Brain Tumor, label_for_dist=labels, clust=None, breaks=3, add_mult_rules=False, maf_method=uniform)
-24-05-03 01:05:26 [DEBUG] 	Model init done
+24-05-03 02:02:57 [INFO] Methods list: ['clustering', 'random', 'uniform']
+24-05-03 02:02:57 [INFO] Found 6 datasets
+24-05-03 02:02:57 [DEBUG] Dataset: gaussian_df | Shape: (500, 3)
+24-05-03 02:02:57 [DEBUG] (500, 3) - dropped columns with more than 20% missing values
+24-05-03 02:02:57 [DEBUG] (500, 3) - drop rows with missing values
+24-05-03 02:02:57 [DEBUG] (500, 3) drop non-numeric columns
+24-05-03 02:02:57 [INFO] ------ Dataset: gaussian_df | Shape: (500, 3) | Label ratio: 0.50 -------
+24-05-03 02:02:57 [INFO] Step 0: Data split done | 350 - 150
+24-05-03 02:02:57 [INFO] ----------- Running clustering method -----------
+24-05-03 02:02:57 [DEBUG] Step 1: Standard scaling complete
+24-05-03 02:02:57 [INFO] ----------- Running kmeans clustering -----------
+24-05-03 02:02:57 [INFO] Step 2.1: Performing kmeans clustering
+24-05-03 02:02:57 [INFO] Step 2.1: Clustering and inference done
+24-05-03 02:02:57 [INFO] Step 2.2: Evaluate clustering
+24-05-03 02:02:57 [DEBUG] Evaluation on train
+24-05-03 02:02:57 [DEBUG] 	silhouette = 0.719
+24-05-03 02:02:57 [DEBUG] 	calinski_harabasz = 1653.432
+24-05-03 02:02:57 [DEBUG] 	inertia = 182.569
+24-05-03 02:02:57 [DEBUG] Evaluation on test
+24-05-03 02:02:57 [DEBUG] 	silhouette = 0.727
+24-05-03 02:02:57 [DEBUG] 	calinski_harabasz = 764.49
+24-05-03 02:02:57 [INFO] Step 2.2: Clustering evaluation done
+24-05-03 02:02:57 [DEBUG] Evaluation on train
+24-05-03 02:02:57 [DEBUG] 	Accuracy:  1.00
+24-05-03 02:02:57 [DEBUG] 	F1 Score: 1.00
+24-05-03 02:02:57 [DEBUG] 	Confusion Matrix: 
+[[179   0]
+ [  0 171]]
+24-05-03 02:02:57 [DEBUG] Evaluation on test
+24-05-03 02:02:57 [DEBUG] 	Accuracy:  1.00
+24-05-03 02:02:57 [DEBUG] 	F1 Score: 1.00
+24-05-03 02:02:57 [DEBUG] 	Confusion Matrix: 
+[[71  0]
+ [ 0 79]]
+24-05-03 02:02:57 [INFO] Step 3: Clustering as a classifier, evaluation done
+24-05-03 02:02:57 [INFO] Step 4: Opacity calculation done
+24-05-03 02:02:57 [DEBUG] Train: 350
+24-05-03 02:02:57 [INFO] Step 5: Run DST (dataset=gaussian_df, label_for_dist=labels, clust=kmeans, breaks=3, add_mult_rules=False, maf_method=clustering)
+24-05-03 02:02:57 [DEBUG] 	Model init done
+24-05-03 02:03:11 [DEBUG] 	Model fit done
+24-05-03 02:03:11 [INFO] Step 6: Inference done
+24-05-03 02:03:11 [DEBUG] Training Time: 12.95s
+24-05-03 02:03:11 [DEBUG] Epochs: 99
+24-05-03 02:03:11 [DEBUG] Min Loss: 0.017
+24-05-03 02:03:11 [DEBUG] Loaded backend module://matplotlib_inline.backend_inline version unknown.
+24-05-03 02:03:11 [DEBUG] Loaded backend module://matplotlib_inline.backend_inline version unknown.
+24-05-03 02:03:11 [DEBUG] Accuracy:  0.99
+24-05-03 02:03:11 [DEBUG] F1 Score: 0.99
+24-05-03 02:03:11 [DEBUG] Confusion Matrix: [[69  2]
+ [ 0 79]]
+24-05-03 02:03:11 [INFO] ------------------------------
+24-05-03 02:03:11 [INFO] ----------- Running dbscan clustering -----------
+24-05-03 02:03:11 [INFO] Step 2.1: Performing dbscan clustering
+24-05-03 02:03:11 [INFO] Step 2.1: Clustering and inference done
+24-05-03 02:03:11 [INFO] Step 2.2: Evaluate clustering
+24-05-03 02:03:11 [DEBUG] Evaluation on train
+24-05-03 02:03:11 [DEBUG] 	silhouette = 0.586
+24-05-03 02:03:11 [DEBUG] 	calinski_harabasz = 711.825
+24-05-03 02:03:11 [DEBUG] Evaluation on test
+24-05-03 02:03:11 [DEBUG] 	silhouette = 0.574
+24-05-03 02:03:11 [DEBUG] 	calinski_harabasz = 359.978
+24-05-03 02:03:11 [INFO] Step 2.2: Clustering evaluation done
+24-05-03 02:03:11 [DEBUG] Evaluation on train
+24-05-03 02:03:11 [DEBUG] 	Accuracy:  0.99
+24-05-03 02:03:11 [DEBUG] 	F1 Score: 0.99
+24-05-03 02:03:11 [DEBUG] 	Confusion Matrix: 
+[[179   0]
+ [  4 167]]
+24-05-03 02:03:11 [DEBUG] Evaluation on test
+24-05-03 02:03:11 [DEBUG] 	Accuracy:  0.99
+24-05-03 02:03:11 [DEBUG] 	F1 Score: 0.99
+24-05-03 02:03:11 [DEBUG] 	Confusion Matrix: 
+[[71  0]
+ [ 1 78]]
+24-05-03 02:03:11 [INFO] Step 3: Clustering as a classifier, evaluation done
+24-05-03 02:03:11 [INFO] Step 4: Opacity calculation done
+24-05-03 02:03:11 [DEBUG] Train: 350
+24-05-03 02:03:11 [INFO] Step 5: Run DST (dataset=gaussian_df, label_for_dist=labels, clust=dbscan, breaks=3, add_mult_rules=False, maf_method=clustering)
+24-05-03 02:03:11 [DEBUG] 	Model init done
+24-05-03 02:03:30 [DEBUG] 	Model fit done
+24-05-03 02:03:30 [INFO] Step 6: Inference done
+24-05-03 02:03:30 [DEBUG] Training Time: 18.38s
+24-05-03 02:03:30 [DEBUG] Epochs: 136
+24-05-03 02:03:30 [DEBUG] Min Loss: 0.018
+24-05-03 02:03:30 [DEBUG] Accuracy:  0.99
+24-05-03 02:03:30 [DEBUG] F1 Score: 0.99
+24-05-03 02:03:30 [DEBUG] Confusion Matrix: [[69  2]
+ [ 0 79]]
+24-05-03 02:03:30 [INFO] ------------------------------
+24-05-03 02:03:30 [DEBUG] Train: 350
+24-05-03 02:03:30 [INFO] Step 5: Run DST (dataset=gaussian_df, label_for_dist=labels, clust=dbscan, breaks=3, add_mult_rules=False, maf_method=clustering)
+24-05-03 02:03:30 [DEBUG] 	Model init done
+24-05-03 02:03:50 [DEBUG] 	Model fit done
+24-05-03 02:03:50 [INFO] Step 6: Inference done
+24-05-03 02:03:50 [DEBUG] Training Time: 19.93s
+24-05-03 02:03:50 [DEBUG] Epochs: 136
+24-05-03 02:03:50 [DEBUG] Min Loss: 0.018
+24-05-03 02:03:50 [DEBUG] Accuracy:  0.99
+24-05-03 02:03:50 [DEBUG] F1 Score: 0.99
+24-05-03 02:03:50 [DEBUG] Confusion Matrix: [[69  2]
+ [ 0 79]]
+24-05-03 02:03:50 [INFO] ------------------------------
+24-05-03 02:03:50 [INFO] Finished gaussian_df
+24-05-03 02:03:50 [INFO] ----------- Running random method -----------
+24-05-03 02:03:50 [DEBUG] Train: 350
+24-05-03 02:03:50 [INFO] Step 5: Run DST (dataset=gaussian_df, label_for_dist=labels, clust=dbscan, breaks=3, add_mult_rules=False, maf_method=random)
+24-05-03 02:03:50 [DEBUG] 	Model init done
+24-05-03 02:04:29 [DEBUG] 	Model fit done
+24-05-03 02:04:29 [INFO] Step 6: Inference done
+24-05-03 02:04:29 [DEBUG] Training Time: 38.80s
+24-05-03 02:04:29 [DEBUG] Epochs: 247
+24-05-03 02:04:29 [DEBUG] Min Loss: 0.022
+24-05-03 02:04:29 [DEBUG] Accuracy:  0.99
+24-05-03 02:04:29 [DEBUG] F1 Score: 0.99
+24-05-03 02:04:29 [DEBUG] Confusion Matrix: [[69  2]
+ [ 0 79]]
+24-05-03 02:04:30 [INFO] ------------------------------
+24-05-03 02:04:30 [INFO] Finished gaussian_df
+24-05-03 02:04:30 [INFO] ----------- Running uniform method -----------
+24-05-03 02:04:30 [DEBUG] Train: 350
+24-05-03 02:04:30 [INFO] Step 5: Run DST (dataset=gaussian_df, label_for_dist=labels, clust=dbscan, breaks=3, add_mult_rules=False, maf_method=uniform)
+24-05-03 02:04:30 [DEBUG] 	Model init done
+24-05-03 02:05:06 [DEBUG] 	Model fit done
+24-05-03 02:05:06 [INFO] Step 6: Inference done
+24-05-03 02:05:06 [DEBUG] Training Time: 36.89s
+24-05-03 02:05:06 [DEBUG] Epochs: 190
+24-05-03 02:05:06 [DEBUG] Min Loss: 0.024
+24-05-03 02:05:07 [DEBUG] Accuracy:  0.99
+24-05-03 02:05:07 [DEBUG] F1 Score: 0.99
+24-05-03 02:05:07 [DEBUG] Confusion Matrix: [[69  2]
+ [ 0 79]]
+24-05-03 02:05:07 [INFO] ------------------------------
+24-05-03 02:05:07 [INFO] Finished gaussian_df
+24-05-03 02:05:07 [INFO] Finished all MAF methods

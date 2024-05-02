@@ -29,6 +29,7 @@ LABEL_COL_FOR_DIST = "labels"
 LOG_FOLDER = "logs"
 DATASET_FOLDER = "datasets"
 RULE_FOLDER = "rules"
+PLOTS_FOLDER = "plots"
 
 MISSING_THRESHOLD = 0.2 # will remove columns with more than 20% missing values
 RATIO_DEVIATION = 0.4 # acceptable deviation of class balance (0.4 means 0.1-0.9)

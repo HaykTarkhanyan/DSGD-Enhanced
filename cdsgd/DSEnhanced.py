@@ -60,7 +60,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 class DSEnhanced:
-    def __init__(self, method, dataset_folder: str = DATASET_FOLDER, dataset: str = None, nrows: int = None, 
+    def __init__(self, method=None, dataset_folder: str = DATASET_FOLDER, dataset: str = None, nrows: int = None, 
                  missing_threshold: float = MISSING_THRESHOLD, ratio_deviation: float=RATIO_DEVIATION, 
                  train_set_size: float = TRAIN_SET_SIZE, 
                  eps: float = EPS, step: float = STEP, max_eps: float = MAX_EPS,
@@ -68,34 +68,35 @@ class DSEnhanced:
                  print_clustering_eval: bool = True, 
                  print_clustering_as_classification_eval: bool = True, 
                  mult_rules: bool = False, debug_mode: bool = True, print_final_model: bool = True,
-                 num_breaks: int = 3, rules_folder: str = RULE_FOLDER, run_for_all_mafs: bool = False, 
-                 methods_lst: list = None):
+                 num_breaks: int = 3, rules_folder: str = RULE_FOLDER, plots_folder: str = PLOTS_FOLDER,
+                 run_for_all_mafs: bool = False, methods_lst: list = None):
         self.method = method
-        assert self.method in ["kmeans", "dbscan", "uniform"], f"Method {self.method} not found in the list of methods"
         self.methods_lst = methods_lst
         
         if self.methods_lst is None:    
             if run_for_all_mafs:
-                self.methods_lst = ["kmeans", "dbscan", "uniform"]  
+                self.methods_lst = ["clustering", "random", "uniform"]  
             else:
+                if self.method is None:
+                    raise Exception("You must specify a method")
                 self.methods_lst = [self.method]
+        
+        # assert self.method in ["clustering", "random", "uniform"], f"Method {self.method} not found in the list of methods"
+        
         logging.info(f"Methods list: {self.methods_lst}")                
         
         self.clustering_alg = None
-        if self.method in ["kmeans", "dbscan"]:
-            self.clustering_alg = self.method
-            self.db_eps = None # for density based opacity calculation
+        self.db_eps = None # for density based opacity calculation
+
+        self.eps = eps
+        self.step = step
+        self.max_eps = max_eps
+        if min_samples:
+            self.min_samples = min_samples # if not specified, will be assigned later 
+        self.target_clusters = target_clusters
         
-            if self.clustering_alg == "dbscan":
-                self.EPS = eps
-                self.step = step
-                self.max_eps = max_eps
-                if min_samples:
-                    self.min_samples = min_samples # if not specified, will be assigned later 
-                self.target_clusters = target_clusters
-                
-            self.print_clustering_eval = print_clustering_eval
-            self.print_clustering_as_classification_eval = print_clustering_as_classification_eval
+        self.print_clustering_eval = print_clustering_eval
+        self.print_clustering_as_classification_eval = print_clustering_as_classification_eval
 
             
         self.run_for_all_mafs = run_for_all_mafs
@@ -118,6 +119,7 @@ class DSEnhanced:
             os.mkdir(rules_folder)
             
         self.rules_folder = rules_folder
+        self.plots_folder = plots_folder
         self.dataset_name = self.dataset.split(".")[0]
         self.nrows = nrows
         self.ratio_deviation = ratio_deviation
@@ -183,15 +185,14 @@ class DSEnhanced:
         # TODO maybe delete this
         # scale = st_scaler.scale_
         # mean = st_scaler.mean_
-        # var = st_scaler.var_ 
+        # # var = st_scaler.var_ 
 
         self.X_train_scaled = st_scaler.transform(self.train_data_df)
-        self.X_test_scaled = st_scaler.transform(self.test_data_df)  #! during inference we won't have this
-
+        self.X_test_scaled = st_scaler.transform(self.test_data_df)
         logging.debug("Step 1: Standard scaling complete")
 
     def clustering_and_inference(self):
-        assert self.clustering_alg in ["kmeans", "dbscan"], "You must specify a clustering algorithm"   
+        assert self.clustering_alg in ["kmeans", "dbscan"], f"You must specify a clustering algorithm, got {self.clustering_alg}"   
         logging.info(f"Step 2.1: Performing {self.clustering_alg} clustering")
 
         if self.clustering_alg == "kmeans":
@@ -200,9 +201,9 @@ class DSEnhanced:
             
             self.clustering_labels_train = self.clustering_model.predict(self.X_train_scaled)
             self.clustering_labels_test = self.clustering_model.predict(self.X_test_scaled)
-        else:
+        elif self.clustering_alg == "dbscan":
             self.min_samples = 2 * self.X_train_scaled.shape[1] - 1
-            self.clustering_model = run_dbscan(self.X_train_scaled, eps=self.EPS, 
+            self.clustering_model = run_dbscan(self.X_train_scaled, eps=self.eps, 
                                                max_eps=self.max_eps, min_samples=self.min_samples, 
                                                step=self.step) 
             if self.clustering_model is None:
@@ -277,7 +278,9 @@ class DSEnhanced:
         losses, epoch, dt = res
         logger.debug(f"\tModel fit done")
 
-        rules = DSC.model.save_rules_bin(os.path.join(self.rules_folder, f"{name}.dsb"))
+        if not os.path.exists(os.path.join(self.rules_folder, self.dataset_name)):
+            os.mkdir(os.path.join(self.rules_folder, self.dataset_name))
+        rules = DSC.model.save_rules_bin(os.path.join(self.rules_folder, self.dataset_name, f"{name}.dsb"))
 
         self.rules = DSC.model.find_most_important_rules()
         y_pred = DSC.predict(self.X_test)
@@ -288,23 +291,23 @@ class DSEnhanced:
                     epoch=epoch, dt=dt, losses=losses, 
                     save_results=True, name=name, print_results=True,
                     breaks=self.num_breaks, mult_rules=self.mult_rules, 
-                    clustering_alg=self.clustering_alg, label_for_dist=LABEL_COL_FOR_DIST)
+                    clustering_alg=self.clustering_alg, label_for_dist=LABEL_COL_FOR_DIST, plot_folder=self.plots_folder)
         logging.info("-"*30)
 
-    def save_all_important_res_to_json(self):
-        logging.info("Step 7: Save all important results to json")
-        for attr in ["eval_clustering_train", "eval_clustering_test", "eval_clustering_as_classifier_train", 
-                     "eval_clustering_as_classifier_test", "opacity_train", "opacity_test", "dataset", 
-                     "clustering_alg", "num_breaks", "mult_rules", "maf_methods", "train_data", "test_data", 
-                     "rules", "X_train", "y_train", "X_test", "y_test", "X_train_scaled", "X_test_scaled", 
-                     "clustering_labels_train", "clustering_labels_test", "db_eps", "train_data_df_use", 
-                     "test_data_df_use", "X_train_use", "y_train_use", "X_test_use", "y_test_use", 
-                     "train_data_df", "test_data_df", "data", "data_initial", "train_data_df_use", 
-                     "test_data_df_use", "X_train_use", "y_train_use", "X_test_use", "y_test_use", 
-                     "train_data_df", "test_data_df", "X_train_scaled", "X_test_scaled", 
-                     "clustering_labels_train", "clustering_labels_test", "db_eps", "train_data_df_use", 
-                     "test_data_df_use", "X_train_use", "y_train_use"]:
-            self.dst_res[attr] = getattr(self, attr)
+    # def save_all_important_res_to_json(self):
+    #     logging.info("Step 7: Save all important results to json")
+    #     for attr in ["eval_clustering_train", "eval_clustering_test", "eval_clustering_as_classifier_train", 
+    #                  "eval_clustering_as_classifier_test", "opacity_train", "opacity_test", "dataset", 
+    #                  "clustering_alg", "num_breaks", "mult_rules", "maf_methods", "train_data", "test_data", 
+    #                  "rules", "X_train", "y_train", "X_test", "y_test", "X_train_scaled", "X_test_scaled", 
+    #                  "clustering_labels_train", "clustering_labels_test", "db_eps", "train_data_df_use", 
+    #                  "test_data_df_use", "X_train_use", "y_train_use", "X_test_use", "y_test_use", 
+    #                  "train_data_df", "test_data_df", "data", "data_initial", "train_data_df_use", 
+    #                  "test_data_df_use", "X_train_use", "y_train_use", "X_test_use", "y_test_use", 
+    #                  "train_data_df", "test_data_df", "X_train_scaled", "X_test_scaled", 
+    #                  "clustering_labels_train", "clustering_labels_test", "db_eps", "train_data_df_use", 
+    #                  "test_data_df_use", "X_train_use", "y_train_use"]:
+    #         self.dst_res[attr] = getattr(self, attr)
     
     def run(self):
         self.read_data()
@@ -312,15 +315,20 @@ class DSEnhanced:
         self.train_test_split()
         for method in self.methods_lst:    
             self.method = method
-            print(f"Running {self.method} method")
+            logging.info(f"----------- Running {self.method} method -----------")
 
-            if self.method != "uniform":
+            if self.method == "clustering":
                 self.standard_scaling()
-                self.clustering_and_inference()
-                self.run_eval_clustering()
-                self.run_eval_clustering_as_classifier()
-                self.get_opacity()
+                for cl_alg in ["kmeans", "dbscan"]:
+                    logging.info(f"----------- Running {cl_alg} clustering -----------")
+                    self.clustering_alg = cl_alg
+                    self.clustering_and_inference()
+                    self.run_eval_clustering()
+                    self.run_eval_clustering_as_classifier()
+                    self.get_opacity()  
+                    self.train_DST()
             self.train_DST()
+
             logging.info(f"Finished {self.dataset_name}")
         logging.info("Finished all MAF methods")
         

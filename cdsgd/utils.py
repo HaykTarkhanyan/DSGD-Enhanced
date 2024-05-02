@@ -214,10 +214,13 @@ def detect_outliers_z_score(data, threshold=OUTLIER_THRESHOLD_NUM_STD):
 
 def report_results(y_test, y_pred, epoch=None, dt=None, losses=None, method=None, dataset=None, 
                    name=None, save_results=False, save_path=None, print_results=True, 
-                   breaks=3, mult_rules=False, clustering_alg=None, label_for_dist=None):
+                   breaks=3, mult_rules=False, clustering_alg=None, label_for_dist=None, plot_folder="plots"):
     fig = None
     if epoch and dt and losses:
         if print_results:
+            if not os.path.exists(os.path.join(plot_folder, dataset)):
+                os.makedirs(os.path.join(plot_folder, dataset))
+            
             logging.debug(f"Training Time: {dt:.2f}s")
             logging.debug(f"Epochs: {epoch+1}")
             logging.debug(f"Min Loss: {losses[-1]:.3f}")
@@ -226,8 +229,9 @@ def report_results(y_test, y_pred, epoch=None, dt=None, losses=None, method=None
             plt.plot(list(range(epoch+1)), losses)
             plt.xlabel('Epochs')
             plt.ylabel('Loss')
-            plt.title(name, fontsize=10)
-            plt.savefig(os.path.join("plots", f"{name}.png"))
+            name_title = f"{dataset} clst={clustering_alg} maf_method={method}"
+            plt.title(name_title)
+            plt.savefig(os.path.join(plot_folder, dataset, f"{name}.png"))
             plt.close(fig)
             # save to csv
 
@@ -239,7 +243,7 @@ def report_results(y_test, y_pred, epoch=None, dt=None, losses=None, method=None
     if print_results:
         logging.debug(f"Accuracy:  {accuracy:.2f}")
         logging.debug(f"F1 Score: {f1:.2f}")
-        logging.debug(f"Confusion Matrix: \n{conf_matrix}")
+        logging.debug(f"Confusion Matrix: {conf_matrix}")
     
     if save_results:
         now = datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S")
