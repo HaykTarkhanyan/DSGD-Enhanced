@@ -23,7 +23,7 @@ if __name__ == "__main__":
 
 def get_distance(df, model, alg="kmeans", density_radius=0.5, penalty_rate=penalty_rate):
     if alg == "kmeans":
-        distances = np.min(
+        distances = 1 - np.min(
             np.linalg.norm(df[:, np.newaxis] - model.cluster_centers_, axis=2), axis=1) 
     else:
         distances= calculate_adjusted_density(df, model.labels_, radius=density_radius, 
@@ -47,6 +47,8 @@ def remove_outliers_and_normalize(df, distance_column="distance", label_column="
     dist_norm = df.apply(lambda row: scale(row[distance_column], row[label_column]), axis=1)
     # set all values greated than 1 to 1.01
     dist_norm = np.array([1.01 if d > 1 else d for d in dist_norm])
+    # set all values less than 0 to -0.01
+    dist_norm = np.array([-0.01 if d < 0 else d for d in dist_norm])
 
     return dist_norm
 
@@ -307,7 +309,7 @@ def filter_by_rule(df, rule_lambda, lower_confidence_by_proportion=LOWER_CONFIDE
     
     if df_rule.empty:
         # logging.info("No data points left after filtering")
-        return 0, 0, 1 # full uncertainty
+        return 0, 0, 1 # full uncertainty (this is the identity in the (MAF, dst rule) group)
     
     if only_plot:
         fig = px.scatter(df, x="x", y="y", color="rule_applies")
@@ -329,13 +331,13 @@ def filter_by_rule(df, rule_lambda, lower_confidence_by_proportion=LOWER_CONFIDE
         if print_results: logging.debug("All data points belong to the same cluster")
         confidence = df_rule["distance_norm"].mean()
         
-        if print_results: logging.debug(f"Confidence: {1 - confidence}")
+        if print_results: logging.debug(f"Confidence: {confidence}")
     else:
         if print_results: logging.debug("Data points belong to different clusters")
         # most common cluster        
         # confidence
         confidence = df_rule[df_rule[label_column] == most_common_cluster]["distance_norm"].mean()
-        if print_results: logging.debug(f"Confidence: {1 - confidence}")
+        if print_results: logging.debug(f"Confidence: {confidence}")
         
         if lower_confidence_by_proportion:
             # num of data points in most common cluster
@@ -347,14 +349,14 @@ def filter_by_rule(df, rule_lambda, lower_confidence_by_proportion=LOWER_CONFIDE
             proportion = num_points / len(df_rule)
             
             confidence = confidence * proportion
-            if print_results: logging.debug(f"Confidence after lowering based on proportion: {1 - confidence}")
+            if print_results: logging.debug(f"Confidence after lowering based on proportion: {confidence}")
     
     assert not np.isnan(confidence), "Confidence is NaN"    
         
     if most_common_cluster == 0:
-        return 1 - confidence, confidence/2, confidence/2
+        return confidence, (1-confidence)/2, (1-confidence)/2
     elif most_common_cluster == 1:
-        return confidence/2, 1 - confidence, confidence/2
+        return (1-confidence)/2, confidence, (1-confidence)/2
     else:
         raise ValueError(f"Most common cluster is {most_common_cluster}, but should be 0 or 1")
 
