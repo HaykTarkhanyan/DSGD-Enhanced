@@ -60,52 +60,76 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 class DSEnhanced:
-    def __init__(self, dataset_folder: str, dataset: str, nrows: int = None, 
+    def __init__(self, method, dataset_folder: str = DATASET_FOLDER, dataset: str = None, nrows: int = None, 
                  missing_threshold: float = MISSING_THRESHOLD, ratio_deviation: float=RATIO_DEVIATION, 
-                 clustering_alg: str = None, train_set_size: float = TRAIN_SET_SIZE, 
+                 train_set_size: float = TRAIN_SET_SIZE, 
                  eps: float = EPS, step: float = STEP, max_eps: float = MAX_EPS,
                  min_samples: int = None, target_clusters: int = TARGET_CLUSTERS, 
                  print_clustering_eval: bool = True, 
                  print_clustering_as_classification_eval: bool = True, 
                  mult_rules: bool = False, debug_mode: bool = True, print_final_model: bool = True,
-                 num_breaks: int = 3, rules_folder: str = RULE_FOLDER, 
-                 maf_methods: list = ["kmeans", "random", "uniform"]): 
+                 num_breaks: int = 3, rules_folder: str = RULE_FOLDER, run_for_all_mafs: bool = False, 
+                 methods_lst: list = None):
+        self.method = method
+        assert self.method in ["kmeans", "dbscan", "uniform"], f"Method {self.method} not found in the list of methods"
+        self.methods_lst = methods_lst
+        
+        if self.methods_lst is None:    
+            if run_for_all_mafs:
+                self.methods_lst = ["kmeans", "dbscan", "uniform"]  
+            else:
+                self.methods_lst = [self.method]
+        logging.info(f"Methods list: {self.methods_lst}")                
+        
+        self.clustering_alg = None
+        if self.method in ["kmeans", "dbscan"]:
+            self.clustering_alg = self.method
+            self.db_eps = None # for density based opacity calculation
+        
+            if self.clustering_alg == "dbscan":
+                self.EPS = eps
+                self.step = step
+                self.max_eps = max_eps
+                if min_samples:
+                    self.min_samples = min_samples # if not specified, will be assigned later 
+                self.target_clusters = target_clusters
+                
+            self.print_clustering_eval = print_clustering_eval
+            self.print_clustering_as_classification_eval = print_clustering_as_classification_eval
+
+            
+        self.run_for_all_mafs = run_for_all_mafs
+        
         self.dataset_folder = dataset_folder
-        assert os.path.exists(dataset_folder), "Dataset folder not found"
+        assert os.path.exists(dataset_folder), f"Dataset folder `{dataset_folder}` does not exist"
 
         self.datasets = os.listdir(dataset_folder)
+        
         logging.info(f"Found {len(self.datasets)} datasets")
-        self.dataset = dataset
-        self.dataset_name = dataset.split(".")[0]
+        if dataset:
+            assert dataset in self.datasets, f"Dataset {dataset} not found in the folder"
+            self.dataset = dataset
+        else:
+            logging.info(f"Using the first dataset: {self.datasets[0]}")
+            self.dataset = self.datasets[0]
+
+
+        if not os.path.exists(rules_folder):
+            os.mkdir(rules_folder)
+            
+        self.rules_folder = rules_folder
+        self.dataset_name = self.dataset.split(".")[0]
         self.nrows = nrows
         self.ratio_deviation = ratio_deviation
         self.missing_threshold = missing_threshold
-        self.clustering_alg = clustering_alg
         self.train_set_size = train_set_size
-        
-        self.db_eps = None # for density based opacity calculation
-        
-        if clustering_alg == "dbscan":
-            self.EPS = eps
-            self.step = step
-            self.max_eps = max_eps
-            if min_samples:
-                self.min_samples = min_samples # if not specified, will be assigned later 
-            self.target_clusters = target_clusters
-            
-        self.print_clustering_eval = print_clustering_eval
-        self.print_clustering_as_classification_eval = print_clustering_as_classification_eval
-        
+                
         # dst
         self.mult_rules = mult_rules
         self.debug_mode = debug_mode
         self.print_final_model = print_final_model
         self.num_breaks = num_breaks
-        
-        self.rules_folder = rules_folder
-        
-        self.maf_methods = maf_methods
-    
+                    
     def read_data(self):
         if self.nrows:
             self.data_initial = pd.read_csv(os.path.join(self.dataset_folder, self.dataset), 
@@ -113,23 +137,23 @@ class DSEnhanced:
         else:
             self.data_initial = pd.read_csv(os.path.join(self.dataset_folder, self.dataset))
         
-        logger.debug(f"Dataset: {self.dataset_name} | Shape: {self.data.shape}")
+        logger.debug(f"Dataset: {self.dataset_name} | Shape: {self.data_initial.shape}")
 
     def preprocess_data(self):
-        self.data = self.data_initial.dropna(thresh=len(self.data) * (1 - self.missing_threshold), axis=1)
+        self.data = self.data_initial.dropna(thresh=len(self.data_initial) * (1 - self.missing_threshold), axis=1)
         logger.debug(f"{self.data.shape} - dropped columns with more than {self.missing_threshold*100:.0f}% missing values")
         self.data = self.data.dropna()
         logger.debug(f"{self.data.shape} - drop rows with missing values")
         
         assert self.data.isna().sum().sum() == 0, "Dataset contains missing values"
-        assert "labels" in data.columns, "Dataset does not contain `labels` column"
+        assert "labels" in self.data.columns, "Dataset does not contain `labels` column"
         assert self.data.labels.nunique() == 2, f"Dataset labels are not binary ({self.data.labels.unique()})"
 
         label_ratio = self.data.labels.value_counts(normalize=True).iloc[0]
         assert abs(label_ratio -0.5) < self.ratio_deviation, f"Label ratio is not balanced ({label_ratio})"
 
         # leave only numeric columns
-        data = data.select_dtypes(include=[np.number])
+        data = self.data.select_dtypes(include=[np.number])
         logger.debug(f"{self.data.shape} drop non-numeric columns")
 
         # move labels column to the end 
@@ -140,7 +164,7 @@ class DSEnhanced:
 
     def train_test_split(self):
         self.data = self.data.sample(frac=1, random_state=42).reset_index(drop=True)
-        self.data = self.apply(pd.to_numeric)
+        self.data = self.data.apply(pd.to_numeric)
         cut = int(train_set_size*len(self.data))
 
         self.train_data_df = self.data.iloc[:cut]
@@ -240,33 +264,32 @@ class DSEnhanced:
         ignore_for_training = ["labels_clustering", "distance_norm"]
         df_cols = [i for i in list(self.data.columns) if i not in ignore_for_training]
 
-        logger.debug(f"Train: {len(self.X_train_use)}")
+        logger.debug(f"Train: {len(self.X_train)}")
 
-        for method in ["uniform"]: #["clustering", "random"]:
-            name = f"dataset={self.dataset_name}, label_for_dist={LABEL_COL_FOR_DIST}, clust={self.clustering_alg}, breaks={self.num_breaks}, add_mult_rules={self.mult_rules}, maf_method={method}"
-            logger.info(f"Step 5: Run DST ({name})")
-            DSC = DSClassifierMultiQ(2, debug_mode=self.debug_mode, num_workers=self.num_workers, maf_method=method,
-                                    data=self.train_data_df_use, precompute_rules=True, )#.head(rows_use))
-            logger.debug(f"\tModel init done")    
-            res = DSC.fit(self.X_train_use, self.y_train_use, 
-                    add_single_rules=True, single_rules_breaks=self.num_breaks, add_mult_rules=self.mult_rules,
-                    column_names=df_cols, print_every_epochs=1, print_final_model=self.print_final_model)
-            losses, epoch, dt = res
-            logger.debug(f"\tModel fit done")
+        name = f"dataset={self.dataset_name}, label_for_dist={LABEL_COL_FOR_DIST}, clust={self.clustering_alg}, breaks={self.num_breaks}, add_mult_rules={self.mult_rules}, maf_method={self.method}"
+        logger.info(f"Step 5: Run DST ({name})")
+        DSC = DSClassifierMultiQ(2, debug_mode=self.debug_mode, num_workers=0, maf_method=self.method,
+                                data=self.train_data_df, precompute_rules=True, )#.head(rows_use))
+        logger.debug(f"\tModel init done")    
+        res = DSC.fit(self.X_train, self.y_train, 
+                add_single_rules=True, single_rules_breaks=self.num_breaks, add_mult_rules=self.mult_rules,
+                column_names=df_cols, print_every_epochs=1, print_final_model=self.print_final_model)
+        losses, epoch, dt = res
+        logger.debug(f"\tModel fit done")
 
-            rules = DSC.model.save_rules_bin(os.path.join(self.rules_folder, f"{name}.dsb"))
+        rules = DSC.model.save_rules_bin(os.path.join(self.rules_folder, f"{name}.dsb"))
 
-            self.rules = DSC.model.find_most_important_rules()
-            y_pred = DSC.predict(self.X_test)
+        self.rules = DSC.model.find_most_important_rules()
+        y_pred = DSC.predict(self.X_test)
 
-            logger.info(f"Step 6: Inference done")
+        logger.info(f"Step 6: Inference done")
 
-            self.dst_res = report_results(self.y_test, y_pred, dataset=self.dataset_name, method=method,
-                        epoch=epoch, dt=dt, losses=losses, 
-                        save_results=True, name=name, print_results=True,
-                        breaks=self.num_breaks, mult_rules=self.mult_rules, 
-                        clustering_alg=self.clustering_alg, label_for_dist=LABEL_COL_FOR_DIST)
-            logging.info("-"*30)
+        self.dst_res = report_results(self.y_test, y_pred, dataset=self.dataset_name, method=self.method,
+                    epoch=epoch, dt=dt, losses=losses, 
+                    save_results=True, name=name, print_results=True,
+                    breaks=self.num_breaks, mult_rules=self.mult_rules, 
+                    clustering_alg=self.clustering_alg, label_for_dist=LABEL_COL_FOR_DIST)
+        logging.info("-"*30)
 
     def save_all_important_res_to_json(self):
         logging.info("Step 7: Save all important results to json")
@@ -287,15 +310,21 @@ class DSEnhanced:
         self.read_data()
         self.preprocess_data()
         self.train_test_split()
-        self.standard_scaling()
-        self.clustering_and_inference()
-        self.run_eval_clustering()
-        self.run_eval_clustering_as_classifier()
-        self.get_opacity()
-        self.train_DST()
-        logging.info(f"Finished {self.dataset_name}")
+        for method in self.methods_lst:    
+            self.method = method
+            print(f"Running {self.method} method")
+
+            if self.method != "uniform":
+                self.standard_scaling()
+                self.clustering_and_inference()
+                self.run_eval_clustering()
+                self.run_eval_clustering_as_classifier()
+                self.get_opacity()
+            self.train_DST()
+            logging.info(f"Finished {self.dataset_name}")
+        logging.info("Finished all MAF methods")
         
-    def run_all(self):
+    def run_all_datasets(self):
         for dataset in self.datasets:
             self.dataset = dataset
             self.run()

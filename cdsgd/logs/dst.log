@@ -1,0 +1,128 @@
+24-05-03 00:35:57 [INFO] Found 6 datasets
+24-05-03 00:35:57 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 00:36:28 [INFO] Found 6 datasets
+24-05-03 00:36:28 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 00:37:06 [INFO] Found 6 datasets
+24-05-03 00:37:06 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 00:37:11 [DEBUG] Dataset: Brain Tumor | Shape: (3762, 14)
+24-05-03 00:37:42 [INFO] Found 6 datasets
+24-05-03 00:37:42 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 00:37:42 [DEBUG] Dataset: Brain Tumor | Shape: (3762, 14)
+24-05-03 00:37:42 [DEBUG] (3762, 14) - dropped columns with more than 20% missing values
+24-05-03 00:37:42 [DEBUG] (3762, 14) - drop rows with missing values
+24-05-03 00:38:04 [INFO] Found 6 datasets
+24-05-03 00:38:04 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 00:38:06 [DEBUG] Dataset: Brain Tumor | Shape: (3762, 14)
+24-05-03 00:38:06 [DEBUG] (3762, 14) - dropped columns with more than 20% missing values
+24-05-03 00:38:06 [DEBUG] (3762, 14) - drop rows with missing values
+24-05-03 00:38:24 [INFO] Found 6 datasets
+24-05-03 00:38:24 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 00:38:25 [DEBUG] Dataset: Brain Tumor | Shape: (3762, 14)
+24-05-03 00:38:25 [DEBUG] (3762, 14) - dropped columns with more than 20% missing values
+24-05-03 00:38:25 [DEBUG] (3762, 14) - drop rows with missing values
+24-05-03 00:38:25 [DEBUG] (3762, 14) drop non-numeric columns
+24-05-03 00:38:25 [INFO] ------ Dataset: Brain Tumor | Shape: (3762, 14) | Label ratio: 0.55 -------
+24-05-03 00:38:46 [INFO] Found 6 datasets
+24-05-03 00:38:46 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 00:38:46 [DEBUG] Dataset: Brain Tumor | Shape: (3762, 14)
+24-05-03 00:38:46 [DEBUG] (3762, 14) - dropped columns with more than 20% missing values
+24-05-03 00:38:46 [DEBUG] (3762, 14) - drop rows with missing values
+24-05-03 00:38:47 [DEBUG] (3762, 14) drop non-numeric columns
+24-05-03 00:38:47 [INFO] ------ Dataset: Brain Tumor | Shape: (3762, 14) | Label ratio: 0.55 -------
+24-05-03 00:38:47 [INFO] Step 0: Data split done | 2633 - 1129
+24-05-03 00:38:47 [DEBUG] Step 1: Standard scaling complete
+24-05-03 00:48:15 [INFO] Found 6 datasets
+24-05-03 00:48:15 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 00:49:54 [INFO] Found 6 datasets
+24-05-03 00:49:54 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 00:50:09 [INFO] Found 6 datasets
+24-05-03 00:50:09 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 00:50:09 [INFO] Finished all datasets
+24-05-03 00:50:15 [INFO] Found 6 datasets
+24-05-03 00:50:15 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 00:50:15 [INFO] Finished all datasets
+24-05-03 00:55:46 [INFO] Methods list: ['uniform']
+24-05-03 00:55:46 [INFO] Found 6 datasets
+24-05-03 00:55:46 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 00:55:46 [DEBUG] Dataset: Brain Tumor | Shape: (3762, 14)
+24-05-03 00:55:46 [DEBUG] (3762, 14) - dropped columns with more than 20% missing values
+24-05-03 00:55:46 [DEBUG] (3762, 14) - drop rows with missing values
+24-05-03 00:55:46 [DEBUG] (3762, 14) drop non-numeric columns
+24-05-03 00:55:46 [INFO] ------ Dataset: Brain Tumor | Shape: (3762, 14) | Label ratio: 0.55 -------
+24-05-03 00:55:46 [INFO] Step 0: Data split done | 2633 - 1129
+24-05-03 00:55:46 [DEBUG] Step 1: Standard scaling complete
+24-05-03 00:56:29 [INFO] Methods list: ['uniform']
+24-05-03 00:56:29 [INFO] Found 6 datasets
+24-05-03 00:56:29 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 00:56:29 [DEBUG] Dataset: Brain Tumor | Shape: (3762, 14)
+24-05-03 00:56:29 [DEBUG] (3762, 14) - dropped columns with more than 20% missing values
+24-05-03 00:56:29 [DEBUG] (3762, 14) - drop rows with missing values
+24-05-03 00:56:29 [DEBUG] (3762, 14) drop non-numeric columns
+24-05-03 00:56:29 [INFO] ------ Dataset: Brain Tumor | Shape: (3762, 14) | Label ratio: 0.55 -------
+24-05-03 00:56:29 [INFO] Step 0: Data split done | 2633 - 1129
+24-05-03 00:56:29 [DEBUG] Step 1: Standard scaling complete
+24-05-03 00:57:55 [INFO] Methods list: ['uniform']
+24-05-03 00:57:55 [INFO] Found 6 datasets
+24-05-03 00:57:55 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 00:57:55 [DEBUG] Dataset: Brain Tumor | Shape: (3762, 14)
+24-05-03 00:57:55 [DEBUG] (3762, 14) - dropped columns with more than 20% missing values
+24-05-03 00:57:55 [DEBUG] (3762, 14) - drop rows with missing values
+24-05-03 00:57:55 [DEBUG] (3762, 14) drop non-numeric columns
+24-05-03 00:57:55 [INFO] ------ Dataset: Brain Tumor | Shape: (3762, 14) | Label ratio: 0.55 -------
+24-05-03 00:57:55 [INFO] Step 0: Data split done | 2633 - 1129
+24-05-03 00:58:54 [INFO] Methods list: ['uniform']
+24-05-03 00:58:54 [INFO] Found 6 datasets
+24-05-03 00:58:54 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 00:58:54 [DEBUG] Dataset: Brain Tumor | Shape: (3762, 14)
+24-05-03 00:58:54 [DEBUG] (3762, 14) - dropped columns with more than 20% missing values
+24-05-03 00:58:54 [DEBUG] (3762, 14) - drop rows with missing values
+24-05-03 00:58:54 [DEBUG] (3762, 14) drop non-numeric columns
+24-05-03 00:58:54 [INFO] ------ Dataset: Brain Tumor | Shape: (3762, 14) | Label ratio: 0.55 -------
+24-05-03 00:58:54 [INFO] Step 0: Data split done | 2633 - 1129
+24-05-03 00:58:54 [DEBUG] Train: 2633
+24-05-03 01:00:04 [INFO] Methods list: ['uniform']
+24-05-03 01:00:04 [INFO] Found 6 datasets
+24-05-03 01:00:04 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 01:00:04 [DEBUG] Dataset: Brain Tumor | Shape: (3762, 14)
+24-05-03 01:00:04 [DEBUG] (3762, 14) - dropped columns with more than 20% missing values
+24-05-03 01:00:04 [DEBUG] (3762, 14) - drop rows with missing values
+24-05-03 01:00:04 [DEBUG] (3762, 14) drop non-numeric columns
+24-05-03 01:00:04 [INFO] ------ Dataset: Brain Tumor | Shape: (3762, 14) | Label ratio: 0.55 -------
+24-05-03 01:00:04 [INFO] Step 0: Data split done | 2633 - 1129
+24-05-03 01:00:04 [DEBUG] Train: 2633
+24-05-03 01:00:04 [INFO] Step 5: Run DST (dataset=Brain Tumor, label_for_dist=labels, clust=None, breaks=3, add_mult_rules=False, maf_method=uniform)
+24-05-03 01:00:38 [INFO] Methods list: ['uniform']
+24-05-03 01:00:38 [INFO] Found 6 datasets
+24-05-03 01:00:38 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 01:00:38 [DEBUG] Dataset: Brain Tumor | Shape: (3762, 14)
+24-05-03 01:00:38 [DEBUG] (3762, 14) - dropped columns with more than 20% missing values
+24-05-03 01:00:38 [DEBUG] (3762, 14) - drop rows with missing values
+24-05-03 01:00:38 [DEBUG] (3762, 14) drop non-numeric columns
+24-05-03 01:00:38 [INFO] ------ Dataset: Brain Tumor | Shape: (3762, 14) | Label ratio: 0.55 -------
+24-05-03 01:00:38 [INFO] Step 0: Data split done | 2633 - 1129
+24-05-03 01:00:38 [DEBUG] Train: 2633
+24-05-03 01:00:38 [INFO] Step 5: Run DST (dataset=Brain Tumor, label_for_dist=labels, clust=None, breaks=3, add_mult_rules=False, maf_method=uniform)
+24-05-03 01:01:08 [INFO] Methods list: ['uniform']
+24-05-03 01:01:08 [INFO] Found 6 datasets
+24-05-03 01:01:08 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 01:01:08 [DEBUG] Dataset: Brain Tumor | Shape: (3762, 14)
+24-05-03 01:01:08 [DEBUG] (3762, 14) - dropped columns with more than 20% missing values
+24-05-03 01:01:08 [DEBUG] (3762, 14) - drop rows with missing values
+24-05-03 01:01:08 [DEBUG] (3762, 14) drop non-numeric columns
+24-05-03 01:01:08 [INFO] ------ Dataset: Brain Tumor | Shape: (3762, 14) | Label ratio: 0.55 -------
+24-05-03 01:01:08 [INFO] Step 0: Data split done | 2633 - 1129
+24-05-03 01:01:08 [DEBUG] Train: 2633
+24-05-03 01:01:08 [INFO] Step 5: Run DST (dataset=Brain Tumor, label_for_dist=labels, clust=None, breaks=3, add_mult_rules=False, maf_method=uniform)
+24-05-03 01:01:08 [DEBUG] 	Model init done
+24-05-03 01:05:26 [INFO] Methods list: ['uniform']
+24-05-03 01:05:26 [INFO] Found 6 datasets
+24-05-03 01:05:26 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 01:05:26 [DEBUG] Dataset: Brain Tumor | Shape: (3762, 14)
+24-05-03 01:05:26 [DEBUG] (3762, 14) - dropped columns with more than 20% missing values
+24-05-03 01:05:26 [DEBUG] (3762, 14) - drop rows with missing values
+24-05-03 01:05:26 [DEBUG] (3762, 14) drop non-numeric columns
+24-05-03 01:05:26 [INFO] ------ Dataset: Brain Tumor | Shape: (3762, 14) | Label ratio: 0.55 -------
+24-05-03 01:05:26 [INFO] Step 0: Data split done | 2633 - 1129
+24-05-03 01:05:26 [DEBUG] Train: 2633
+24-05-03 01:05:26 [INFO] Step 5: Run DST (dataset=Brain Tumor, label_for_dist=labels, clust=None, breaks=3, add_mult_rules=False, maf_method=uniform)
+24-05-03 01:05:26 [DEBUG] 	Model init done
