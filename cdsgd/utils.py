@@ -84,7 +84,7 @@ def evaluate_clustering(df, labels, model=None, alg="kmeans", round_digits=3,
                         print_results=False, dataset="train"):
     silhouette = silhouette_score(df, labels).round(round_digits)
     calinski_harabasz = calinski_harabasz_score(df, labels).round(round_digits)
-    
+    inertia = None
     if alg == "kmeans" and dataset=="train":
         inertia = round(model.inertia_,round_digits)
         
@@ -95,6 +95,8 @@ def evaluate_clustering(df, labels, model=None, alg="kmeans", round_digits=3,
         logging.debug(f"\t{calinski_harabasz = }")
         if alg == "kmeans" and dataset=="train":
             logging.debug(f"\t{inertia = }")
+    
+    return {"silhouette": silhouette, "calinski_harabasz": calinski_harabasz, "inertia": inertia}
 
 def dbscan_predict(model, X):
     nr_samples = X.shape[0]
@@ -213,18 +215,20 @@ def detect_outliers_z_score(data, threshold=OUTLIER_THRESHOLD_NUM_STD):
 def report_results(y_test, y_pred, epoch=None, dt=None, losses=None, method=None, dataset=None, 
                    name=None, save_results=False, save_path=None, print_results=True, 
                    breaks=3, mult_rules=False, clustering_alg=None, label_for_dist=None):
+    fig = None
     if epoch and dt and losses:
         if print_results:
             logging.debug(f"Training Time: {dt:.2f}s")
             logging.debug(f"Epochs: {epoch+1}")
             logging.debug(f"Min Loss: {losses[-1]:.3f}")
+            fig = plt.figure()
             plt.style.use('ggplot')
             plt.plot(list(range(epoch+1)), losses)
             plt.xlabel('Epochs')
             plt.ylabel('Loss')
             plt.title(name, fontsize=10)
             plt.savefig(os.path.join("plots", f"{name}.png"))
-            plt.show()
+            plt.close(fig)
             # save to csv
 
 
@@ -254,7 +258,10 @@ def report_results(y_test, y_pred, epoch=None, dt=None, losses=None, method=None
         res_df = pd.read_csv(save_path) if os.path.exists(save_path) else pd.DataFrame()
         res_df = pd.concat([res_df, pd.DataFrame([res_row])], ignore_index=True)
         res_df.to_csv(save_path, index=False)
-
+        res_row["plot"] = fig
+        return res_row
+    
+    
 def filter_by_rule(df, rule_lambda, lower_confidence_by_proportion=LOWER_CONFIDENCE_BY_PROPORTION,
                    only_plot=False, print_results=False, label_column=LABEL_COL_FOR_DIST):
     """
