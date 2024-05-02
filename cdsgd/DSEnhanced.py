@@ -318,6 +318,7 @@ class DSEnhanced:
  
             self.method = method
             logging.info(f"----------- Running {self.method} method -----------")
+            self.train_DST()
 
             if self.method == "clustering":
                 self.standard_scaling()
@@ -329,7 +330,6 @@ class DSEnhanced:
                     self.run_eval_clustering_as_classifier()
                     self.get_opacity()  
                     self.train_DST()
-            self.train_DST()
 
             logging.info(f"Finished {self.dataset_name}")
         logging.info("Finished all MAF methods")
