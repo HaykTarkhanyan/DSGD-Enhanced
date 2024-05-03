@@ -318,23 +318,24 @@ class DSEnhanced:
  
             self.method = method
             logging.info(f"----------- Running {self.method} method -----------")
-            self.train_DST()
 
             if self.method == "clustering":
                 self.standard_scaling()
-                # for cl_alg in ["kmeans", "dbscan"]:
-                #     logging.info(f"----------- Running {cl_alg} clustering -----------")
-                #     self.clustering_alg = cl_alg
-                #     self.clustering_and_inference()
-                #     self.run_eval_clustering()
-                #     self.run_eval_clustering_as_classifier()
-                #     self.get_opacity()  
-                #     self.train_DST()
-                    
-                self.clustering_alg = "no_clustering"
-                logging.info(f"----------- Running without clustering -----------")
-                self.get_opacity()
+                for cl_alg in ["kmeans", "dbscan"]:
+                    logging.info(f"----------- Running {cl_alg} clustering -----------")
+                    self.clustering_alg = cl_alg
+                    self.clustering_and_inference()
+                    self.run_eval_clustering()
+                    self.run_eval_clustering_as_classifier()
+                    self.get_opacity()  
+                    self.train_DST()
+            else:
                 self.train_DST()
+                
+                # self.clustering_alg = "no_clustering"
+                # logging.info(f"----------- Running without clustering -----------")
+                # self.get_opacity()
+                # self.train_DST()
 
             logging.info(f"Finished {self.dataset_name}")
         logging.info("Finished all MAF methods")
@@ -342,6 +343,7 @@ class DSEnhanced:
     def run_all_datasets(self):
         for dataset in self.datasets:
             self.dataset = dataset
+            self.dataset_name = self.dataset.split(".")[0]
             self.run()
         logging.info("Finished all datasets")
     

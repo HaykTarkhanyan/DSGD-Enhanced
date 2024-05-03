@@ -25,6 +25,9 @@ def get_distance(df, model, alg="kmeans", density_radius=0.5, penalty_rate=penal
     if alg == "kmeans":
         distances = 1 - np.min(
             np.linalg.norm(df[:, np.newaxis] - model.cluster_centers_, axis=2), axis=1) 
+    elif alg == "no_clustering":
+        distances = 1 - np.min(
+            np.linalg.norm(df[:, np.newaxis] - df, axis=2), axis=1)
     else:
         distances= calculate_adjusted_density(df, model.labels_, radius=density_radius, 
                                               penalty_rate=penalty_rate, 
