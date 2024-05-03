@@ -22,6 +22,7 @@ if __name__ == "__main__":
                         datefmt="%d-%b-%y %H:%M:%S")
 
 def get_distance(df, model, alg="kmeans", density_radius=0.5, penalty_rate=penalty_rate):
+    # print(df.columns)
     if alg == "kmeans":
         distances = 1 - np.min(
             np.linalg.norm(df[:, np.newaxis] - model.cluster_centers_, axis=2), axis=1) 

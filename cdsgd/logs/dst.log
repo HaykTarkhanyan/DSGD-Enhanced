@@ -1930,3 +1930,639 @@
 24-05-03 21:26:38 [INFO] Finished wine
 24-05-03 21:26:38 [INFO] Finished all MAF methods
 24-05-03 21:26:38 [INFO] Finished all datasets
+24-05-03 22:47:51 [INFO] Methods list: ['clustering', 'random', 'uniform']
+24-05-03 22:47:51 [INFO] Found 6 datasets
+24-05-03 22:47:51 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 22:47:51 [DEBUG] Dataset: Brain Tumor | Shape: (3762, 14)
+24-05-03 22:47:51 [DEBUG] (3762, 14) - dropped columns with more than 20% missing values
+24-05-03 22:47:51 [DEBUG] (3762, 14) - drop rows with missing values
+24-05-03 22:47:51 [DEBUG] (3762, 14) drop non-numeric columns
+24-05-03 22:47:51 [INFO] ------ Dataset: Brain Tumor | Shape: (3762, 14) | Label ratio: 0.55 -------
+24-05-03 22:47:51 [INFO] Step 0: Data split done | 2633 - 1129
+24-05-03 22:47:51 [INFO] ----------- Running clustering method -----------
+24-05-03 22:47:51 [DEBUG] Step 1: Standard scaling complete
+24-05-03 22:47:51 [INFO] ----------- Running kmeans clustering -----------
+24-05-03 22:47:51 [INFO] Step 2.1: Performing kmeans clustering
+24-05-03 22:47:51 [INFO] Step 2.1: Clustering and inference done
+24-05-03 22:47:51 [INFO] Step 2.2: Evaluate clustering
+24-05-03 22:47:51 [DEBUG] Evaluation on train
+24-05-03 22:47:51 [DEBUG] 	silhouette = 0.378
+24-05-03 22:47:51 [DEBUG] 	calinski_harabasz = 1373.973
+24-05-03 22:47:51 [DEBUG] 	inertia = 22486.171
+24-05-03 22:47:51 [DEBUG] Evaluation on test
+24-05-03 22:47:51 [DEBUG] 	silhouette = 0.381
+24-05-03 22:47:51 [DEBUG] 	calinski_harabasz = 503.306
+24-05-03 22:47:51 [INFO] Step 2.2: Clustering evaluation done
+24-05-03 22:47:51 [DEBUG] Evaluation on train
+24-05-03 22:47:51 [DEBUG] 	Accuracy:  0.99
+24-05-03 22:47:51 [DEBUG] 	F1 Score: 0.99
+24-05-03 22:47:51 [DEBUG] 	Confusion Matrix: 
+[[1460    8]
+ [  23 1142]]
+24-05-03 22:47:51 [DEBUG] Evaluation on test
+24-05-03 22:47:51 [DEBUG] 	Accuracy:  0.99
+24-05-03 22:47:51 [DEBUG] 	F1 Score: 0.99
+24-05-03 22:47:51 [DEBUG] 	Confusion Matrix: 
+[[609   2]
+ [  8 510]]
+24-05-03 22:47:51 [INFO] Step 3: Clustering as a classifier, evaluation done
+24-05-03 22:48:52 [INFO] Methods list: ['clustering', 'random', 'uniform']
+24-05-03 22:48:52 [INFO] Found 6 datasets
+24-05-03 22:48:52 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 22:48:52 [DEBUG] Dataset: Brain Tumor | Shape: (3762, 14)
+24-05-03 22:48:52 [DEBUG] (3762, 14) - dropped columns with more than 20% missing values
+24-05-03 22:48:52 [DEBUG] (3762, 14) - drop rows with missing values
+24-05-03 22:48:52 [DEBUG] (3762, 14) drop non-numeric columns
+24-05-03 22:48:52 [INFO] ------ Dataset: Brain Tumor | Shape: (3762, 14) | Label ratio: 0.55 -------
+24-05-03 22:48:52 [INFO] Step 0: Data split done | 2633 - 1129
+24-05-03 22:48:52 [INFO] ----------- Running clustering method -----------
+24-05-03 22:48:52 [DEBUG] Step 1: Standard scaling complete
+24-05-03 22:48:52 [INFO] ----------- Running kmeans clustering -----------
+24-05-03 22:48:52 [INFO] Step 2.1: Performing kmeans clustering
+24-05-03 22:48:52 [INFO] Step 2.1: Clustering and inference done
+24-05-03 22:48:52 [INFO] Step 2.2: Evaluate clustering
+24-05-03 22:48:52 [DEBUG] Evaluation on train
+24-05-03 22:48:52 [DEBUG] 	silhouette = 0.378
+24-05-03 22:48:52 [DEBUG] 	calinski_harabasz = 1373.973
+24-05-03 22:48:52 [DEBUG] 	inertia = 22486.171
+24-05-03 22:48:52 [DEBUG] Evaluation on test
+24-05-03 22:48:52 [DEBUG] 	silhouette = 0.381
+24-05-03 22:48:52 [DEBUG] 	calinski_harabasz = 503.306
+24-05-03 22:48:52 [INFO] Step 2.2: Clustering evaluation done
+24-05-03 22:48:52 [DEBUG] Evaluation on train
+24-05-03 22:48:52 [DEBUG] 	Accuracy:  0.99
+24-05-03 22:48:52 [DEBUG] 	F1 Score: 0.99
+24-05-03 22:48:52 [DEBUG] 	Confusion Matrix: 
+[[1460    8]
+ [  23 1142]]
+24-05-03 22:48:52 [DEBUG] Evaluation on test
+24-05-03 22:48:52 [DEBUG] 	Accuracy:  0.99
+24-05-03 22:48:52 [DEBUG] 	F1 Score: 0.99
+24-05-03 22:48:52 [DEBUG] 	Confusion Matrix: 
+[[609   2]
+ [  8 510]]
+24-05-03 22:48:52 [INFO] Step 3: Clustering as a classifier, evaluation done
+24-05-03 22:49:22 [INFO] Methods list: ['clustering', 'random', 'uniform']
+24-05-03 22:49:22 [INFO] Found 6 datasets
+24-05-03 22:49:22 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 22:49:22 [DEBUG] Dataset: Brain Tumor | Shape: (3762, 14)
+24-05-03 22:49:22 [DEBUG] (3762, 14) - dropped columns with more than 20% missing values
+24-05-03 22:49:22 [DEBUG] (3762, 14) - drop rows with missing values
+24-05-03 22:49:22 [DEBUG] (3762, 14) drop non-numeric columns
+24-05-03 22:49:22 [INFO] ------ Dataset: Brain Tumor | Shape: (3762, 14) | Label ratio: 0.55 -------
+24-05-03 22:49:22 [INFO] Step 0: Data split done | 2633 - 1129
+24-05-03 22:49:22 [INFO] ----------- Running clustering method -----------
+24-05-03 22:49:22 [DEBUG] Step 1: Standard scaling complete
+24-05-03 22:49:22 [INFO] ----------- Running kmeans clustering -----------
+24-05-03 22:49:22 [INFO] Step 2.1: Performing kmeans clustering
+24-05-03 22:49:22 [INFO] Step 2.1: Clustering and inference done
+24-05-03 22:49:22 [INFO] Step 2.2: Evaluate clustering
+24-05-03 22:49:22 [DEBUG] Evaluation on train
+24-05-03 22:49:22 [DEBUG] 	silhouette = 0.378
+24-05-03 22:49:22 [DEBUG] 	calinski_harabasz = 1373.973
+24-05-03 22:49:22 [DEBUG] 	inertia = 22486.171
+24-05-03 22:49:22 [DEBUG] Evaluation on test
+24-05-03 22:49:22 [DEBUG] 	silhouette = 0.381
+24-05-03 22:49:22 [DEBUG] 	calinski_harabasz = 503.306
+24-05-03 22:49:22 [INFO] Step 2.2: Clustering evaluation done
+24-05-03 22:49:22 [DEBUG] Evaluation on train
+24-05-03 22:49:22 [DEBUG] 	Accuracy:  0.99
+24-05-03 22:49:22 [DEBUG] 	F1 Score: 0.99
+24-05-03 22:49:22 [DEBUG] 	Confusion Matrix: 
+[[1460    8]
+ [  23 1142]]
+24-05-03 22:49:22 [DEBUG] Evaluation on test
+24-05-03 22:49:22 [DEBUG] 	Accuracy:  0.99
+24-05-03 22:49:22 [DEBUG] 	F1 Score: 0.99
+24-05-03 22:49:22 [DEBUG] 	Confusion Matrix: 
+[[609   2]
+ [  8 510]]
+24-05-03 22:49:22 [INFO] Step 3: Clustering as a classifier, evaluation done
+24-05-03 22:50:05 [INFO] Methods list: ['clustering', 'random', 'uniform']
+24-05-03 22:50:05 [INFO] Found 6 datasets
+24-05-03 22:50:05 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 22:50:05 [DEBUG] Dataset: Brain Tumor | Shape: (3762, 14)
+24-05-03 22:50:05 [DEBUG] (3762, 14) - dropped columns with more than 20% missing values
+24-05-03 22:50:05 [DEBUG] (3762, 14) - drop rows with missing values
+24-05-03 22:50:05 [DEBUG] (3762, 14) drop non-numeric columns
+24-05-03 22:50:05 [INFO] ------ Dataset: Brain Tumor | Shape: (3762, 14) | Label ratio: 0.55 -------
+24-05-03 22:50:05 [INFO] Step 0: Data split done | 2633 - 1129
+24-05-03 22:50:05 [INFO] ----------- Running clustering method -----------
+24-05-03 22:50:05 [DEBUG] Step 1: Standard scaling complete
+24-05-03 22:50:05 [INFO] ----------- Running kmeans clustering -----------
+24-05-03 22:50:05 [INFO] Step 2.1: Performing kmeans clustering
+24-05-03 22:50:05 [INFO] Step 2.1: Clustering and inference done
+24-05-03 22:50:05 [INFO] Step 2.2: Evaluate clustering
+24-05-03 22:50:05 [DEBUG] Evaluation on train
+24-05-03 22:50:05 [DEBUG] 	silhouette = 0.378
+24-05-03 22:50:05 [DEBUG] 	calinski_harabasz = 1373.973
+24-05-03 22:50:05 [DEBUG] 	inertia = 22486.171
+24-05-03 22:50:05 [DEBUG] Evaluation on test
+24-05-03 22:50:05 [DEBUG] 	silhouette = 0.381
+24-05-03 22:50:05 [DEBUG] 	calinski_harabasz = 503.306
+24-05-03 22:50:05 [INFO] Step 2.2: Clustering evaluation done
+24-05-03 22:50:05 [DEBUG] Evaluation on train
+24-05-03 22:50:05 [DEBUG] 	Accuracy:  0.99
+24-05-03 22:50:05 [DEBUG] 	F1 Score: 0.99
+24-05-03 22:50:05 [DEBUG] 	Confusion Matrix: 
+[[1460    8]
+ [  23 1142]]
+24-05-03 22:50:05 [DEBUG] Evaluation on test
+24-05-03 22:50:05 [DEBUG] 	Accuracy:  0.99
+24-05-03 22:50:05 [DEBUG] 	F1 Score: 0.99
+24-05-03 22:50:05 [DEBUG] 	Confusion Matrix: 
+[[609   2]
+ [  8 510]]
+24-05-03 22:50:05 [INFO] Step 3: Clustering as a classifier, evaluation done
+24-05-03 22:50:25 [INFO] Methods list: ['clustering', 'random', 'uniform']
+24-05-03 22:50:25 [INFO] Found 6 datasets
+24-05-03 22:50:25 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 22:50:25 [DEBUG] Dataset: Brain Tumor | Shape: (3762, 14)
+24-05-03 22:50:25 [DEBUG] (3762, 14) - dropped columns with more than 20% missing values
+24-05-03 22:50:25 [DEBUG] (3762, 14) - drop rows with missing values
+24-05-03 22:50:25 [DEBUG] (3762, 14) drop non-numeric columns
+24-05-03 22:50:25 [INFO] ------ Dataset: Brain Tumor | Shape: (3762, 14) | Label ratio: 0.55 -------
+24-05-03 22:50:25 [INFO] Step 0: Data split done | 2633 - 1129
+24-05-03 22:50:25 [INFO] ----------- Running clustering method -----------
+24-05-03 22:50:25 [DEBUG] Step 1: Standard scaling complete
+24-05-03 22:50:25 [INFO] ----------- Running kmeans clustering -----------
+24-05-03 22:50:25 [INFO] Step 2.1: Performing kmeans clustering
+24-05-03 22:50:25 [INFO] Step 2.1: Clustering and inference done
+24-05-03 22:50:25 [INFO] Step 2.2: Evaluate clustering
+24-05-03 22:50:25 [DEBUG] Evaluation on train
+24-05-03 22:50:25 [DEBUG] 	silhouette = 0.378
+24-05-03 22:50:25 [DEBUG] 	calinski_harabasz = 1373.973
+24-05-03 22:50:25 [DEBUG] 	inertia = 22486.171
+24-05-03 22:50:25 [DEBUG] Evaluation on test
+24-05-03 22:50:25 [DEBUG] 	silhouette = 0.381
+24-05-03 22:50:25 [DEBUG] 	calinski_harabasz = 503.306
+24-05-03 22:50:25 [INFO] Step 2.2: Clustering evaluation done
+24-05-03 22:50:25 [DEBUG] Evaluation on train
+24-05-03 22:50:25 [DEBUG] 	Accuracy:  0.99
+24-05-03 22:50:25 [DEBUG] 	F1 Score: 0.99
+24-05-03 22:50:25 [DEBUG] 	Confusion Matrix: 
+[[1460    8]
+ [  23 1142]]
+24-05-03 22:50:25 [DEBUG] Evaluation on test
+24-05-03 22:50:25 [DEBUG] 	Accuracy:  0.99
+24-05-03 22:50:25 [DEBUG] 	F1 Score: 0.99
+24-05-03 22:50:25 [DEBUG] 	Confusion Matrix: 
+[[609   2]
+ [  8 510]]
+24-05-03 22:50:25 [INFO] Step 3: Clustering as a classifier, evaluation done
+24-05-03 22:50:26 [INFO] Step 4: Opacity calculation done
+24-05-03 22:50:26 [DEBUG] Train: 2633
+24-05-03 22:50:26 [INFO] Step 5: Run DST (dataset=Brain Tumor, label_for_dist=labels, clust=kmeans, breaks=3, add_mult_rules=False, maf_method=clustering)
+24-05-03 22:50:26 [DEBUG] 	Model init done
+24-05-03 22:51:00 [DEBUG] 	Model fit done
+24-05-03 22:51:00 [INFO] Step 6: Inference done
+24-05-03 22:51:00 [DEBUG] Training Time: 31.26s
+24-05-03 22:51:00 [DEBUG] Epochs: 37
+24-05-03 22:51:01 [DEBUG] Min Loss: 0.018
+24-05-03 22:51:01 [DEBUG] Loaded backend module://matplotlib_inline.backend_inline version unknown.
+24-05-03 22:51:01 [DEBUG] Loaded backend module://matplotlib_inline.backend_inline version unknown.
+24-05-03 22:51:01 [DEBUG] Accuracy:  0.98
+24-05-03 22:51:01 [DEBUG] F1 Score: 0.98
+24-05-03 22:51:01 [DEBUG] Confusion Matrix: [[608   3]
+ [ 16 502]]
+24-05-03 22:51:01 [INFO] ------------------------------
+24-05-03 22:51:01 [INFO] ----------- Running dbscan clustering -----------
+24-05-03 22:51:01 [INFO] Step 2.1: Performing dbscan clustering
+24-05-03 22:51:02 [INFO] Step 2.1: Clustering and inference done
+24-05-03 22:51:02 [INFO] Step 2.2: Evaluate clustering
+24-05-03 22:51:02 [DEBUG] Evaluation on train
+24-05-03 22:51:02 [DEBUG] 	silhouette = 0.088
+24-05-03 22:51:02 [DEBUG] 	calinski_harabasz = 379.206
+24-05-03 22:51:02 [DEBUG] Evaluation on test
+24-05-03 22:51:02 [DEBUG] 	silhouette = 0.065
+24-05-03 22:51:02 [DEBUG] 	calinski_harabasz = 137.358
+24-05-03 22:51:02 [INFO] Step 2.2: Clustering evaluation done
+24-05-03 22:51:02 [DEBUG] Evaluation on train
+24-05-03 22:51:02 [DEBUG] 	Accuracy:  0.50
+24-05-03 22:51:02 [DEBUG] 	F1 Score: 1.00
+24-05-03 22:51:02 [DEBUG] 	Confusion Matrix: 
+[[1065    0]
+ [   0  263]]
+24-05-03 22:51:02 [DEBUG] Evaluation on test
+24-05-03 22:51:02 [DEBUG] 	Accuracy:  0.16
+24-05-03 22:51:02 [DEBUG] 	F1 Score: 0.00
+24-05-03 22:51:02 [DEBUG] 	Confusion Matrix: 
+[[181 430]
+ [518   0]]
+24-05-03 22:51:02 [INFO] Step 3: Clustering as a classifier, evaluation done
+24-05-03 22:51:03 [INFO] Step 4: Opacity calculation done
+24-05-03 22:51:03 [DEBUG] Train: 2633
+24-05-03 22:51:03 [INFO] Step 5: Run DST (dataset=Brain Tumor, label_for_dist=labels, clust=dbscan, breaks=3, add_mult_rules=False, maf_method=clustering)
+24-05-03 22:51:03 [DEBUG] 	Model init done
+24-05-03 22:51:52 [INFO] Methods list: ['clustering', 'random', 'uniform']
+24-05-03 22:51:52 [INFO] Found 6 datasets
+24-05-03 22:51:52 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 22:51:52 [DEBUG] Dataset: Brain Tumor | Shape: (100, 14)
+24-05-03 22:51:52 [DEBUG] (100, 14) - dropped columns with more than 20% missing values
+24-05-03 22:51:52 [DEBUG] (100, 14) - drop rows with missing values
+24-05-03 22:51:52 [DEBUG] (100, 14) drop non-numeric columns
+24-05-03 22:51:52 [INFO] ------ Dataset: Brain Tumor | Shape: (100, 14) | Label ratio: 0.64 -------
+24-05-03 22:51:52 [INFO] Step 0: Data split done | 70 - 30
+24-05-03 22:51:52 [INFO] ----------- Running clustering method -----------
+24-05-03 22:51:52 [DEBUG] Step 1: Standard scaling complete
+24-05-03 22:51:52 [INFO] ----------- Running kmeans clustering -----------
+24-05-03 22:51:52 [INFO] Step 2.1: Performing kmeans clustering
+24-05-03 22:51:52 [INFO] Step 2.1: Clustering and inference done
+24-05-03 22:51:52 [INFO] Step 2.2: Evaluate clustering
+24-05-03 22:51:52 [DEBUG] Evaluation on train
+24-05-03 22:51:52 [DEBUG] 	silhouette = 0.397
+24-05-03 22:51:52 [DEBUG] 	calinski_harabasz = 33.646
+24-05-03 22:51:52 [DEBUG] 	inertia = 608.782
+24-05-03 22:51:52 [DEBUG] Evaluation on test
+24-05-03 22:51:52 [DEBUG] 	silhouette = 0.413
+24-05-03 22:51:52 [DEBUG] 	calinski_harabasz = 27.44
+24-05-03 22:51:52 [INFO] Step 2.2: Clustering evaluation done
+24-05-03 22:51:52 [DEBUG] Evaluation on train
+24-05-03 22:51:52 [DEBUG] 	Accuracy:  0.97
+24-05-03 22:51:52 [DEBUG] 	F1 Score: 0.96
+24-05-03 22:51:52 [DEBUG] 	Confusion Matrix: 
+[[45  1]
+ [ 1 23]]
+24-05-03 22:51:52 [DEBUG] Evaluation on test
+24-05-03 22:51:52 [DEBUG] 	Accuracy:  1.00
+24-05-03 22:51:52 [DEBUG] 	F1 Score: 1.00
+24-05-03 22:51:52 [DEBUG] 	Confusion Matrix: 
+[[18  0]
+ [ 0 12]]
+24-05-03 22:51:52 [INFO] Step 3: Clustering as a classifier, evaluation done
+24-05-03 22:51:52 [INFO] Step 4: Opacity calculation done
+24-05-03 22:51:52 [DEBUG] Train: 70
+24-05-03 22:51:52 [INFO] Step 5: Run DST (dataset=Brain Tumor, label_for_dist=labels, clust=kmeans, breaks=3, add_mult_rules=False, maf_method=clustering)
+24-05-03 22:51:52 [DEBUG] 	Model init done
+24-05-03 22:51:53 [DEBUG] 	Model fit done
+24-05-03 22:51:53 [INFO] Step 6: Inference done
+24-05-03 22:51:53 [DEBUG] Training Time: 1.26s
+24-05-03 22:51:53 [DEBUG] Epochs: 38
+24-05-03 22:51:53 [DEBUG] Min Loss: 0.002
+24-05-03 22:51:54 [DEBUG] Accuracy:  0.87
+24-05-03 22:51:54 [DEBUG] F1 Score: 0.80
+24-05-03 22:51:54 [DEBUG] Confusion Matrix: [[18  0]
+ [ 4  8]]
+24-05-03 22:51:54 [INFO] ------------------------------
+24-05-03 22:51:54 [INFO] ----------- Running dbscan clustering -----------
+24-05-03 22:51:54 [INFO] Step 2.1: Performing dbscan clustering
+24-05-03 22:51:54 [WARNING] Could not find the desired number of clusters for Brain Tumor
+24-05-03 22:52:30 [INFO] Methods list: ['random']
+24-05-03 22:52:30 [INFO] Found 6 datasets
+24-05-03 22:52:30 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 22:52:30 [DEBUG] Dataset: Brain Tumor | Shape: (100, 14)
+24-05-03 22:52:30 [DEBUG] (100, 14) - dropped columns with more than 20% missing values
+24-05-03 22:52:30 [DEBUG] (100, 14) - drop rows with missing values
+24-05-03 22:52:30 [DEBUG] (100, 14) drop non-numeric columns
+24-05-03 22:52:30 [INFO] ------ Dataset: Brain Tumor | Shape: (100, 14) | Label ratio: 0.64 -------
+24-05-03 22:52:30 [INFO] Step 0: Data split done | 70 - 30
+24-05-03 22:52:30 [INFO] ----------- Running random method -----------
+24-05-03 22:52:30 [DEBUG] Train: 70
+24-05-03 22:52:30 [INFO] Step 5: Run DST (dataset=Brain Tumor, label_for_dist=labels, clust=None, breaks=3, add_mult_rules=False, maf_method=random)
+24-05-03 22:52:30 [DEBUG] 	Model init done
+24-05-03 22:52:33 [DEBUG] 	Model fit done
+24-05-03 22:52:33 [INFO] Step 6: Inference done
+24-05-03 22:52:33 [DEBUG] Training Time: 3.80s
+24-05-03 22:52:33 [DEBUG] Epochs: 146
+24-05-03 22:52:33 [DEBUG] Min Loss: 0.010
+24-05-03 22:52:34 [DEBUG] Accuracy:  0.93
+24-05-03 22:52:34 [DEBUG] F1 Score: 0.91
+24-05-03 22:52:34 [DEBUG] Confusion Matrix: [[18  0]
+ [ 2 10]]
+24-05-03 22:52:34 [INFO] ------------------------------
+24-05-03 22:52:34 [INFO] Finished Brain Tumor
+24-05-03 22:52:34 [INFO] Finished all MAF methods
+24-05-03 22:53:07 [INFO] Methods list: ['random']
+24-05-03 22:53:07 [INFO] Found 6 datasets
+24-05-03 22:53:07 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 22:53:07 [DEBUG] Dataset: Brain Tumor | Shape: (100, 14)
+24-05-03 22:53:07 [DEBUG] (100, 14) - dropped columns with more than 20% missing values
+24-05-03 22:53:07 [DEBUG] (100, 14) - drop rows with missing values
+24-05-03 22:53:07 [DEBUG] (100, 14) drop non-numeric columns
+24-05-03 22:53:07 [INFO] ------ Dataset: Brain Tumor | Shape: (100, 14) | Label ratio: 0.64 -------
+24-05-03 22:53:07 [INFO] Step 0: Data split done | 70 - 30
+24-05-03 22:53:07 [INFO] ----------- Running random method -----------
+24-05-03 22:53:07 [DEBUG] Train: 70
+24-05-03 22:53:07 [INFO] Step 5: Run DST (dataset=Brain Tumor, label_for_dist=labels, clust=None, breaks=3, add_mult_rules=False, maf_method=random)
+24-05-03 22:53:07 [DEBUG] 	Model init done
+24-05-03 22:53:11 [DEBUG] 	Model fit done
+24-05-03 22:53:11 [INFO] Step 6: Inference done
+24-05-03 22:53:11 [DEBUG] Training Time: 3.58s
+24-05-03 22:53:11 [DEBUG] Epochs: 147
+24-05-03 22:53:11 [DEBUG] Min Loss: 0.010
+24-05-03 22:53:11 [DEBUG] Accuracy:  0.90
+24-05-03 22:53:11 [DEBUG] F1 Score: 0.86
+24-05-03 22:53:11 [DEBUG] Confusion Matrix: [[18  0]
+ [ 3  9]]
+24-05-03 22:53:11 [INFO] ------------------------------
+24-05-03 22:53:11 [INFO] Finished Brain Tumor
+24-05-03 22:53:11 [INFO] Finished all MAF methods
+24-05-03 22:54:26 [INFO] Methods list: ['random']
+24-05-03 22:54:26 [INFO] Found 6 datasets
+24-05-03 22:54:26 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 22:55:27 [INFO] Methods list: ['random']
+24-05-03 22:55:27 [INFO] Found 6 datasets
+24-05-03 22:55:27 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 22:55:27 [DEBUG] Dataset: Brain Tumor | Shape: (100, 14)
+24-05-03 22:55:27 [DEBUG] (100, 14) - dropped columns with more than 20% missing values
+24-05-03 22:55:27 [DEBUG] (100, 14) - drop rows with missing values
+24-05-03 22:55:27 [DEBUG] (100, 14) drop non-numeric columns
+24-05-03 22:55:27 [INFO] ------ Dataset: Brain Tumor | Shape: (100, 14) | Label ratio: 0.64 -------
+24-05-03 22:55:27 [INFO] Step 0: Data split done | 70 - 30
+24-05-03 22:55:27 [INFO] ----------- Running random method -----------
+24-05-03 22:55:27 [DEBUG] Train: 70
+24-05-03 22:55:27 [INFO] Step 5: Run DST (dataset=Brain Tumor, label_for_dist=labels, clust=None, breaks=3, add_mult_rules=False, maf_method=random)
+24-05-03 22:55:27 [DEBUG] 	Model init done
+24-05-03 22:55:31 [DEBUG] 	Model fit done
+24-05-03 22:55:31 [INFO] Step 6: Inference done
+24-05-03 22:55:31 [DEBUG] Training Time: 3.85s
+24-05-03 22:55:31 [DEBUG] Epochs: 149
+24-05-03 22:55:31 [DEBUG] Min Loss: 0.010
+24-05-03 22:55:31 [DEBUG] Loaded backend module://matplotlib_inline.backend_inline version unknown.
+24-05-03 22:55:31 [DEBUG] Loaded backend module://matplotlib_inline.backend_inline version unknown.
+24-05-03 22:55:31 [DEBUG] Accuracy:  0.93
+24-05-03 22:55:31 [DEBUG] F1 Score: 0.91
+24-05-03 22:55:31 [DEBUG] Confusion Matrix: [[18  0]
+ [ 2 10]]
+24-05-03 22:55:31 [INFO] ------------------------------
+24-05-03 22:55:31 [INFO] Finished Brain Tumor
+24-05-03 22:55:31 [INFO] Finished all MAF methods
+24-05-03 22:58:06 [INFO] Methods list: ['kmeans']
+24-05-03 22:58:06 [INFO] Found 6 datasets
+24-05-03 22:58:06 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 22:58:06 [DEBUG] Dataset: Brain Tumor | Shape: (100, 14)
+24-05-03 22:58:06 [DEBUG] (100, 14) - dropped columns with more than 20% missing values
+24-05-03 22:58:06 [DEBUG] (100, 14) - drop rows with missing values
+24-05-03 22:58:06 [DEBUG] (100, 14) drop non-numeric columns
+24-05-03 22:58:06 [INFO] ------ Dataset: Brain Tumor | Shape: (100, 14) | Label ratio: 0.64 -------
+24-05-03 22:58:06 [INFO] Step 0: Data split done | 70 - 30
+24-05-03 22:58:06 [INFO] ----------- Running kmeans method -----------
+24-05-03 22:58:06 [DEBUG] Train: 70
+24-05-03 22:58:06 [INFO] Step 5: Run DST (dataset=Brain Tumor, label_for_dist=labels, clust=None, breaks=3, add_mult_rules=False, maf_method=kmeans)
+24-05-03 22:58:06 [DEBUG] 	Model init done
+24-05-03 22:58:18 [INFO] Methods list: ['clustering']
+24-05-03 22:58:18 [INFO] Found 6 datasets
+24-05-03 22:58:18 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 22:58:18 [DEBUG] Dataset: Brain Tumor | Shape: (100, 14)
+24-05-03 22:58:18 [DEBUG] (100, 14) - dropped columns with more than 20% missing values
+24-05-03 22:58:18 [DEBUG] (100, 14) - drop rows with missing values
+24-05-03 22:58:18 [DEBUG] (100, 14) drop non-numeric columns
+24-05-03 22:58:18 [INFO] ------ Dataset: Brain Tumor | Shape: (100, 14) | Label ratio: 0.64 -------
+24-05-03 22:58:18 [INFO] Step 0: Data split done | 70 - 30
+24-05-03 22:58:18 [INFO] ----------- Running clustering method -----------
+24-05-03 22:58:18 [DEBUG] Step 1: Standard scaling complete
+24-05-03 22:58:18 [INFO] ----------- Running kmeans clustering -----------
+24-05-03 22:58:18 [INFO] Step 2.1: Performing kmeans clustering
+24-05-03 22:58:18 [INFO] Step 2.1: Clustering and inference done
+24-05-03 22:58:18 [INFO] Step 2.2: Evaluate clustering
+24-05-03 22:58:18 [DEBUG] Evaluation on train
+24-05-03 22:58:18 [DEBUG] 	silhouette = 0.397
+24-05-03 22:58:18 [DEBUG] 	calinski_harabasz = 33.646
+24-05-03 22:58:18 [DEBUG] 	inertia = 608.782
+24-05-03 22:58:18 [DEBUG] Evaluation on test
+24-05-03 22:58:18 [DEBUG] 	silhouette = 0.413
+24-05-03 22:58:18 [DEBUG] 	calinski_harabasz = 27.44
+24-05-03 22:58:18 [INFO] Step 2.2: Clustering evaluation done
+24-05-03 22:58:18 [DEBUG] Evaluation on train
+24-05-03 22:58:18 [DEBUG] 	Accuracy:  0.97
+24-05-03 22:58:18 [DEBUG] 	F1 Score: 0.96
+24-05-03 22:58:18 [DEBUG] 	Confusion Matrix: 
+[[45  1]
+ [ 1 23]]
+24-05-03 22:58:18 [DEBUG] Evaluation on test
+24-05-03 22:58:18 [DEBUG] 	Accuracy:  1.00
+24-05-03 22:58:18 [DEBUG] 	F1 Score: 1.00
+24-05-03 22:58:18 [DEBUG] 	Confusion Matrix: 
+[[18  0]
+ [ 0 12]]
+24-05-03 22:58:18 [INFO] Step 3: Clustering as a classifier, evaluation done
+24-05-03 22:58:18 [INFO] Step 4: Opacity calculation done
+24-05-03 22:58:18 [DEBUG] Train: 70
+24-05-03 22:58:18 [INFO] Step 5: Run DST (dataset=Brain Tumor, label_for_dist=labels, clust=kmeans, breaks=3, add_mult_rules=False, maf_method=clustering)
+24-05-03 22:58:18 [DEBUG] 	Model init done
+24-05-03 22:58:19 [DEBUG] 	Model fit done
+24-05-03 22:58:19 [INFO] Step 6: Inference done
+24-05-03 22:58:19 [DEBUG] Training Time: 0.97s
+24-05-03 22:58:19 [DEBUG] Epochs: 38
+24-05-03 22:58:19 [DEBUG] Min Loss: 0.002
+24-05-03 22:58:20 [DEBUG] Accuracy:  0.87
+24-05-03 22:58:20 [DEBUG] F1 Score: 0.80
+24-05-03 22:58:20 [DEBUG] Confusion Matrix: [[18  0]
+ [ 4  8]]
+24-05-03 22:58:20 [INFO] ------------------------------
+24-05-03 22:58:20 [INFO] ----------- Running dbscan clustering -----------
+24-05-03 22:58:20 [INFO] Step 2.1: Performing dbscan clustering
+24-05-03 22:58:20 [WARNING] Could not find the desired number of clusters for Brain Tumor
+24-05-03 22:59:56 [INFO] Methods list: ['clustering']
+24-05-03 22:59:56 [INFO] Found 6 datasets
+24-05-03 22:59:56 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 22:59:56 [DEBUG] Dataset: Brain Tumor | Shape: (100, 14)
+24-05-03 22:59:56 [DEBUG] (100, 14) - dropped columns with more than 20% missing values
+24-05-03 22:59:56 [DEBUG] (100, 14) - drop rows with missing values
+24-05-03 22:59:56 [DEBUG] (100, 14) drop non-numeric columns
+24-05-03 22:59:56 [INFO] ------ Dataset: Brain Tumor | Shape: (100, 14) | Label ratio: 0.64 -------
+24-05-03 22:59:56 [INFO] Step 0: Data split done | 70 - 30
+24-05-03 22:59:56 [INFO] ----------- Running clustering method -----------
+24-05-03 22:59:56 [DEBUG] Step 1: Standard scaling complete
+24-05-03 22:59:56 [INFO] ----------- Running kmeans clustering -----------
+24-05-03 22:59:56 [INFO] Step 2.1: Performing kmeans clustering
+24-05-03 22:59:56 [INFO] Step 2.1: Clustering and inference done
+24-05-03 22:59:56 [INFO] Step 2.2: Evaluate clustering
+24-05-03 22:59:56 [DEBUG] Evaluation on train
+24-05-03 22:59:56 [DEBUG] 	silhouette = 0.397
+24-05-03 22:59:56 [DEBUG] 	calinski_harabasz = 33.646
+24-05-03 22:59:56 [DEBUG] 	inertia = 608.782
+24-05-03 22:59:56 [DEBUG] Evaluation on test
+24-05-03 22:59:56 [DEBUG] 	silhouette = 0.413
+24-05-03 22:59:56 [DEBUG] 	calinski_harabasz = 27.44
+24-05-03 22:59:56 [INFO] Step 2.2: Clustering evaluation done
+24-05-03 22:59:56 [DEBUG] Evaluation on train
+24-05-03 22:59:56 [DEBUG] 	Accuracy:  0.97
+24-05-03 22:59:56 [DEBUG] 	F1 Score: 0.96
+24-05-03 22:59:56 [DEBUG] 	Confusion Matrix: 
+[[45  1]
+ [ 1 23]]
+24-05-03 22:59:56 [DEBUG] Evaluation on test
+24-05-03 22:59:56 [DEBUG] 	Accuracy:  1.00
+24-05-03 22:59:56 [DEBUG] 	F1 Score: 1.00
+24-05-03 22:59:56 [DEBUG] 	Confusion Matrix: 
+[[18  0]
+ [ 0 12]]
+24-05-03 22:59:56 [INFO] Step 3: Clustering as a classifier, evaluation done
+24-05-03 22:59:56 [INFO] Step 4: Opacity calculation done
+24-05-03 22:59:56 [DEBUG] Train: 70
+24-05-03 22:59:56 [INFO] Step 5: Run DST (dataset=Brain Tumor, label_for_dist=labels, clust=kmeans, breaks=3, add_mult_rules=False, maf_method=clustering)
+24-05-03 22:59:56 [DEBUG] 	Model init done
+24-05-03 22:59:57 [DEBUG] 	Model fit done
+24-05-03 22:59:57 [INFO] Step 6: Inference done
+24-05-03 22:59:57 [DEBUG] Training Time: 1.05s
+24-05-03 22:59:57 [DEBUG] Epochs: 38
+24-05-03 22:59:57 [DEBUG] Min Loss: 0.002
+24-05-03 22:59:57 [DEBUG] Loaded backend module://matplotlib_inline.backend_inline version unknown.
+24-05-03 22:59:57 [DEBUG] Loaded backend module://matplotlib_inline.backend_inline version unknown.
+24-05-03 22:59:58 [DEBUG] Accuracy:  0.87
+24-05-03 22:59:58 [DEBUG] F1 Score: 0.80
+24-05-03 22:59:58 [DEBUG] Confusion Matrix: [[18  0]
+ [ 4  8]]
+24-05-03 22:59:58 [INFO] ------------------------------
+24-05-03 22:59:58 [INFO] ----------- Running dbscan clustering -----------
+24-05-03 22:59:58 [INFO] Step 2.1: Performing dbscan clustering
+24-05-03 22:59:58 [WARNING] Could not find the desired number of clusters for Brain Tumor
+24-05-03 23:00:20 [INFO] Methods list: ['clustering']
+24-05-03 23:00:20 [INFO] Found 6 datasets
+24-05-03 23:00:20 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 23:00:20 [DEBUG] Dataset: Brain Tumor | Shape: (100, 14)
+24-05-03 23:00:20 [DEBUG] (100, 14) - dropped columns with more than 20% missing values
+24-05-03 23:00:20 [DEBUG] (100, 14) - drop rows with missing values
+24-05-03 23:00:20 [DEBUG] (100, 14) drop non-numeric columns
+24-05-03 23:00:20 [INFO] ------ Dataset: Brain Tumor | Shape: (100, 14) | Label ratio: 0.64 -------
+24-05-03 23:00:20 [INFO] Step 0: Data split done | 70 - 30
+24-05-03 23:00:20 [INFO] ----------- Running clustering method -----------
+24-05-03 23:00:20 [DEBUG] Step 1: Standard scaling complete
+24-05-03 23:00:20 [INFO] ----------- Running kmeans clustering -----------
+24-05-03 23:00:20 [INFO] Step 2.1: Performing kmeans clustering
+24-05-03 23:00:20 [INFO] Step 2.1: Clustering and inference done
+24-05-03 23:00:20 [INFO] Step 2.2: Evaluate clustering
+24-05-03 23:00:20 [DEBUG] Evaluation on train
+24-05-03 23:00:20 [DEBUG] 	silhouette = 0.397
+24-05-03 23:00:20 [DEBUG] 	calinski_harabasz = 33.646
+24-05-03 23:00:20 [DEBUG] 	inertia = 608.782
+24-05-03 23:00:20 [DEBUG] Evaluation on test
+24-05-03 23:00:20 [DEBUG] 	silhouette = 0.413
+24-05-03 23:00:20 [DEBUG] 	calinski_harabasz = 27.44
+24-05-03 23:00:20 [INFO] Step 2.2: Clustering evaluation done
+24-05-03 23:00:20 [DEBUG] Evaluation on train
+24-05-03 23:00:20 [DEBUG] 	Accuracy:  0.97
+24-05-03 23:00:20 [DEBUG] 	F1 Score: 0.96
+24-05-03 23:00:20 [DEBUG] 	Confusion Matrix: 
+[[45  1]
+ [ 1 23]]
+24-05-03 23:00:20 [DEBUG] Evaluation on test
+24-05-03 23:00:20 [DEBUG] 	Accuracy:  1.00
+24-05-03 23:00:20 [DEBUG] 	F1 Score: 1.00
+24-05-03 23:00:20 [DEBUG] 	Confusion Matrix: 
+[[18  0]
+ [ 0 12]]
+24-05-03 23:00:20 [INFO] Step 3: Clustering as a classifier, evaluation done
+24-05-03 23:00:20 [INFO] Step 4: Opacity calculation done
+24-05-03 23:00:20 [DEBUG] Train: 70
+24-05-03 23:00:20 [INFO] Step 5: Run DST (dataset=Brain Tumor, label_for_dist=labels, clust=kmeans, breaks=3, add_mult_rules=False, maf_method=clustering)
+24-05-03 23:00:20 [DEBUG] 	Model init done
+24-05-03 23:00:21 [DEBUG] 	Model fit done
+24-05-03 23:00:21 [INFO] Step 6: Inference done
+24-05-03 23:00:21 [DEBUG] Training Time: 1.02s
+24-05-03 23:00:21 [DEBUG] Epochs: 38
+24-05-03 23:00:21 [DEBUG] Min Loss: 0.002
+24-05-03 23:00:21 [DEBUG] Accuracy:  0.87
+24-05-03 23:00:21 [DEBUG] F1 Score: 0.80
+24-05-03 23:00:21 [DEBUG] Confusion Matrix: [[18  0]
+ [ 4  8]]
+24-05-03 23:00:21 [INFO] ------------------------------
+24-05-03 23:00:21 [INFO] Finished Brain Tumor
+24-05-03 23:00:21 [INFO] Finished all MAF methods
+24-05-03 23:17:23 [INFO] Methods list: ['clustering']
+24-05-03 23:17:23 [INFO] Found 6 datasets
+24-05-03 23:17:23 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 23:17:23 [DEBUG] Dataset: Brain Tumor | Shape: (100, 14)
+24-05-03 23:17:23 [DEBUG] (100, 14) - dropped columns with more than 20% missing values
+24-05-03 23:17:23 [DEBUG] (100, 14) - drop rows with missing values
+24-05-03 23:17:23 [DEBUG] (100, 14) drop non-numeric columns
+24-05-03 23:17:23 [INFO] ------ Dataset: Brain Tumor | Shape: (100, 14) | Label ratio: 0.64 -------
+24-05-03 23:17:23 [INFO] Step 0: Data split done | 70 - 30
+24-05-03 23:17:23 [INFO] ----------- Running clustering method -----------
+24-05-03 23:17:23 [DEBUG] Step 1: Standard scaling complete
+24-05-03 23:17:23 [INFO] ----------- Running kmeans clustering -----------
+24-05-03 23:17:23 [INFO] Step 2.1: Performing kmeans clustering
+24-05-03 23:17:23 [INFO] Step 2.1: Clustering and inference done
+24-05-03 23:17:23 [INFO] Step 2.2: Evaluate clustering
+24-05-03 23:17:23 [DEBUG] Evaluation on train
+24-05-03 23:17:23 [DEBUG] 	silhouette = 0.397
+24-05-03 23:17:23 [DEBUG] 	calinski_harabasz = 33.646
+24-05-03 23:17:23 [DEBUG] 	inertia = 608.782
+24-05-03 23:17:23 [DEBUG] Evaluation on test
+24-05-03 23:17:23 [DEBUG] 	silhouette = 0.413
+24-05-03 23:17:23 [DEBUG] 	calinski_harabasz = 27.44
+24-05-03 23:17:23 [INFO] Step 2.2: Clustering evaluation done
+24-05-03 23:17:23 [DEBUG] Evaluation on train
+24-05-03 23:17:23 [DEBUG] 	Accuracy:  0.97
+24-05-03 23:17:23 [DEBUG] 	F1 Score: 0.96
+24-05-03 23:17:23 [DEBUG] 	Confusion Matrix: 
+[[45  1]
+ [ 1 23]]
+24-05-03 23:17:23 [DEBUG] Evaluation on test
+24-05-03 23:17:23 [DEBUG] 	Accuracy:  1.00
+24-05-03 23:17:23 [DEBUG] 	F1 Score: 1.00
+24-05-03 23:17:23 [DEBUG] 	Confusion Matrix: 
+[[18  0]
+ [ 0 12]]
+24-05-03 23:17:23 [INFO] Step 3: Clustering as a classifier, evaluation done
+24-05-03 23:17:23 [INFO] Step 4: Opacity calculation done
+24-05-03 23:17:23 [DEBUG] Train: 70
+24-05-03 23:17:23 [INFO] Step 5: Run DST (dataset=Brain Tumor, label_for_dist=labels, clust=kmeans, breaks=3, add_mult_rules=False, maf_method=clustering)
+24-05-03 23:17:23 [DEBUG] 	Model init done
+24-05-03 23:17:30 [DEBUG] 	Model fit done
+24-05-03 23:17:30 [INFO] Step 6: Inference done
+24-05-03 23:17:30 [DEBUG] Training Time: 5.28s
+24-05-03 23:17:30 [DEBUG] Epochs: 38
+24-05-03 23:17:30 [DEBUG] Min Loss: 0.002
+24-05-03 23:17:31 [DEBUG] Accuracy:  0.87
+24-05-03 23:17:31 [DEBUG] F1 Score: 0.80
+24-05-03 23:17:31 [DEBUG] Confusion Matrix: [[18  0]
+ [ 4  8]]
+24-05-03 23:17:32 [INFO] ------------------------------
+24-05-03 23:17:32 [INFO] Finished Brain Tumor
+24-05-03 23:17:32 [INFO] Finished all MAF methods
+24-05-03 23:18:51 [INFO] Methods list: ['clustering']
+24-05-03 23:18:51 [INFO] Found 6 datasets
+24-05-03 23:18:51 [INFO] Using the first dataset: Brain Tumor.csv
+24-05-03 23:18:51 [DEBUG] Dataset: Brain Tumor | Shape: (100, 14)
+24-05-03 23:18:51 [DEBUG] (100, 14) - dropped columns with more than 20% missing values
+24-05-03 23:18:51 [DEBUG] (100, 14) - drop rows with missing values
+24-05-03 23:18:51 [DEBUG] (100, 14) drop non-numeric columns
+24-05-03 23:18:51 [INFO] ------ Dataset: Brain Tumor | Shape: (100, 14) | Label ratio: 0.64 -------
+24-05-03 23:18:51 [INFO] Step 0: Data split done | 70 - 30
+24-05-03 23:18:51 [INFO] ----------- Running clustering method -----------
+24-05-03 23:18:51 [DEBUG] Step 1: Standard scaling complete
+24-05-03 23:18:51 [INFO] ----------- Running kmeans clustering -----------
+24-05-03 23:18:51 [INFO] Step 2.1: Performing kmeans clustering
+24-05-03 23:18:52 [INFO] Step 2.1: Clustering and inference done
+24-05-03 23:18:52 [INFO] Step 2.2: Evaluate clustering
+24-05-03 23:18:52 [DEBUG] Evaluation on train
+24-05-03 23:18:52 [DEBUG] 	silhouette = 0.374
+24-05-03 23:18:52 [DEBUG] 	calinski_harabasz = 28.968
+24-05-03 23:18:52 [DEBUG] 	inertia = 600.122
+24-05-03 23:18:52 [DEBUG] Evaluation on test
+24-05-03 23:18:52 [DEBUG] 	silhouette = 0.367
+24-05-03 23:18:52 [DEBUG] 	calinski_harabasz = 23.247
+24-05-03 23:18:52 [INFO] Step 2.2: Clustering evaluation done
+24-05-03 23:18:52 [DEBUG] Evaluation on train
+24-05-03 23:18:52 [DEBUG] 	Accuracy:  0.96
+24-05-03 23:18:52 [DEBUG] 	F1 Score: 0.94
+24-05-03 23:18:52 [DEBUG] 	Confusion Matrix: 
+[[45  1]
+ [ 2 22]]
+24-05-03 23:18:52 [DEBUG] Evaluation on test
+24-05-03 23:18:52 [DEBUG] 	Accuracy:  1.00
+24-05-03 23:18:52 [DEBUG] 	F1 Score: 1.00
+24-05-03 23:18:52 [DEBUG] 	Confusion Matrix: 
+[[18  0]
+ [ 0 12]]
+24-05-03 23:18:52 [INFO] Step 3: Clustering as a classifier, evaluation done
+24-05-03 23:18:52 [INFO] Step 4: Opacity calculation done
+24-05-03 23:18:52 [DEBUG] Train: 70
+24-05-03 23:18:52 [INFO] Step 5: Run DST (dataset=Brain Tumor, label_for_dist=labels, clust=kmeans, breaks=3, add_mult_rules=False, maf_method=clustering)
+24-05-03 23:18:52 [DEBUG] 	Model init done
+24-05-03 23:18:54 [DEBUG] 	Model fit done
+24-05-03 23:18:54 [INFO] Step 6: Inference done
+24-05-03 23:18:54 [DEBUG] Training Time: 1.72s
+24-05-03 23:18:54 [DEBUG] Epochs: 37
+24-05-03 23:18:54 [DEBUG] Min Loss: 0.002
+24-05-03 23:18:54 [DEBUG] Loaded backend module://matplotlib_inline.backend_inline version unknown.
+24-05-03 23:18:54 [DEBUG] Loaded backend module://matplotlib_inline.backend_inline version unknown.
+24-05-03 23:18:55 [DEBUG] Accuracy:  0.87
+24-05-03 23:18:55 [DEBUG] F1 Score: 0.80
+24-05-03 23:18:55 [DEBUG] Confusion Matrix: [[18  0]
+ [ 4  8]]
+24-05-03 23:18:55 [INFO] ------------------------------
+24-05-03 23:18:55 [INFO] Finished Brain Tumor
+24-05-03 23:18:55 [INFO] Finished all MAF methods

@@ -69,7 +69,9 @@ class DSEnhanced:
                  print_clustering_as_classification_eval: bool = True, 
                  mult_rules: bool = False, debug_mode: bool = True, print_final_model: bool = True,
                  num_breaks: int = 3, rules_folder: str = RULE_FOLDER, plots_folder: str = PLOTS_FOLDER,
-                 run_for_all_mafs: bool = False, methods_lst: list = None):
+                 run_for_all_mafs: bool = False, methods_lst: list = None, clustering_alg_list: list = ["kmeans", "dbscan"]):
+        self.clustering_alg_list = clustering_alg_list
+        
         self.method = method
         self.methods_lst = methods_lst
         
@@ -113,7 +115,6 @@ class DSEnhanced:
         else:
             logging.info(f"Using the first dataset: {self.datasets[0]}")
             self.dataset = self.datasets[0]
-
 
         if not os.path.exists(rules_folder):
             os.mkdir(rules_folder)
@@ -189,6 +190,10 @@ class DSEnhanced:
 
         self.X_train_scaled = st_scaler.transform(self.train_data_df)
         self.X_test_scaled = st_scaler.transform(self.test_data_df)
+        
+        # last column is a binary one, and has gotten scaled, please fix
+        self.X_train_scaled[:, -1] = self.train_data_df["labels"].values
+        self.X_test_scaled[:, -1] = self.test_data_df["labels"].values
         logging.debug("Step 1: Standard scaling complete")
 
     def clustering_and_inference(self):
@@ -321,7 +326,7 @@ class DSEnhanced:
 
             if self.method == "clustering":
                 self.standard_scaling()
-                for cl_alg in ["kmeans", "dbscan"]:
+                for cl_alg in self.clustering_alg_list:
                     logging.info(f"----------- Running {cl_alg} clustering -----------")
                     self.clustering_alg = cl_alg
                     self.clustering_and_inference()
