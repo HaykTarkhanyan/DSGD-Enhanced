@@ -21,19 +21,32 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s", 
                         datefmt="%d-%b-%y %H:%M:%S")
 
-def get_distance(df, model, alg="kmeans", density_radius=0.5, penalty_rate=penalty_rate):
-    # print(df.columns)
+def get_distance(data, model=None, alg="kmeans", density_radius=None, penalty_rate=penalty_rate):
+    labels = data[:, -1]
+    unique_labels = np.unique(labels)
+    assert len(unique_labels) == 2
     if alg == "kmeans":
-        distances = 1 - np.min(
-            np.linalg.norm(df[:, np.newaxis] - model.cluster_centers_, axis=2), axis=1) 
-    elif alg == "no_clustering":
-        distances = 1 - np.min(
-            np.linalg.norm(df[:, np.newaxis] - df, axis=2), axis=1)
-    else:
-        distances= calculate_adjusted_density(df, model.labels_, radius=density_radius, 
+        distances = - np.min(
+            np.linalg.norm(data[:, np.newaxis] - model.cluster_centers_, axis=2), axis=1) 
+    elif alg == "means_no_clustering":
+        coordinates = data[:, :-1]
+        midpoints = np.array([coordinates[labels == label].mean(axis=0) for label in unique_labels])
+        label_to_midpoint = dict(zip(unique_labels, midpoints))
+
+        distances = np.array([
+            np.linalg.norm(coord - label_to_midpoint[label]) for coord, label in zip(coordinates, labels)
+        ])
+    elif alg == "density_no_clustering":
+        distances= calculate_adjusted_density(data, labels, radius=density_radius, 
                                               penalty_rate=penalty_rate, 
                                               remove_outliers=False, normalize=False)
-    
+      
+    elif alg == "dbscan":
+        distances= calculate_adjusted_density(data, model.labels_, radius=density_radius, 
+                                              penalty_rate=penalty_rate, 
+                                              remove_outliers=False, normalize=False)
+    else:
+        raise ValueError(f"Unknown algorithm: {alg}")
     return distances
     
 def remove_outliers_and_normalize(df, distance_column="distance", label_column="labels"):    
