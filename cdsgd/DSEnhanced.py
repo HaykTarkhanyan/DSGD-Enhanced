@@ -18,6 +18,7 @@ from sklearn.preprocessing import StandardScaler
 from config import *
 from DSClassifierMultiQ import DSClassifierMultiQ
 
+from tqdm import tqdm
 
 from utils import (calculate_adjusted_density, dbscan_predict,
                    detect_outliers_z_score, evaluate_classifier,
@@ -321,7 +322,7 @@ class DSEnhanced:
         self.read_data()
         self.preprocess_data()
         self.train_test_split()
-        for method in self.methods_lst:   
+        for method in tqdm(self.methods_lst):   
             self.clustering_alg = None
  
             self.method = method
@@ -354,7 +355,7 @@ class DSEnhanced:
         logging.info("Finished all MAF methods")
         
     def run_all_datasets(self):
-        for dataset in self.datasets:
+        for dataset in tqdm(self.datasets):
             self.dataset = dataset
             self.dataset_name = self.dataset.split(".")[0]
             self.run()
