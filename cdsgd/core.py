@@ -6,7 +6,7 @@ import random
 #  (m_null = 0, m_cls_0, m_cls_1, m_either)
 import torch
 from utils import filter_by_rule
-from config import print_results_MAF_kmeans
+from config import print_results_MAF_kmeans, LABEL_COL_FOR_DIST
 
 
 def dempster_rule(m1, m2):
@@ -108,7 +108,7 @@ def create_full_uncertainty():
 
 
 def create_clustering_uncertainty(data, pred):
-    assert "labels_clustering" in data.columns, "No clustering labels in data"
+    assert LABEL_COL_FOR_DIST in data.columns, f"Column {LABEL_COL_FOR_DIST} is needed for clustering uncertainty"
     
     masses = filter_by_rule(data, pred, print_results=print_results_MAF_kmeans)
     return masses

@@ -69,7 +69,8 @@ class DSEnhanced:
                  print_clustering_as_classification_eval: bool = True, 
                  mult_rules: bool = False, debug_mode: bool = True, print_final_model: bool = True,
                  num_breaks: int = 3, rules_folder: str = RULE_FOLDER, plots_folder: str = PLOTS_FOLDER,
-                 run_for_all_mafs: bool = False, methods_lst: list = None, clustering_alg_list: list = ["kmeans", "dbscan"]):
+                 run_for_all_mafs: bool = False, methods_lst: list = None, 
+                 clustering_alg_list: list = ["kmeans", "dbscan", "means_no_clustering", "density_no_clustering"]):
         self.clustering_alg_list = clustering_alg_list
         
         self.method = method
@@ -132,6 +133,8 @@ class DSEnhanced:
         self.debug_mode = debug_mode
         self.print_final_model = print_final_model
         self.num_breaks = num_breaks
+        
+        self.clustering_model = None # will get assigned if cl_alg is kmeans or dbscan
                     
     def read_data(self):
         if self.nrows:
@@ -329,18 +332,23 @@ class DSEnhanced:
                 for cl_alg in self.clustering_alg_list:
                     logging.info(f"----------- Running {cl_alg} clustering -----------")
                     self.clustering_alg = cl_alg
-                    self.clustering_and_inference()
-                    self.run_eval_clustering()
-                    self.run_eval_clustering_as_classifier()
-                    self.get_opacity()  
-                    self.train_DST()
-            else:
+
+                    if cl_alg in ["kmeans", "dbscan"]:
+                        self.clustering_and_inference()
+                        self.run_eval_clustering()
+                        self.run_eval_clustering_as_classifier()
+                        self.get_opacity()  
+                        self.train_DST()
+                    elif cl_alg in ["means_no_clustering", "density_no_clustering"]:
+                        self.get_opacity()  
+                        self.train_DST()
+                    else: 
+                        raise Exception(f"Clustering algorithm {cl_alg} not found")
+            elif self.method in ["random", "uniform"]:
                 self.train_DST()
+            else:
+                raise Exception(f"Method {self.method} not found")  
                 
-                # self.clustering_alg = "no_clustering"
-                # logging.info(f"----------- Running without clustering -----------")
-                # self.get_opacity()
-                # self.train_DST()
 
             logging.info(f"Finished {self.dataset_name}")
         logging.info("Finished all MAF methods")
