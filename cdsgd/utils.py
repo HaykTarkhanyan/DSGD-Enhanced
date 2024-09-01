@@ -3,6 +3,7 @@ from sklearn.cluster import KMeans
 import logging 
 
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, average_precision_score, \
+    precision_score, recall_score, \
     silhouette_score, calinski_harabasz_score
 from sklearn.metrics import confusion_matrix
 from sklearn.cluster import DBSCAN
@@ -260,21 +261,26 @@ def report_results(y_train, y_train_pred, y_test, y_test_pred, epoch=None, dt=No
 
     def eval_classification(y_actual, y_pred, subset="train"):
         accuracy = accuracy_score(y_actual, y_pred)
+        precision = precision_score(y_actual, y_pred)
+        recall = recall_score(y_actual, y_pred)        
         f1 = f1_score(y_actual, y_pred)
-        conf_matrix = confusion_matrix(y_actual, y_pred)
         roc_auc = roc_auc_score(y_actual, y_pred)
         avg_precision = average_precision_score(y_actual, y_pred)
+        conf_matrix = confusion_matrix(y_actual, y_pred)
         
         
         if print_results:
             logging.debug(f"Accuracy:  {accuracy:.2f}")
+            logging.debug(f"Precision: {precision:.2f}")
+            logging.debug(f"Recall: {recall:.2f}")
             logging.debug(f"F1 Score: {f1:.2f}")
-            logging.debug(f"Confusion Matrix: {conf_matrix}")
             logging.debug(f"ROC AUC: {roc_auc:.2f}")
             logging.debug(f"Average Precision: {avg_precision:.2f}")
-        return {f"{subset}_accuracy": accuracy, f"{subset}_f1": f1, f"{subset}_roc_auc": roc_auc, 
-                f"{subset}_avg_precision": avg_precision, f"{subset}_confusion_matrix": conf_matrix}
-    
+            logging.debug(f"Confusion Matrix: {conf_matrix}")
+        return {f"{subset}_accuracy": accuracy, f"{subset}_precision": precision, 
+                f"{subset}_recall": recall, f"{subset}_f1": f1, f"{subset}_roc_auc": roc_auc, 
+                f"{subset}_avg_precision": avg_precision}
+            
     res_train = eval_classification(y_train, y_train_pred, subset="train")
     res_test = eval_classification(y_test, y_test_pred, subset="test")
     

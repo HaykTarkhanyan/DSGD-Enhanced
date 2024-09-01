@@ -482,7 +482,6 @@ class DSEnhanced:
             os.mkdir(folder_name)
         
         with open(os.path.join(folder_name, f"{self.dataset_name}_{self.method}_{self.clustering_alg}_extra_rules_{self.add_in_between_rules}.json"), "w") as f:
-            json.dump(self.results, f)
-        print(self.results)
+            json.dump(self.results, f, indent=4)
     
     
