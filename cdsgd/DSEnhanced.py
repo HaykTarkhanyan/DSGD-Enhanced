@@ -1,4 +1,5 @@
 import os
+import json
 import logging
 import datetime
 import warnings
@@ -18,7 +19,10 @@ from sklearn.preprocessing import StandardScaler
 from config import *
 from DSClassifierMultiQ import DSClassifierMultiQ
 
+import matplotlib.pyplot as plt
+
 from tqdm import tqdm
+from time import time
 
 from utils import (calculate_adjusted_density, dbscan_predict,
                    detect_outliers_z_score, evaluate_classifier,
@@ -61,7 +65,9 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 class DSEnhanced:
-    def __init__(self, method=None, dataset_folder: str = DATASET_FOLDER, dataset: str = None, nrows: int = None, 
+    def __init__(self, method=None, 
+                 dataset_folder: str = DATASET_FOLDER, dataset: str = None, datasets_to_exclude: list = None, 
+                 nrows: int = None, rows_to_use: int = None,
                  missing_threshold: float = MISSING_THRESHOLD, ratio_deviation: float=RATIO_DEVIATION, 
                  train_set_size: float = TRAIN_SET_SIZE, 
                  eps: float = EPS, step: float = STEP, max_eps: float = MAX_EPS,
@@ -71,7 +77,9 @@ class DSEnhanced:
                  mult_rules: bool = False, debug_mode: bool = True, print_final_model: bool = True,
                  num_breaks: int = 3, rules_folder: str = RULE_FOLDER, plots_folder: str = PLOTS_FOLDER,
                  run_for_all_mafs: bool = False, methods_lst: list = None, 
-                 clustering_alg_list: list = ["kmeans", "dbscan", "means_no_clustering", "density_no_clustering"]):
+                 clustering_alg_list: list = ["kmeans", "dbscan", "means_no_clustering", "density_no_clustering"], 
+                 add_in_between_rules: bool = False,
+                 res_json_folder: str = None):
         self.clustering_alg_list = clustering_alg_list
         
         self.method = method
@@ -108,6 +116,7 @@ class DSEnhanced:
         self.dataset_folder = dataset_folder
         assert os.path.exists(dataset_folder), f"Dataset folder `{dataset_folder}` does not exist"
 
+        self.datasets_to_exclude = datasets_to_exclude
         self.datasets = os.listdir(dataset_folder)
         
         logging.info(f"Found {len(self.datasets)} datasets")
@@ -125,6 +134,7 @@ class DSEnhanced:
         self.plots_folder = plots_folder
         self.dataset_name = self.dataset.split(".")[0]
         self.nrows = nrows
+        self.rows_to_use = rows_to_use
         self.ratio_deviation = ratio_deviation
         self.missing_threshold = missing_threshold
         self.train_set_size = train_set_size
@@ -136,8 +146,16 @@ class DSEnhanced:
         self.num_breaks = num_breaks
         
         self.clustering_model = None # will get assigned if cl_alg is kmeans or dbscan
-                    
+        
+        self.add_in_between_rules = add_in_between_rules
+        
+        self.res_json_folder = res_json_folder
+        
+        self.results = {"durations": {}, "dataset": {}}
+        self.results["date"] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        
     def read_data(self):
+        st = time()
         if self.nrows:
             self.data_initial = pd.read_csv(os.path.join(self.dataset_folder, self.dataset), 
                                     nrows=self.nrows)
@@ -145,8 +163,14 @@ class DSEnhanced:
             self.data_initial = pd.read_csv(os.path.join(self.dataset_folder, self.dataset))
         
         logger.debug(f"Dataset: {self.dataset_name} | Shape: {self.data_initial.shape}")
+        
+        self.results["durations"]["read_data"] = time() - st
+        self.results["dataset"]["name"] = self.dataset_name
+        self.results["dataset"]["initial_row_count"] = len(self.data_initial)
+        self.results["dataset"]["initial_col_count"] = len(self.data_initial.columns)
 
     def preprocess_data(self):
+        st = time()
         self.data = self.data_initial.dropna(thresh=len(self.data_initial) * (1 - self.missing_threshold), axis=1)
         logger.debug(f"{self.data.shape} - dropped columns with more than {self.missing_threshold*100:.0f}% missing values")
         self.data = self.data.dropna()
@@ -160,16 +184,26 @@ class DSEnhanced:
         assert abs(label_ratio -0.5) < self.ratio_deviation, f"Label ratio is not balanced ({label_ratio})"
 
         # leave only numeric columns
-        data = self.data.select_dtypes(include=[np.number])
+        self.data = self.data.select_dtypes(include=[np.number])
         logger.debug(f"{self.data.shape} drop non-numeric columns")
 
+        # select only rows_to_use rows but keep the same ratio of labels
+        if self.rows_to_use:
+            self.data, _ = train_test_split(self.data, train_size=self.rows_to_use / len(self.data),
+                                            stratify=self.data['labels'], random_state=42)
+            logger.debug(f"{self.data.shape} - select {self.rows_to_use} rows (stratified)")        
         # move labels column to the end 
         self.data = self.data[[col for col in self.data.columns if col != "labels"] + ["labels"]]
 
         logging.info(f"------ Dataset: {self.dataset_name} | Shape: {self.data.shape} | Label ratio: {label_ratio:.2f} -------")
-
+        
+        self.results["durations"]["preprocess_data"] = time() - st
+        self.results["dataset"]["label_ratio"] = label_ratio
+        self.results["dataset"]["final_row_count"] = len(self.data)
+        self.results["dataset"]["final_col_count"] = len(self.data.columns)
 
     def train_test_split(self):
+        st = time()
         self.data = self.data.sample(frac=1, random_state=42).reset_index(drop=True)
         self.data = self.data.apply(pd.to_numeric)
         cut = int(train_set_size*len(self.data))
@@ -183,8 +217,13 @@ class DSEnhanced:
         self.y_test = self.data.iloc[cut:, -1].values
 
         logging.info(f"Step 0: Data split done | {len(self.X_train)} - {len(self.X_test)}")
+        
+        self.results["durations"]["train_test_split"] = time() - st
+        self.results["dataset"]["train_row_count"] = len(self.X_train)
+        self.results["dataset"]["test_row_count"] = len(self.X_test)
 
     def standard_scaling(self):
+        st = time()
         st_scaler = StandardScaler().fit(self.train_data_df)
 
         # TODO maybe delete this
@@ -199,18 +238,28 @@ class DSEnhanced:
         self.X_train_scaled[:, -1] = self.train_data_df["labels"].values
         self.X_test_scaled[:, -1] = self.test_data_df["labels"].values
         logging.debug("Step 1: Standard scaling complete")
+        
+        self.results["durations"]["standard_scaling"] = time() - st
 
     def clustering_and_inference(self):
         assert self.clustering_alg in ["kmeans", "dbscan"], f"You must specify a clustering algorithm, got {self.clustering_alg}"   
         logging.info(f"Step 2.1: Performing {self.clustering_alg} clustering")
 
         if self.clustering_alg == "kmeans":
+            st_clust = time()
             self.clustering_model = KMeans(n_clusters=2, random_state=42, n_init="auto")      
             self.clustering_model.fit(self.X_train_scaled)  
             
+            self.results["durations"]["clustering_fit"] = time() - st_clust
+            st_pred = time()
+
             self.clustering_labels_train = self.clustering_model.predict(self.X_train_scaled)
             self.clustering_labels_test = self.clustering_model.predict(self.X_test_scaled)
+            self.results["durations"]["clustering_predict"] = time() - st_pred
+            
         elif self.clustering_alg == "dbscan":
+            st_clust = time()
+
             self.min_samples = 2 * self.X_train_scaled.shape[1] - 1
             self.clustering_model = run_dbscan(self.X_train_scaled, eps=self.eps, 
                                                max_eps=self.max_eps, min_samples=self.min_samples, 
@@ -219,8 +268,13 @@ class DSEnhanced:
                 logging.warning(f"Could not find the desired number of clusters for {self.dataset_name}")
                 raise Exception("Clustering failed")
             
+            self.results["durations"]["clustering_fit"] = time() - st_clust
+            
+            st_pred = time()
+            
             self.clustering_labels_train = dbscan_predict(self.clustering_model, self.X_train_scaled)
             self.clustering_labels_test = dbscan_predict(self.clustering_model, self.X_test_scaled)
+            self.results["durations"]["clustering_predict"] = time() - st_pred
             
             self.db_eps = self.clustering_model.eps
 
@@ -230,7 +284,11 @@ class DSEnhanced:
 
         logger.info(f"Step 2.1: Clustering and inference done")
         
+        self.results["clustering_alg"] = self.clustering_alg
+        
+        
     def run_eval_clustering(self):
+        st = time()
         logger.info("Step 2.2: Evaluate clustering")
         self.eval_clustering_train = evaluate_clustering(
             self.X_train_scaled, self.clustering_labels_train, self.clustering_model, 
@@ -239,10 +297,13 @@ class DSEnhanced:
             self.X_test_scaled, self.clustering_labels_test, self.clustering_model, 
             self.clustering_alg, print_results=self.print_clustering_eval, dataset="test")
         
-
+        self.results["durations"]["clustering_eval"] = time() - st
+        self.results["clustering_eval_train"] = self.eval_clustering_train
+        self.results["clustering_eval_test"] = self.eval_clustering_test
+        logger.info("Step 2.2: Clustering evaluation done")
+        
     def run_eval_clustering_as_classifier(self):
-        logging.info("Step 2.2: Clustering evaluation done")
-
+        st = time()
         self.eval_clustering_as_classifier_train = evaluate_classifier(
             y_actual=self.y_train, y_clust=self.clustering_labels_train, 
             dataset="train", print_results=self.print_clustering_as_classification_eval)
@@ -250,9 +311,13 @@ class DSEnhanced:
             y_actual=self.y_test, y_clust=self.clustering_labels_test, 
             dataset="test", print_results=self.print_clustering_as_classification_eval)
 
+        self.results["durations"]["clustering_as_classifier_eval"] = time() - st
+        self.results["clustering_as_classifier_eval_train"] = self.eval_clustering_as_classifier_train
+        self.results["clustering_as_classifier_eval_test"] = self.eval_clustering_as_classifier_test
         logger.info("Step 3: Clustering as a classifier, evaluation done")
 
     def get_opacity(self):
+        st = time()
         self.train_data_df["distance"] = get_distance(
             self.X_train_scaled, self.clustering_model, 
             self.clustering_alg, density_radius=self.db_eps)
@@ -268,6 +333,7 @@ class DSEnhanced:
         assert self.train_data_df.isna().sum().sum() == 0, "Train data contains NaNs"
         assert self.test_data_df.isna().sum().sum() == 0, "Train data contains NaNs"
 
+        self.results["durations"]["opacity_calculation"] = time() - st
         logger.info(f"Step 4: Opacity calculation done")
         
     def train_DST(self):
@@ -276,32 +342,47 @@ class DSEnhanced:
 
         logger.debug(f"Train: {len(self.X_train)}")
 
-        name = f"dataset={self.dataset_name}, label_for_dist={LABEL_COL_FOR_DIST}, clust={self.clustering_alg}, breaks={self.num_breaks}, add_mult_rules={self.mult_rules}, maf_method={self.method}"
+        name = f"dataset={self.dataset_name}, label_for_dist={LABEL_COL_FOR_DIST}, clust={self.clustering_alg}, breaks={self.num_breaks}, add_mult_rules={self.mult_rules}, maf_method={self.method}, in_between_rules={self.add_in_between_rules}"
         logger.info(f"Step 5: Run DST ({name})")
+        st = time()
         DSC = DSClassifierMultiQ(2, debug_mode=self.debug_mode, num_workers=0, maf_method=self.method,
-                                data=self.train_data_df, precompute_rules=True, )#.head(rows_use))
+                                data=self.train_data_df, precompute_rules=True, 
+                                add_in_between_rules=self.add_in_between_rules)#.head(rows_use))
         logger.debug(f"\tModel init done")    
         res = DSC.fit(self.X_train, self.y_train, 
                 add_single_rules=True, single_rules_breaks=self.num_breaks, add_mult_rules=self.mult_rules,
                 column_names=df_cols, print_every_epochs=1, print_final_model=self.print_final_model)
         losses, epoch, dt = res
         logger.debug(f"\tModel fit done")
+        
+        self.results["durations"]["dst_fit"] = time() - st
 
         if not os.path.exists(os.path.join(self.rules_folder, self.dataset_name)):
             os.mkdir(os.path.join(self.rules_folder, self.dataset_name))
         rules = DSC.model.save_rules_bin(os.path.join(self.rules_folder, self.dataset_name, f"{name}.dsb"))
 
         self.rules = DSC.model.find_most_important_rules()
-        y_pred = DSC.predict(self.X_test)
+        st = time()
+        y_train_pred = DSC.predict(self.X_train)
+        y_test_pred = DSC.predict(self.X_test)
+        
+        
+        self.results["durations"]["dst_predict"] = time() - st
 
         logger.info(f"Step 6: Inference done")
 
-        self.dst_res = report_results(self.y_test, y_pred, dataset=self.dataset_name, method=self.method,
+        self.dst_res = report_results(self.y_train, y_train_pred, self.y_test, y_test_pred, dataset=self.dataset_name, method=self.method,
                     epoch=epoch, dt=dt, losses=losses, 
                     save_results=True, name=name, print_results=True,
                     breaks=self.num_breaks, mult_rules=self.mult_rules, 
                     clustering_alg=self.clustering_alg, label_for_dist=LABEL_COL_FOR_DIST, plot_folder=self.plots_folder)
         logging.info("-"*30)
+        
+        self.results["dst_results"] = self.dst_res
+        self.results["durations"]["dst"] = time() - st
+        self.results["dst_results"]["rules"] = DSC.model.get_rules_size()
+        self.results["added_in_between_rules"] = self.add_in_between_rules
+        
 
     # def save_all_important_res_to_json(self):
     #     logging.info("Step 7: Save all important results to json")
@@ -345,8 +426,10 @@ class DSEnhanced:
                         self.train_DST()
                     else: 
                         raise Exception(f"Clustering algorithm {cl_alg} not found")
+                    self.save_results()
             elif self.method in ["random", "uniform"]:
                 self.train_DST()
+                self.save_results()
             else:
                 raise Exception(f"Method {self.method} not found")  
                 
@@ -354,11 +437,52 @@ class DSEnhanced:
             logging.info(f"Finished {self.dataset_name}")
         logging.info("Finished all MAF methods")
         
+
     def run_all_datasets(self):
+        if self.datasets_to_exclude:
+            self.datasets = [dataset for dataset in self.datasets 
+                             if dataset not in self.datasets_to_exclude]
+        
         for dataset in tqdm(self.datasets):
             self.dataset = dataset
             self.dataset_name = self.dataset.split(".")[0]
             self.run()
+
         logging.info("Finished all datasets")
+        
+    def save_results(self):
+        # there may be multiple nestings
+        for key, value in self.results.items():
+            if isinstance(value, dict):
+                for k, v in value.items():
+                    if isinstance(v, np.ndarray):
+                        self.results[key][k] = v.tolist()
+                    elif isinstance(v, plt.Figure):
+                        self.results[key][k] = "todo"#v.to_json()                                
+                                    
+                    elif isinstance(v, dict):
+                        for kk, vv in v.items():
+                            if isinstance(vv, np.ndarray):
+                                self.results[key][k][kk] = vv.tolist()
+                            elif isinstance(vv, plt.Figure):
+                                self.results[key][k][kk] = "todo"#vv.to_json()
+                            elif isinstance(vv, dict):
+                                for kkk, vvv in vv.items():
+                                    if isinstance(vvv, np.ndarray):
+                                        self.results[key][k][kk][kkk] = vvv.tolist()
+                                    elif isinstance(vvv, plt.Figure):
+                                        self.results[key][k][kk][kkk] = "todo"#vvv.to_json()
+        
+        if not os.path.exists(self.res_json_folder):
+            os.mkdir(self.res_json_folder)
+            
+        
+        folder_name = os.path.join(self.res_json_folder, self.dataset_name)                 
+        if not os.path.exists(folder_name):
+            os.mkdir(folder_name)
+        
+        with open(os.path.join(folder_name, f"{self.dataset_name}_{self.method}_{self.clustering_alg}_extra_rules_{self.add_in_between_rules}.json"), "w") as f:
+            json.dump(self.results, f)
+        print(self.results)
     
     

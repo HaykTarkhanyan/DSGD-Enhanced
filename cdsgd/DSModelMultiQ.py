@@ -18,7 +18,7 @@ class DSModelMultiQ(nn.Module):
     """
 
     def __init__(self, k, precompute_rules=False, device="cpu", force_precompute=False,
-                 maf_method="random", data=None):
+                 maf_method="random", data=None, add_in_between_rules=False):
         """
         Creates an empty DS Model
         """
@@ -35,6 +35,7 @@ class DSModelMultiQ(nn.Module):
         self._all_rules = None
         self.maf_method = maf_method
         self.data = data # needed for kmeans method
+        self.add_in_between_rules = add_in_between_rules # adds 2 rules in between the breaks
 
     def add_rule(self, pred, m_sing=None, m_uncert=None, method="random"):
         """
@@ -288,6 +289,29 @@ class DSModelMultiQ(nn.Module):
                 # Last rule
                 rule = DSRule(lambda x, i=i, v=v: x[i] > v, f"{column_names[i]} > {v:.3f}")
                 self.add_rule(rule, method=self.maf_method)
+                
+                if self.add_in_between_rules:
+                    # --------------  Adding in between rules ----------------
+                    if breaks != 2:
+                        raise NotImplementedError("Only 2 breaks are supported for now")
+
+                    #Todo think about the multiplier, this one results in around 30 percent, not 33
+                    multiplier = (100 / 3) / (50 - 100 / 3)
+                    # first range upto mean
+                    vl = mean[i] + multiplier * std[i] * brks[0]   
+                    v = mean[i]                   
+                    rule = DSRule(lambda x, i=i, vl=vl, v=v: 
+                                vl <=x[i] < v, f"{vl:.3f} < {column_names[i]} < {v:.3f}")
+                    self.add_rule(rule, method=self.maf_method)
+                    
+                    # second range from mean 
+                    vl = mean[i]
+                    v = mean[i] + multiplier * std[i] * brks[1]
+                    rule = DSRule(lambda x, i=i, vl=vl, v=v:
+                        vl <= x[i] < v, f"{vl:.3f} < {column_names[i]} < {v:.3f}")
+                    self.add_rule(rule, method=self.maf_method)
+
+            
 
     def generate_categorical_rules(self, X, column_names=None, exclude=None):
         """

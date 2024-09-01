@@ -2,7 +2,8 @@ import numpy as np
 from sklearn.cluster import KMeans
 import logging 
 
-from sklearn.metrics import accuracy_score, f1_score, silhouette_score, calinski_harabasz_score
+from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, average_precision_score, \
+    silhouette_score, calinski_harabasz_score
 from sklearn.metrics import confusion_matrix
 from sklearn.cluster import DBSCAN
 from sklearn.neighbors import NearestNeighbors
@@ -231,10 +232,12 @@ def detect_outliers_z_score(data, threshold=OUTLIER_THRESHOLD_NUM_STD):
             outliers.append(i)
     return outliers
 
-def report_results(y_test, y_pred, epoch=None, dt=None, losses=None, method=None, dataset=None, 
+def report_results(y_train, y_train_pred, y_test, y_test_pred, epoch=None, dt=None, losses=None, method=None, dataset=None, 
                    name=None, save_results=False, save_path=None, print_results=True, 
                    breaks=3, mult_rules=False, clustering_alg=None, label_for_dist=None, plot_folder="plots"):
+    #todo add reportin on train
     fig = None
+    plot_save_path = None
     if epoch and dt and losses:
         if print_results:
             if not os.path.exists(os.path.join(plot_folder, dataset)):
@@ -250,19 +253,30 @@ def report_results(y_test, y_pred, epoch=None, dt=None, losses=None, method=None
             plt.ylabel('Loss')
             name_title = f"{dataset} | clst={clustering_alg} | maf_method={method}"
             plt.title(name_title)
-            plt.savefig(os.path.join(plot_folder, dataset, f"{name}.png"))
+            plot_save_path = os.path.join(plot_folder, dataset, f"{name}.png")
+            plt.savefig(plot_save_path)
             plt.close(fig)
             # save to csv
 
-
-    accuracy = accuracy_score(y_test, y_pred)
-    f1 = f1_score(y_test, y_pred)
-    conf_matrix = confusion_matrix(y_test, y_pred)
+    def eval_classification(y_actual, y_pred, subset="train"):
+        accuracy = accuracy_score(y_actual, y_pred)
+        f1 = f1_score(y_actual, y_pred)
+        conf_matrix = confusion_matrix(y_actual, y_pred)
+        roc_auc = roc_auc_score(y_actual, y_pred)
+        avg_precision = average_precision_score(y_actual, y_pred)
+        
+        
+        if print_results:
+            logging.debug(f"Accuracy:  {accuracy:.2f}")
+            logging.debug(f"F1 Score: {f1:.2f}")
+            logging.debug(f"Confusion Matrix: {conf_matrix}")
+            logging.debug(f"ROC AUC: {roc_auc:.2f}")
+            logging.debug(f"Average Precision: {avg_precision:.2f}")
+        return {f"{subset}_accuracy": accuracy, f"{subset}_f1": f1, f"{subset}_roc_auc": roc_auc, 
+                f"{subset}_avg_precision": avg_precision, f"{subset}_confusion_matrix": conf_matrix}
     
-    if print_results:
-        logging.debug(f"Accuracy:  {accuracy:.2f}")
-        logging.debug(f"F1 Score: {f1:.2f}")
-        logging.debug(f"Confusion Matrix: {conf_matrix}")
+    res_train = eval_classification(y_train, y_train_pred, subset="train")
+    res_test = eval_classification(y_test, y_test_pred, subset="test")
     
     if save_results:
         now = datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S")
@@ -272,16 +286,18 @@ def report_results(y_test, y_pred, epoch=None, dt=None, losses=None, method=None
             name = "No name"
         res_row = {"datetime": now, "name": name, "MAF method": method, "dataset": dataset,
                     "breaks": breaks, "mult_rules": mult_rules,        
-                   "accuracy": accuracy, "f1": f1, 
-                    "confusion_matrix": conf_matrix, 
                     "training_time": dt, "epochs": epoch+1,"min_loss": losses[-1], 
                     "all_losses": losses, "clustering_alg": clustering_alg, 
                     "label_for_dist": label_for_dist}
+        
+        res_row.update(res_train)
+        res_row.update(res_test)
         
         res_df = pd.read_csv(save_path) if os.path.exists(save_path) else pd.DataFrame()
         res_df = pd.concat([res_df, pd.DataFrame([res_row])], ignore_index=True)
         res_df.to_csv(save_path, index=False)
         res_row["plot"] = fig
+        res_row["plot_save_path"] = plot_save_path
         return res_row
     
     
@@ -377,29 +393,29 @@ def filter_by_rule(df, rule_lambda, lower_confidence_by_proportion=LOWER_CONFIDE
     else:
         raise ValueError(f"Most common cluster is {most_common_cluster}, but should be 0 or 1")
 
+# # this is unused
+# def natural_breaks(data, k=5, append_infinity=False):
+#     km = KMeans(n_clusters=k, max_iter=150, n_init=5)
+#     data = map(lambda x: [x], data)
+#     km.fit(data)
+#     breaks = []
+#     if append_infinity:
+#         breaks.append(float("-inf"))
+#         breaks.append(float("inf"))
+#     for i in range(k):
+#         breaks.append(max(map(lambda x: x[0], filter(lambda x: km.predict(x) == i, data))))
+#     breaks.sort()
+#     return breaks
 
-def natural_breaks(data, k=5, append_infinity=False):
-    km = KMeans(n_clusters=k, max_iter=150, n_init=5)
-    data = map(lambda x: [x], data)
-    km.fit(data)
-    breaks = []
-    if append_infinity:
-        breaks.append(float("-inf"))
-        breaks.append(float("inf"))
-    for i in range(k):
-        breaks.append(max(map(lambda x: x[0], filter(lambda x: km.predict(x) == i, data))))
-    breaks.sort()
-    return breaks
-
-
-def statistic_breaks(data, k=5, sigma_tol=1, append_infinity=False):
-    mu = np.mean(data)
-    sigma = np.std(data)
-    lsp = np.linspace(mu - sigma * sigma_tol, mu + sigma * sigma_tol, k)
-    if append_infinity:
-        return [float("-inf")] + [x for x in lsp] + [float("inf")]
-    else:
-        return [x for x in lsp]
+# # this is unused
+# def statistic_breaks(data, k=5, sigma_tol=1, append_infinity=False):
+#     mu = np.mean(data)
+#     sigma = np.std(data)
+#     lsp = np.linspace(mu - sigma * sigma_tol, mu + sigma * sigma_tol, k)
+#     if append_infinity:
+#         return [float("-inf")] + [x for x in lsp] + [float("inf")]
+#     else:
+#         return [x for x in lsp]
 
 
 def is_categorical(arr, max_cat = 6):
