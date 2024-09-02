@@ -7609,3 +7609,149 @@
 24-09-02 03:43:07 [DEBUG] Train: 31647
 24-09-02 03:43:07 [INFO] Step 5: Run DST (dataset=bank-full, label_for_dist=labels, clust=None, breaks=2, add_mult_rules=False, maf_method=random, in_between_rules=True)
 24-09-02 03:43:07 [DEBUG] 	Model init done
+24-09-02 10:24:36 [INFO] Methods list: ['random']
+24-09-02 10:24:36 [INFO] Found 8 datasets
+24-09-02 10:24:36 [DEBUG] Dataset: bank-full | Shape: (45211, 17)
+24-09-02 10:24:36 [DEBUG] (45211, 17) - dropped columns with more than 20% missing values
+24-09-02 10:24:36 [DEBUG] (45211, 17) - drop rows with missing values
+24-09-02 10:24:36 [DEBUG] (45211, 8) drop non-numeric columns
+24-09-02 10:24:36 [INFO] ------ Dataset: bank-full | Shape: (45211, 8) | Label ratio: 0.88 -------
+24-09-02 10:24:36 [INFO] Step 0: Data split done | 31647 - 13564
+24-09-02 10:24:36 [INFO] ----------- Running random method -----------
+24-09-02 10:24:36 [DEBUG] Train: 31647
+24-09-02 10:24:36 [INFO] Step 5: Run DST (dataset=bank-full, label_for_dist=labels, clust=None, breaks=2, add_mult_rules=False, maf_method=random, in_between_rules=True)
+24-09-02 10:24:36 [DEBUG] 	Model init done
+24-09-02 10:32:10 [DEBUG] 	Model fit done
+24-09-02 10:32:19 [INFO] Step 6: Inference done
+24-09-02 10:32:19 [DEBUG] Training Time: 453.91s
+24-09-02 10:32:19 [DEBUG] Epochs: 33
+24-09-02 10:32:19 [DEBUG] Min Loss: 0.084
+24-09-02 10:32:19 [DEBUG] Loaded backend module://matplotlib_inline.backend_inline version unknown.
+24-09-02 10:32:19 [DEBUG] Loaded backend module://matplotlib_inline.backend_inline version unknown.
+24-09-02 10:32:19 [DEBUG] Accuracy:  0.89
+24-09-02 10:32:19 [DEBUG] Precision: 0.59
+24-09-02 10:32:19 [DEBUG] Recall: 0.09
+24-09-02 10:32:19 [DEBUG] F1 Score: 0.15
+24-09-02 10:32:19 [DEBUG] ROC AUC: 0.54
+24-09-02 10:32:19 [DEBUG] Average Precision: 0.16
+24-09-02 10:32:19 [DEBUG] Confusion Matrix: [[27714   221]
+ [ 3389   323]]
+24-09-02 10:32:19 [DEBUG] Accuracy:  0.89
+24-09-02 10:32:19 [DEBUG] Precision: 0.59
+24-09-02 10:32:19 [DEBUG] Recall: 0.09
+24-09-02 10:32:19 [DEBUG] F1 Score: 0.15
+24-09-02 10:32:19 [DEBUG] ROC AUC: 0.54
+24-09-02 10:32:19 [DEBUG] Average Precision: 0.16
+24-09-02 10:32:19 [DEBUG] Confusion Matrix: [[11891    96]
+ [ 1439   138]]
+24-09-02 10:32:19 [INFO] ------------------------------
+24-09-02 10:32:19 [INFO] Finished bank-full
+24-09-02 10:32:19 [INFO] Finished all MAF methods
+24-09-02 10:32:19 [INFO] Methods list: ['random']
+24-09-02 10:32:19 [INFO] Found 8 datasets
+24-09-02 10:32:20 [DEBUG] Dataset: bank-full | Shape: (45211, 17)
+24-09-02 10:32:20 [DEBUG] (45211, 17) - dropped columns with more than 20% missing values
+24-09-02 10:32:20 [DEBUG] (45211, 17) - drop rows with missing values
+24-09-02 10:32:20 [DEBUG] (45211, 8) drop non-numeric columns
+24-09-02 10:32:20 [INFO] ------ Dataset: bank-full | Shape: (45211, 8) | Label ratio: 0.88 -------
+24-09-02 10:32:20 [INFO] Step 0: Data split done | 31647 - 13564
+24-09-02 10:32:20 [INFO] ----------- Running random method -----------
+24-09-02 10:32:20 [DEBUG] Train: 31647
+24-09-02 10:32:20 [INFO] Step 5: Run DST (dataset=bank-full, label_for_dist=labels, clust=None, breaks=2, add_mult_rules=False, maf_method=random, in_between_rules=False)
+24-09-02 10:32:20 [DEBUG] 	Model init done
+24-09-02 10:36:24 [DEBUG] 	Model fit done
+24-09-02 10:36:29 [INFO] Step 6: Inference done
+24-09-02 10:36:29 [DEBUG] Training Time: 243.86s
+24-09-02 10:36:29 [DEBUG] Epochs: 28
+24-09-02 10:36:29 [DEBUG] Min Loss: 0.089
+24-09-02 10:36:30 [DEBUG] Accuracy:  0.88
+24-09-02 10:36:30 [DEBUG] Precision: 0.53
+24-09-02 10:36:30 [DEBUG] Recall: 0.07
+24-09-02 10:36:30 [DEBUG] F1 Score: 0.12
+24-09-02 10:36:30 [DEBUG] ROC AUC: 0.53
+24-09-02 10:36:30 [DEBUG] Average Precision: 0.14
+24-09-02 10:36:30 [DEBUG] Confusion Matrix: [[27718   217]
+ [ 3466   246]]
+24-09-02 10:36:30 [DEBUG] Accuracy:  0.89
+24-09-02 10:36:30 [DEBUG] Precision: 0.55
+24-09-02 10:36:30 [DEBUG] Recall: 0.07
+24-09-02 10:36:30 [DEBUG] F1 Score: 0.13
+24-09-02 10:36:30 [DEBUG] ROC AUC: 0.53
+24-09-02 10:36:30 [DEBUG] Average Precision: 0.15
+24-09-02 10:36:30 [DEBUG] Confusion Matrix: [[11890    97]
+ [ 1459   118]]
+24-09-02 10:36:30 [INFO] ------------------------------
+24-09-02 10:36:30 [INFO] Finished bank-full
+24-09-02 10:36:30 [INFO] Finished all MAF methods
+24-09-02 10:36:30 [INFO] Methods list: ['random']
+24-09-02 10:36:30 [INFO] Found 8 datasets
+24-09-02 10:36:30 [DEBUG] Dataset: adult | Shape: (30162, 15)
+24-09-02 10:36:30 [DEBUG] (30162, 15) - dropped columns with more than 20% missing values
+24-09-02 10:36:30 [DEBUG] (30162, 15) - drop rows with missing values
+24-09-02 10:36:30 [DEBUG] (30162, 7) drop non-numeric columns
+24-09-02 10:36:30 [INFO] ------ Dataset: adult | Shape: (30162, 7) | Label ratio: 0.75 -------
+24-09-02 10:36:30 [INFO] Step 0: Data split done | 21113 - 9049
+24-09-02 10:36:30 [INFO] ----------- Running random method -----------
+24-09-02 10:36:30 [DEBUG] Train: 21113
+24-09-02 10:36:30 [INFO] Step 5: Run DST (dataset=adult, label_for_dist=labels, clust=None, breaks=2, add_mult_rules=False, maf_method=random, in_between_rules=True)
+24-09-02 10:36:30 [DEBUG] 	Model init done
+24-09-02 10:40:44 [DEBUG] 	Model fit done
+24-09-02 10:40:49 [INFO] Step 6: Inference done
+24-09-02 10:40:49 [DEBUG] Training Time: 253.72s
+24-09-02 10:40:49 [DEBUG] Epochs: 40
+24-09-02 10:40:49 [DEBUG] Min Loss: 0.132
+24-09-02 10:40:49 [DEBUG] Accuracy:  0.81
+24-09-02 10:40:49 [DEBUG] Precision: 0.72
+24-09-02 10:40:49 [DEBUG] Recall: 0.42
+24-09-02 10:40:49 [DEBUG] F1 Score: 0.53
+24-09-02 10:40:49 [DEBUG] ROC AUC: 0.68
+24-09-02 10:40:49 [DEBUG] Average Precision: 0.45
+24-09-02 10:40:49 [DEBUG] Confusion Matrix: [[14954   846]
+ [ 3083  2230]]
+24-09-02 10:40:49 [DEBUG] Accuracy:  0.82
+24-09-02 10:40:49 [DEBUG] Precision: 0.72
+24-09-02 10:40:49 [DEBUG] Recall: 0.41
+24-09-02 10:40:49 [DEBUG] F1 Score: 0.52
+24-09-02 10:40:49 [DEBUG] ROC AUC: 0.68
+24-09-02 10:40:49 [DEBUG] Average Precision: 0.44
+24-09-02 10:40:49 [DEBUG] Confusion Matrix: [[6495  359]
+ [1288  907]]
+24-09-02 10:40:49 [INFO] ------------------------------
+24-09-02 10:40:49 [INFO] Finished adult
+24-09-02 10:40:49 [INFO] Finished all MAF methods
+24-09-02 10:40:49 [INFO] Methods list: ['random']
+24-09-02 10:40:49 [INFO] Found 8 datasets
+24-09-02 10:40:49 [DEBUG] Dataset: adult | Shape: (30162, 15)
+24-09-02 10:40:49 [DEBUG] (30162, 15) - dropped columns with more than 20% missing values
+24-09-02 10:40:49 [DEBUG] (30162, 15) - drop rows with missing values
+24-09-02 10:40:49 [DEBUG] (30162, 7) drop non-numeric columns
+24-09-02 10:40:49 [INFO] ------ Dataset: adult | Shape: (30162, 7) | Label ratio: 0.75 -------
+24-09-02 10:40:49 [INFO] Step 0: Data split done | 21113 - 9049
+24-09-02 10:40:49 [INFO] ----------- Running random method -----------
+24-09-02 10:40:49 [DEBUG] Train: 21113
+24-09-02 10:40:49 [INFO] Step 5: Run DST (dataset=adult, label_for_dist=labels, clust=None, breaks=2, add_mult_rules=False, maf_method=random, in_between_rules=False)
+24-09-02 10:40:49 [DEBUG] 	Model init done
+24-09-02 10:45:15 [DEBUG] 	Model fit done
+24-09-02 10:45:20 [INFO] Step 6: Inference done
+24-09-02 10:45:20 [DEBUG] Training Time: 266.01s
+24-09-02 10:45:20 [DEBUG] Epochs: 38
+24-09-02 10:45:20 [DEBUG] Min Loss: 0.134
+24-09-02 10:45:20 [DEBUG] Accuracy:  0.81
+24-09-02 10:45:20 [DEBUG] Precision: 0.73
+24-09-02 10:45:20 [DEBUG] Recall: 0.38
+24-09-02 10:45:20 [DEBUG] F1 Score: 0.50
+24-09-02 10:45:20 [DEBUG] ROC AUC: 0.67
+24-09-02 10:45:20 [DEBUG] Average Precision: 0.44
+24-09-02 10:45:20 [DEBUG] Confusion Matrix: [[15068   732]
+ [ 3285  2028]]
+24-09-02 10:45:20 [DEBUG] Accuracy:  0.82
+24-09-02 10:45:20 [DEBUG] Precision: 0.73
+24-09-02 10:45:20 [DEBUG] Recall: 0.38
+24-09-02 10:45:20 [DEBUG] F1 Score: 0.50
+24-09-02 10:45:20 [DEBUG] ROC AUC: 0.67
+24-09-02 10:45:20 [DEBUG] Average Precision: 0.43
+24-09-02 10:45:20 [DEBUG] Confusion Matrix: [[6551  303]
+ [1361  834]]
+24-09-02 10:45:20 [INFO] ------------------------------
+24-09-02 10:45:20 [INFO] Finished adult
+24-09-02 10:45:20 [INFO] Finished all MAF methods
