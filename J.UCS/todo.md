@@ -10,7 +10,7 @@ Minor issues:
 [] The design of tables should be improved
 
 
-[] The work is not hard to follow but the paper would benefit with a brief explanation of how the MAFs are used to predict a class for people that are not familiar with the DSGD classifier.
+[x] The work is not hard to follow but the paper would benefit with a brief explanation of how the MAFs are used to predict a class for people that are not familiar with the DSGD classifier.
 [x] Overall the paper results are very clear, thanks for providing the source code for the classifier.
 [] Future work could be extended. It would be interesting to compare the initialization of MAFs using clustering versus expert knowledge. Do the authors have any experience with this? Have the authors tried or expect to try this improvement in bigger datasets?Just a comment on these topics with the authors experience or thoughts would be welcomed. 
 
