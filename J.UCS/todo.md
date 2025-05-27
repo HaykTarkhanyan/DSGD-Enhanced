@@ -1,13 +1,13 @@
 # Todo revision, 2nd iter
 ## Reviewer 1
 [x] Improve the connectivity between sections for easier reading.
-[] Discussion section is missing.
+[] Discussion section is missing. - Future work kind of covers this
 [x] The description of the results of experiments should be improved. The sections are too short for clarity.
 [x] Reference section should be improved.
 
 Minor issues:
-[] Text needs polishing
-[] The design of tables should be improved
+[] Text needs polishing - very slight changes
+[] The design of tables should be improved - only changed one table
 
 ## Reviewer 2 (very good reviewer)
 [x] The work is not hard to follow but the paper would benefit with a brief explanation of how the MAFs are used to predict a class for people that are not familiar with the DSGD classifier.

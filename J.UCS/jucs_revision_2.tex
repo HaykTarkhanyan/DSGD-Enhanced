@@ -260,24 +260,29 @@ where $m(l_i)$ denotes the mass assigned to label $l_i$, and $n$ is the total nu
 \section{Results}
 Here{\color{black},} we demonstrate the effects of the newly defined MAF initialization algorithm (KMeans-based) on the training time, accuracy, and the amount of rule uncertainties. We accomplish this by testing the approach both on controlled scenarios and on some classical datasets. The datasets used for evaluations are summarized in Table \ref{datasets}. 
 \\
-\begin{longtable}{|>{\raggedright\arraybackslash}p{3cm}|c|c|>
-{\raggedright\arraybackslash}p{5cm}|}
-\caption{Datasets overview (binary classification)}
-\label{datasets}
-\\
+% --- add once in the preamble -----------------------------------
+\renewcommand{\arraystretch}{1.15}   % a little breathing room
+% ---------------------------------------------------------------
+
+\begin{longtable}{|>{\raggedright\arraybackslash}p{3cm}|
+                  >{\centering\arraybackslash}p{1.5cm}|
+                  >{\centering\arraybackslash}p{1.5cm}|
+                  >{\raggedright\arraybackslash}p{5.5cm}|}
+\caption{Datasets overview (binary classification)}\label{datasets}\\
 \hline
-\textbf{Dataset} & \textbf{Rows} & \textbf{Columns} & \textbf{Description} \\ \hline
+\textbf{Dataset} & \textbf{Rows} & \textbf{Cols} & \textbf{Description} \\ \hline
 \endfirsthead
 \hline
-\textbf{Dataset} & \textbf{Rows} & \textbf{Columns} & \textbf{Description} \\ \hline
+\textbf{Dataset} & \textbf{Rows} & \textbf{Cols} & \textbf{Description} \\ \hline
 \endhead
 Brain Tumor & 3762 & 14 & Includes first-order and texture features with target levels. \\ \hline
 Breast Cancer Wisconsin & 699 & 9 & Clinical reports detailing cell benignity or malignancy. \\ \hline
 Gaussian & 500 & 3 & Two 2D Gaussian distributions generate this dataset. \\ \hline
 Uniform & 500 & 3 & Uniform samples from [-5, 5], with class split by the sign of x. \\ \hline
 Rectangle & 1263 & 3 & Points in [-1, 1]×[-1, 1], class determined by the y component's sign. \\ \hline
-
 \end{longtable}
+
+
 The first two are real-life datasets (\cite{breastCancer,brainTumor}), while the last three are controlled scenarios.
 
 % Smoother transition to analysis subsections
