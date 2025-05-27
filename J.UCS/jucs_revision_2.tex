@@ -136,12 +136,16 @@ To make improvements, two issues should be considered.  Firstly, the number of s
 {
 Moreover, one promising direction for improving DST-based methods lies in incorporating rules derived from rule mining algorithms \cite{ripper, c5, skoperules}. However, to make this approach truly feasible, it becomes evident that a strategy to reduce training time is crucial for enhancing DST-based models.
 }
+% Added transition to next section for better flow
+{\color{red}In the following section, we outline our methodology for addressing these challenges, focusing on improved Mass Assignment Function initialization to reduce training time and uncertainty.}
 \section{Methodology}\label{1.2}
 \subsection{Overview}\label{1.2.2}
 Our approach significantly reduces the optimization time by improving the technique for initializing MAFs associated with the rules. Peñafiel et al. \cite{sergio} relied on random assignment, where the empty set's mass is set to 0, the entire set—which represents total uncertainty—is assigned a value of 0.8, and the remaining 0.2 is randomly distributed among singleton classes (other classes are not considered). {\color{black} Sedláček et al. \cite{czechs} have investigated the use of the statistical distribution of classes in allocating mass values}. Here{\color{black},} we propose a {\color{black} clustering-based} technique that incorporates additional information about each rule into the MAF. 
 
 To advance this method, we introduce the concept of rule "confidence". First of all, operating under the assumption that certain points are more representative of their class than others{\color{black},} we define "representativeness" for each point. This approach is inspired by the post-hoc interpretation technique commonly used in clustering algorithms. In these models, each cluster's "color" is treated as a label, upon which interpretable classifiers are constructed. In our framework, we not only assign a "color" to data points{\color{black},} but also attribute a numeric value representing their "opacity" which we refer to as "representativeness". For spherical data, we employ the $get\_representativeness\_KMeans$ function (see Algorithm \ref{alg:representativeness_kmeans}), which uses the KMeans clustering algorithm \cite{kmeans} to determine the most representative data point. {\color{black}In our previous work (\cite{menq}) we were simply setting the most representative data point to the arithmetic mean of the data points with the same label instead of using KMeans.} In scenarios where data is better suited for density-based clustering, we apply the $get\_representativenes\_DBSCAN$ function (see Algorithm \ref{alg:representativeness_DBSCAN}, {\color{black}which is based on DBSCAN \cite{DBSCAN} algorithm.} Once we have determined the representativeness of each data point, we then define the confidence of each rule of the data points following that rule, this is achieved by $get\_confidence$ function discussed in Section \ref{2.3}. The final step involves integrating this confidence into the MAF assignment, which will be discussed further in Section \ref{2.4}.
 
+% Added roadmap for methodology subsections
+{\color{red}The remainder of this section is structured as follows: Section~\ref{1.2.1} describes representativeness estimation, Section~\ref{2.3} covers rule confidence computation, and Section~\ref{2.4} details the enhanced MAF initialization.}
 \subsection{Estimation of Representativeness}\label{1.2.1}
 Below, we present the algorithms for estimation of representativeness using KMeans clustering (Algorithm \ref{alg:representativeness_kmeans}) and the DBSCAN-based (Algorithm \ref{alg:representativeness_DBSCAN}) approaches. Additionally, we present example figures for synthetic datasets (Figure \ref{fig:reprs}).
 
@@ -245,7 +249,10 @@ c & \text{if } l_i = l_{\text{mode}}, \\
 \frac{1-c}{n-1} & \text{otherwise},
 \end{cases}
 \]
-where $m(l_i)$ denotes the mass assigned to label $l_i$, and $n$ is the total number of elements in the frame of discernment. Note that here by saying label we mean the original label of the data point, not the one assigned to it via clustering algorithm (the color).
+where $m(l_i)$ denotes the mass assigned to label $l_i$, and $n$ is the total number of elements in the frame of discernment. Note that here by saying label we mean the original label of the data point, not the one assigned to it via clustering algorithm (the color). 
+
+% Smoother transition to Results section
+{\color{red}In the following section, we compare the results of initializing MAFs with the proposed approach and the traditional random initialization.}
 
 \section{Results}
 Here{\color{black},} we demonstrate the effects of the newly defined MAF initialization algorithm (KMeans-based) on the training time, accuracy, and the amount of rule uncertainties. We accomplish this by testing the approach both on controlled scenarios and on some classical datasets. The datasets used for evaluations are summarized in Table \ref{datasets}. 
@@ -270,8 +277,10 @@ Rectangle & 1263 & 3 & Points in [-1, 1]×[-1, 1], class determined by the y com
 \end{longtable}
 The first two are real-life datasets (\cite{breastCancer,brainTumor}), while the last three are controlled scenarios.
 
+% Smoother transition to analysis subsections
+{\color{red}The following subsections detail our findings: Section~\ref{sec:accuracy-speedup} presents accuracy and speedup results, and Section~\ref{sec:uncertainty-analysis} covers uncertainty analysis (we also do an evaluation of our newly proposed definition of uncertainty)}.
 
-\subsection{Accuracy and Speedup Analysis}
+\subsection{Accuracy and Speedup Analysis}\label{sec:accuracy-speedup}
 In this subsection, we focus on the KMeans approach, which we will refer to as the "clustering" MAF method. Additionally, we will use "MED." to denote the median and "AVG." to denote the average.
 
 Table \ref{comparison} presents a comparison of various metrics across different MAF initialization methods (Confidence and Random) and datasets. For evaluating the classifier's predictive power, we have calculated the accuracy (ratio of correctly predicted instances to the total instances) and F1 score. For evaluating the optimizer, we have reported the training time in seconds, the number of epochs, the minimum loss, and the initial loss.
@@ -339,7 +348,7 @@ Uniform & 1 & 1 & 1.90 \\
 The results in Table \ref{table-ratios} were rounded up to 2 digits. We can infer that accuracy and the f1 score remain unchanged while we experience a speedup of 1.65x.
 
 
-\subsection{Uncertainty Analysis}
+\subsection{Uncertainty Analysis}\label{sec:uncertainty-analysis}
 After the model has been trained, the question arises of how reliable the rules used by the model are. To determine this, we must examine the MAFs associated with these rules. In this subsection, we will describe the traditional definition of uncertainty, demonstrate its weaknesses, suggest an alternative definition, and analyze both traditional and newly suggested uncertainties for different MAF initialization methods.
 
 \subsubsection{A New Approach to Rule Importance Estimation}
@@ -384,6 +393,9 @@ To put this formally
     \]
     where \( U' \) is the adjusted uncertainty value and \( R' \) is the normalized ratio.
 \end{itemize}
+
+% Transition to experimental results
+{\color{red}With these definitions in place, we now present the experimental evaluation of both the traditional and proposed uncertainty measures.}
 
 \subsubsection{Experimental Results}
 Now we'll take a look at the effect of our new MAF initialization both based on traditional approach for importance calculation, and on newly proposed one. Below, we will define improvement as the ratio of $MED. Random$ and $MED. Clustering$.
