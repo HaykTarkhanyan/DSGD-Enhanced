@@ -1,6 +1,6 @@
-# Todo review 2
+# Todo revision, 2nd iter
 
-[] Improve the connectivity between sections for easier reading.
+[x] Improve the connectivity between sections for easier reading.
 [] Discussion section is missing.
 [] The description of the results of experiments should be improved. The sections are too short for clarity.
 [] Reference section should be improved.
@@ -15,7 +15,7 @@ Minor issues:
 [] Future work could be extended. It would be interesting to compare the initialization of MAFs using clustering versus expert knowledge. Do the authors have any experience with this? Have the authors tried or expect to try this improvement in bigger datasets?Just a comment on these topics with the authors experience or thoughts would be welcomed. 
 
 
-# ToDo review 1
+# ToDo revision, 1st iter
 
 [x] Change refence style
 [] Go over the JUCS new requirements list (sent in an email)

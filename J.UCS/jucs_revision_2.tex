@@ -136,6 +136,7 @@ To make improvements, two issues should be considered.  Firstly, the number of s
 {
 Moreover, one promising direction for improving DST-based methods lies in incorporating rules derived from rule mining algorithms \cite{ripper, c5, skoperules}. However, to make this approach truly feasible, it becomes evident that a strategy to reduce training time is crucial for enhancing DST-based models.
 }
+
 % Added transition to next section for better flow
 {\color{red}In the following section, we outline our methodology for addressing these challenges, focusing on improved Mass Assignment Function initialization to reduce training time and uncertainty.}
 \section{Methodology}\label{1.2}
@@ -241,7 +242,9 @@ Utilizing the algorithms previously described, we calculate the representativene
 Once we have obtained the confidence scores for the rules we can incorporate them into the MAF initialization.
 
 \subsection{MAF Initialization}\label{2.4}
-In the MAF, we use the following values for initialization. Let $c = get\_confidence(rule)$ represent the confidence derived for a given rule. The label $l_{\text{mode}}$, which is the most frequently occurring label within the subset of data points covered by the rule, receives the confidence value $c$. The remaining mass, $(1 - c)$, is evenly distributed among all the other labels present in the subset. Formally, for an element $l_i$ in the subset:
+{\color{red}In the DSGD classifier, MAFs are key components. Each rule has a MAF associated with it. For a new data point, MAFs of satisfied rules are combined using Dempster's rule. The class with the highest combined mass is typically chosen for prediction. The initial MAF values are crucial as they are the starting point for optimization, affecting convergence speed and model quality.
+
+Our approach uses} the following values for initialization. Let $c = get\_confidence(rule)$ represent the confidence derived for a given rule. The label $l_{\text{mode}}$, which is the most frequently occurring label within the subset of data points covered by the rule, receives the confidence value $c$. The remaining mass, $(1 - c)$, is evenly distributed among all the other labels present in the subset. Formally, for an element $l_i$ in the subset:
 \[
 m(l_i) = 
 \begin{cases} 
