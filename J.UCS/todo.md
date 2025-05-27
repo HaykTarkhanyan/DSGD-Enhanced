@@ -1,18 +1,18 @@
 # Todo revision, 2nd iter
-
+## Reviewer 1
 [x] Improve the connectivity between sections for easier reading.
 [] Discussion section is missing.
 [x] The description of the results of experiments should be improved. The sections are too short for clarity.
-[] Reference section should be improved.
+[x] Reference section should be improved.
 
 Minor issues:
 [] Text needs polishing
 [] The design of tables should be improved
 
-
+## Reviewer 2 (very good reviewer)
 [x] The work is not hard to follow but the paper would benefit with a brief explanation of how the MAFs are used to predict a class for people that are not familiar with the DSGD classifier.
 [x] Overall the paper results are very clear, thanks for providing the source code for the classifier.
-[] Future work could be extended. It would be interesting to compare the initialization of MAFs using clustering versus expert knowledge. Do the authors have any experience with this? Have the authors tried or expect to try this improvement in bigger datasets?Just a comment on these topics with the authors experience or thoughts would be welcomed. 
+[x] Future work could be extended. It would be interesting to compare the initialization of MAFs using clustering versus expert knowledge. Do the authors have any experience with this? Have the authors tried or expect to try this improvement in bigger datasets?Just a comment on these topics with the authors experience or thoughts would be welcomed. 
 
 
 # ToDo revision, 1st iter
