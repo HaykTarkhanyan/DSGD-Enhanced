@@ -2,7 +2,7 @@
 
 [x] Improve the connectivity between sections for easier reading.
 [] Discussion section is missing.
-[] The description of the results of experiments should be improved. The sections are too short for clarity.
+[x] The description of the results of experiments should be improved. The sections are too short for clarity.
 [] Reference section should be improved.
 
 Minor issues:
