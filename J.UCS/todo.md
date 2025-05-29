@@ -1,4 +1,18 @@
 # Todo revision, 2nd iter
+## 
+[x] text describing how reviewers comments were addressed
+[x] merge 1 and 2.1. Start 2.1 with "Below we outline..."
+[x] Second red paragraph -> "In Section 2 we specify the concept of representativeness and its estimation, as well as the rule confidence computation, and the enhanced MAF initialization. Section 3 describes evaluation results for our approaches, while Section 4 concludes the paper with notes on the future work."
+[x] Section 2 title -> Principles behind DSGD++
+[x] remove all subsection-s, use bold/italic for emphasis
+[x] start section 2 with "Let's start introducing algorithms for..."
+[x] section 3 title -> Evaluation
+[x] section 3 - remove subsections (except 3.2)
+[x] section 3.2 title -> Uncertainty Analysis and a New Approach to Rule Importance Estimation
+[x] remove subsections
+[] cite CNN paper
+
+
 ## Reviewer 1
 [x] Improve the connectivity between sections for easier reading.
 [] Discussion section is missing. - Future work kind of covers this
@@ -14,6 +28,16 @@ Minor issues:
 [x] Overall the paper results are very clear, thanks for providing the source code for the classifier.
 [x] Future work could be extended. It would be interesting to compare the initialization of MAFs using clustering versus expert knowledge. Do the authors have any experience with this? Have the authors tried or expect to try this improvement in bigger datasets?Just a comment on these topics with the authors experience or thoughts would be welcomed. 
 
+# Text
+We are very thankful for the reviewer's comments and suggestions. Here is how we addressed them:
+1. Reduced the number of sections and made transitions between them smoother
+2. Expanded the discussion of experimental results by explicitly mentioning their effects on the epoch count.
+3. Added a few sentences on how MAFs are used for prediction
+4. Extended the Future Work section to highlight potential integration of rule mining algorithms and emphasized the necessity of evaluating the approach on large datasets. Additionally, we acknowledged that our initialization technique was not compared with  expert knowledge-based initialization, recognizing this is an interesting direction to explore in the future.
+
+Minor changes:
+1. Improved the design of Table 1
+2. Polished the text and improved the references section.
 
 # ToDo revision, 1st iter
 
