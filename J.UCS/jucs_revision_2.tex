@@ -375,6 +375,7 @@ Traditionally, uncertainty has been defined by the mass of the complete set, wit
     \end{tabular}
 
 \end{table}
+\newpage
 Rule 1 shows zero uncertainty, which might seem ideal. But the nearly equal masses for the two classes make it hard for the algorithm to distinguish between them. On the flip side, Rule 2, despite its high uncertainty, has a significant difference in class masses (a ratio of 9), which enhances its ability to clearly separate the classes.
 
 Given these insights, we propose a fresh approach that factors in both the uncertainty and the ratio between the most probable and second most probable masses.
@@ -449,8 +450,8 @@ Table \ref{new-unce-res} shows that on average the clustering approach yields in
 {\color{black}
 See below Figure \ref{fig:bars} for an example of rule uncertainties for the Breast Cancer dataset \cite{breastCancer}.
 }
-\FloatBarrier
-\begin{figure}[htbp]
+% \FloatBarrier
+\begin{figure}[H]
     \makebox[\textwidth][c]{\includegraphics[width=0.9\linewidth]{figures/bars.png}} 
     \caption{Uncertainties per rule for different MAF initialization methods}
     \label{fig:bars}
