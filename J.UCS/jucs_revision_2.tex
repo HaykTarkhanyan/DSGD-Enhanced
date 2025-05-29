@@ -129,7 +129,7 @@ I.2.6, I.5, G.3
 % -------------------------------------------------------------
 
 \section{Introduction}\label{sec1}
-Dempster-Shafer theory \cite{dst} has emerged as a powerful framework for developing classification algorithms that prioritize interpretability. This theory provides a mathematical approach for combining evidence from different sources to calculate the probability of an event, utilizing Dempster's rule of combination. Peñafiel et al. \cite{sergio} have demonstrated {\color{black} for classification tasks} that an algorithm combining Dempster-Shafer theory with optimization techniques can offer substantial explainability, even when employing a limited number of rules, without sacrificing accuracy. {\color{black} The algorithm was further extended to the regression case by Baloian et al. \cite{Nelson} and to clustering by Valdivia et al. \cite{dsClustering}.}. The algorithm is inherently explainable because it operates by combining relatively simple rules for inference. {\color{black}Additionally, recent work by Baloyan et al \cite{Aneta} demonstrates {\color{black}the} algorithm's robustness to class imbalance and its ability to capture various numeric interactions {\color{black} among the individual properties (i.e., features) that define each data point.}}
+Dempster-Shafer theory \cite{dst} has emerged as a powerful framework for developing classification algorithms that prioritize interpretability. This theory provides a mathematical approach for combining evidence from different sources to calculate the probability of an event, utilizing Dempster's rule of combination. Peñafiel et al. \cite{sergio} have demonstrated {\color{black} for classification tasks} that an algorithm combining Dempster-Shafer theory with optimization techniques can offer substantial explainability, even when employing a limited number of rules, without sacrificing accuracy. {\color{black} The algorithm was further extended to the regression case by Baloian et al. \cite{Nelson} and to clustering by Valdivia et al. \cite{dsClustering}}. The algorithm is inherently explainable because it operates by combining relatively simple rules for inference. {\color{black}Additionally, recent work by Baloyan et al \cite{Aneta} demonstrates {\color{black}the} algorithm's robustness to class imbalance and its ability to capture various numeric interactions {\color{black} among the individual properties (i.e., features) that define each data point.}}
 
 To make improvements, two issues should be considered.  Firstly, the number of subsets in the frame of discernment, growing with a complexity of $\mathcal{O}(2^n)$, makes the inclusion of non-singleton classes nearly impossible. Secondly, given that each feature in the dataset typically generates three rules, combining even two rules significantly increases training time and further limits the predictive power of the rules. 
 \textcolor{black}
@@ -138,17 +138,17 @@ Moreover, one promising direction for improving DST-based methods lies in incorp
 }
 
 % Added transition to next section for better flow
-{\color{blue}Below, we outline our methodology for addressing these challenges, focusing on improved Mass Assignment Function initialization to reduce training time and uncertainty.}
+{\color{black}Below, we outline our methodology for addressing these challenges, focusing on improved Mass Assignment Function initialization to reduce training time and uncertainty.}
 
 Our approach significantly reduces the optimization time by improving the technique for initializing MAFs associated with the rules. Peñafiel et al. \cite{sergio} relied on random assignment, where the empty set's mass is set to 0, the entire set—which represents total uncertainty—is assigned a value of 0.8, and the remaining 0.2 is randomly distributed among singleton classes (other classes are not considered). {\color{black} Sedláček et al. \cite{czechs} have investigated the use of the statistical distribution of classes in allocating mass values}. Here{\color{black},} we propose a {\color{black} clustering-based} technique that incorporates additional information about each rule into the MAF. 
 
-To advance this method, we introduce the concept of rule "confidence". First of all, operating under the assumption that certain points are more representative of their class than others{\color{black},} we define "representativeness" for each point. This approach is inspired by the post-hoc interpretation technique commonly used in clustering algorithms. In these models, each cluster's "color" is treated as a label, upon which interpretable classifiers are constructed. In our framework, we not only assign a "color" to data points{\color{black},} but also attribute a numeric value representing their "opacity" which we refer to as "representativeness". For spherical data, we employ the $get\_representativeness\_KMeans$ function (see Algorithm \ref{alg:representativeness_kmeans}), which uses the KMeans clustering algorithm \cite{kmeans} to determine the most representative data point. {\color{black}In our previous work (\cite{menq}) we were simply setting the most representative data point to the arithmetic mean of the data points with the same label instead of using KMeans.} In scenarios where data is better suited for density-based clustering, we apply the $get\_representativenes\_DBSCAN$ function (see Algorithm \ref{alg:representativeness_DBSCAN}), {\color{black}which is based on DBSCAN \cite{DBSCAN} algorithm.} Once we have determined the representativeness of each data point, we then define the confidence of each rule of the data points following that rule, this is achieved by $get\_confidence$ function discussed in Section \ref{2}. The final step involves integrating this confidence into the MAF assignment, which will be discussed further at the end of Section \ref{2}.
+To advance this method, we introduce the concept of rule "confidence". First of all, operating under the assumption that certain points are more representative of their class than others{\color{black},} we define "representativeness" for each point. This approach is inspired by the post-hoc interpretation technique commonly used in clustering algorithms. In these models, each cluster's "color" is treated as a label, upon which interpretable classifiers are constructed. In our framework, we not only assign a "color" to data points{\color{black},} but also attribute a numeric value representing their "opacity" which we refer to as "representativeness". For spherical data, we employ the $get\_representativeness\_KMeans$ function (see Algorithm \ref{alg:representativeness_kmeans}), which uses the KMeans clustering algorithm \cite{kmeans} to determine the most representative data point. {\color{black}In our previous work (\cite{menq}) we were simply setting the most representative data point to the arithmetic mean of the data points with the same label instead of using KMeans.} In scenarios where data is better suited for density-based clustering, we apply the $get\_representativeness\_DBSCAN$ function (see Algorithm \ref{alg:representativeness_DBSCAN}), {\color{black}which is based on DBSCAN \cite{DBSCAN} algorithm.} Once we have determined the representativeness of each data point, we then define the confidence of each rule based on the data points it covers, this is achieved by $get\_confidence$ function discussed in Section \ref{2}. The final step involves integrating this confidence into the MAF assignment, which will be discussed further at the end of Section \ref{2}.
 
 % Added roadmap for methodology subsections
-{\color{blue}In Section \ref{2} we specify the concept of representativeness and its estimation, as well as the rule confidence computation, and the enhanced MAF initialization. Section \ref{3} describes evaluation results for our approaches, while Section \ref{4} concludes the paper with notes on the future work.}
+{\color{black}In Section \ref{2} we specify the concept of representativeness and its estimation, as well as the rule confidence computation, and the enhanced MAF initialization. Section \ref{3} describes evaluation results for our approaches, while Section \ref{4} concludes the paper with notes on the future work.}
 \section{Principles behind DSGD++}\label{2}
 \
-{\color{blue}Let's start by introducing} the algorithms for \textbf{estimation of representativeness} using KMeans clustering (Algorithm \ref{alg:representativeness_kmeans}) and the DBSCAN-based (Algorithm \ref{alg:representativeness_DBSCAN}) approaches. Additionally, we present example figures for synthetic datasets (Figure \ref{fig:reprs}).
+{\color{black}Let's start by introducing} the algorithms for \textbf{estimation of representativeness} using KMeans clustering (Algorithm \ref{alg:representativeness_kmeans}) and the DBSCAN-based (Algorithm \ref{alg:representativeness_DBSCAN}) approaches. Additionally, we present example figures for synthetic datasets (Figure \ref{fig:reprs}).
 
 In the \textbf{KMeans-based approach}, the data is standardized and then clustered into \(k\) groups (equal to the number of classes). Each data point’s representativeness is determined by its distance to the cluster centroid: points are first checked for outlier status using a Z-score threshold, and then distances are normalized within each cluster. The representativeness score is calculated as \(1\) minus the normalized distance (or \(0\) if the point is flagged as an outlier).
 
@@ -242,7 +242,7 @@ Utilizing the algorithms previously described, we calculate the representativene
 Once we have obtained the confidence scores for the rules we can incorporate them into the \textbf{MAF initialization}.
 
 % \subsection{MAF Initialization}\label{2.4}
-{\color{red}In the DSGD classifier, MAFs are key components. Each rule has a MAF associated with it. For a new data point, MAFs of satisfied rules are combined using Dempster's rule. The class with the highest combined mass is typically chosen for prediction. The initial MAF values are crucial as they are the starting point for optimization, affecting convergence speed and model quality.
+{\color{black}In the DSGD classifier, MAFs are key components. Each rule has a MAF associated with it. For a new data point, MAFs of satisfied rules are combined using Dempster's rule. The class with the highest combined mass is typically chosen for prediction. The initial MAF values are crucial as they are the starting point for optimization, affecting convergence speed and model quality.
 
 Our approach uses} the following values for initialization. Let $c = get\_confidence(rule)$ represent the confidence derived for a given rule. The label $l_{\text{mode}}$, which is the most frequently occurring label within the subset of data points covered by the rule, receives the confidence value $c$. The remaining mass, $(1 - c)$, is evenly distributed among all the other labels present in the subset. Formally, for an element $l_i$ in the subset:
 \[
@@ -255,7 +255,7 @@ c & \text{if } l_i = l_{\text{mode}}, \\
 where $m(l_i)$ denotes the mass assigned to label $l_i$, and $n$ is the total number of elements in the frame of discernment. Note that here by saying label we mean the original label of the data point, not the one assigned to it via clustering algorithm (the color). 
 
 % Smoother transition to Results section
-{\color{red}In the following section, we compare the results of initializing MAFs with the proposed approach and the traditional random initialization.}
+{\color{black}In the following section, we compare the results of initializing MAFs with the proposed approach and the traditional random initialization.}
 
 \section{Evaluation}\label{3}
 Here{\color{black},} we demonstrate the effects of the newly defined MAF initialization algorithm (KMeans-based) on the training time, accuracy, and the amount of rule uncertainties. We accomplish this by testing the approach both on controlled scenarios and on some classical datasets. The datasets used for evaluations are summarized in Table \ref{datasets}. 
@@ -286,7 +286,7 @@ Rectangle & 1263 & 3 & Points in [-1, 1]×[-1, 1], class determined by the y com
 The first two are real-life datasets (\cite{breastCancer,brainTumor}), while the last three are controlled scenarios.
 
 % Smoother transition to analysis subsections
-{\color{blue}Now we will presents accuracy and speedup analysis, and Section~\ref{sec:uncertainty-analysis} will cover uncertainty analysis (we also do an evaluation of our newly proposed definition of uncertainty)}.
+{\color{black}Now we will present accuracy and speedup analysis, and Section~\ref{sec:uncertainty-analysis} will cover uncertainty analysis (we also do an evaluation of our newly proposed definition of uncertainty)}.
 
 We focus on the KMeans approach, which we will refer to as the "clustering" MAF method. Additionally, we will use "MED." to denote the median and "AVG." to denote the average.
 
@@ -315,7 +315,7 @@ Table \ref{comparison} presents a comparison of various metrics across different
 \end{table}
 
 % \newpage
-{\color{red}We can see that although F1 scores and accuracies are nearly identical for both methods, our proposed methods consistently requires fewer epochs (on average by 42$\%$) to converge. Additionally, the results also support our hypothesis that MAF initialization provides a better starting point, for every dataset the optimizer starts from a better point and achieves a lower final loss.}
+{\color{black}We can see that although F1 scores and accuracies are nearly identical for both methods, our proposed methods consistently requires fewer epochs (on average by 42$\%$) to converge. Additionally, the results also support our hypothesis that MAF initialization provides a better starting point, for every dataset the optimizer starts from a better point and achieves a lower final loss.}
 
 
 \FloatBarrier
@@ -403,7 +403,7 @@ To put this formally
 \end{itemize}
 
 % Transition to experimental results
-{\color{blue}With these definitions in place, we now present the experimental evaluation of the effects of our new MAF initialization both based on traditional approach for importance calculation, and on newly proposed one.} Below, we will define improvement as the ratio of $MED. Random$ and $MED. Clustering$.
+{\color{black}With these definitions in place, we now present the experimental evaluation of the effects of our new MAF initialization both based on traditional approach for importance calculation, and on newly proposed one.} Below, we will define improvement as the ratio of $MED. Random$ and $MED. Clustering$.
 
 \FloatBarrier
 
@@ -463,8 +463,8 @@ We saw that by introducing the concept of \textit{representativeness} for indivi
 
 We further addressed the need for a more flexible definition of rule uncertainty by proposing a measure that takes into account the ratio of masses of singleton classes. Our MAF initialization approach reduced uncertainty by a factor of 2.6 using the newly proposed measure and by 2.1 using the traditional measure.
 
-{\color{red}
-Future work could extend this approach to multi-label datasets, explore additional clustering techniques, and evaluate performance on larger datasets. Additionally, the reduced training time achieved by our method opens opportunities to experiment with incorporating non-singleton classes or generating a larger set of rules. Given that Dempster-Shafer theory effectively integrates evidence from multiple sources, comparing our approach with expert knowledge-based {\color{blue}initialization} might yield valuable insights. Finally, employing rule-mining algorithms such as RIPPER, C5.0, or SkopeRules \cite{ripper, c5, skoperules} in combination with our MAF initialization strategy could potentially enhance model performance and further reduce uncertainty.
+{\color{black}
+Future work could extend this approach to multi-label datasets, explore additional clustering techniques, and evaluate performance on larger datasets. Additionally, the reduced training time achieved by our method opens opportunities to experiment with incorporating non-singleton classes or generating a larger set of rules. Given that Dempster-Shafer theory effectively integrates evidence from multiple sources, comparing our approach with expert knowledge-based {\color{black}initialization} might yield valuable insights. Finally, employing rule-mining algorithms such as RIPPER, C5.0, or SkopeRules \cite{ripper, c5, skoperules} in combination with our MAF initialization strategy could potentially enhance model performance and further reduce uncertainty.
 }
 % -------------------------------------------------------------
 %              ACKNOWLEDGEMENTS (J.UCS)
