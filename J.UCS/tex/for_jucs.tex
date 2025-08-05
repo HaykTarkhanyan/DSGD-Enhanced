@@ -1,546 +1,879 @@
-\documentclass[10pt,a4paper,oneside]{article}
+% J.UCS DOCUMENT STYLE version 1.2
+% derived from Springer LLNCS Document Style
+% for LaTeX version 2e
 
-% -------------------------------------------------------------
-%             PACKAGES FROM THE J.UCS TEMPLATE
-% -------------------------------------------------------------
-\usepackage[hidelinks]{hyperref}      % already in your template
-\usepackage{jucs2e}                   % the main J.UCS style
-\usepackage{graphicx}
-\usepackage{url}
-\usepackage{ulem}
-\usepackage{mathtools}
-\usepackage{scalerel}
-\usepackage{setspace}
-\usepackage[strict]{changepage}
-\usepackage{caption}
-\usepackage[letterspace=-50]{microtype}
-\usepackage{fontspec}
-\usepackage{afterpage}
-\usepackage{ragged2e}
-\setmainfont{Times New Roman}
-\usepackage{titlesec}
-\titleformat*{\section}{\Large\bfseries}
-\titleformat*{\subsection}{\normalsize\bfseries}
-\renewcommand{\baselinestretch}{0.9} 
-\graphicspath{{./figures/}}
-\usepackage[textwidth=8cm, margin=0cm, left=4.6cm, right=4.2cm, top=3.9cm, bottom=6.8cm, a4paper, headheight=0.5cm, headsep=0.5cm]{geometry}
-\usepackage{fancyhdr}
-\usepackage[format=plain, labelfont=it, textfont=it, justification=centering]{caption}
-\usepackage{breakcites}
-\usepackage{microtype}
-\apptocmd{\frame}{}{\justifying}{}
-\urlstyle{same}
-\pagestyle{fancy}
-% \fancyfoot{} % Clear all footer content (Sonnet)
+% This style file is an adaptation of
+% the original LaTeX article.sty
 
-% -------------------------------------------------------------
-%                  ADDITIONAL PACKAGES
-% -------------------------------------------------------------
-% If your paper uses algorithms, math, etc.:
-\usepackage{amsmath}
-\usepackage{algorithm}
-\usepackage{algpseudocode}
-\usepackage{xcolor}
-\usepackage{longtable}
-\usepackage{array}
-\usepackage{booktabs}
-\usepackage{placeins} % in your preamble
+\typeout{Document Style `jucs', <version 1.2>}
 
-% etc., as needed
+\frenchspacing
 
-% -------------------------------------------------------------
-%                HEADER DEFINITIONS (J.UCS)
-% -------------------------------------------------------------
-\newcommand\jucs{{Journal of Universal Computer Science}}
-\newcommand\jucsvol{vol. 31, no. 9 (2025)}
-\newcommand\jucspages{1012-1022} 
-\newcommand\jucssubmitted{9/2/2025}
-\newcommand\jucsaccepted{8/7/2025}
-\newcommand\jucsappeared{14/8/2025}
-\newcommand\jucslicence{ CC BY 4.0}
-\newcommand\startingPage{1012}
-\setcounter{page}{\startingPage}
+\def~{\penalty\@M\kern3pt}
 
-% -------------------------------------------------------------
-%                      PAPER-SPECIFIC
-% -------------------------------------------------------------
-\newcommand\paperauthor{{Tarkhanyan, A., Harutyunyan, A.: }}
-\newcommand\papertitle{{\color{black}DSGD++: Reducing Uncertainty and Training Time in the DSGD Classifier through a Mass Assignment Function Initialization Technique}}
+\def\literaturename{References}
+\def\contentsname{Table of Contents}
+\def\listoffiguresname{List of Figures}
+\def\figurename{Figure}
+\def\listoftablesname{List of Tables}
+\def\tablename{Table}
+\def\abstractname{Abstract:}
+\def\keywordsname{Keywords:}
+\def\categoryname{Categories:}
+\def\doiname{DOI:}
 
-% Header content
-\header{\paperauthor \papertitle}
+\newif\if@deutsch\@deutschfalse
+            
+\def\thebibliography#1{\section*{\literaturename}\small\list
+  {\arabic{enumi}.}{\settowidth\labelwidth{}\leftmargin\labelwidth
+    \advance\leftmargin-5pt % added
+    \advance\leftmargin\labelsep
+    \setlength\itemindent{5pt} % added
+    \usecounter{enumi}}
+    \def\newblock{\hskip .11em plus .33em minus -.07em}
+    \sloppy
+    \sfcode`\.=1000\relax}
 
-% -------------------------------------------------------------
-%                  DOCUMENT BEGINS
-% -------------------------------------------------------------
-\begin{document}
+\def\ds@citeauthoryear{\def\thebibliography##1{\section*{\literaturename}%
+    \small\list{}{\settowidth\labelwidth{}\leftmargin\parindent
+    \itemindent=-\parindent
+    \labelsep=\z@
+    \usecounter{enumi}}%
+    \def\newblock{\hskip .11em plus .33em minus -.07em}%
+    \sloppy
+    \sfcode`\.=1000\relax}%
+    \def\@cite##1{##1}%
+    \def\@lbibitem[##1]##2{\item[]\if@filesw
+      {\def\protect####1{\string ####1\space}\immediate
+    \write\@auxout{\string\bibcite{##2}{##1}}}\fi\ignorespaces}}%
 
-% ------------------ TITLE AND AUTHORS ------------------------
-\title{{\fontsize{14pt}{14pt}\selectfont{\vspace*{-3mm}\papertitle\vspace*{-1mm}}}}
+\newif\if@envcountreset\@envcountresetfalse
+\def\ds@envcountreset{\@envcountresettrue}
 
-\author{%
-{\bfseries\fontsize{10pt}{10pt}\selectfont{Aik Tarkhanyan}} \\
-{\fontsize{9pt}{12pt}\selectfont{Mathematics and Mechanics Department at Yerevan State University, 0025 Yerevan, Armenia\\
-\orcid{0009-0000-7015-111X}, 
-hayk.tarkhanyan@edu.ysu.am)}}
-\and
-{\bfseries\fontsize{10pt}{10pt}\selectfont{Ashot Harutyunyan}}\\
-{\fontsize{9pt}{12pt}\selectfont{(ML Lab at Yerevan State University, 0025 Yerevan, Armenia, \\
-Institute for Informatics and Automation Problems NAS RA, 0014 Yerevan, Armenia\\
-\orcid{0000-0003-2707-1039},
-harutyunyan.ashot@ysu.am)}}
+\def\@mbi{cmmib10}
+\def\@ptsize{0} \@namedef{ds@11pt}{\def\@ptsize{1}}
+\@namedef{ds@12pt}{\def\@ptsize{2}}
+\def\ds@twoside{\@twosidetrue \@mparswitchtrue}
+\def\ds@draft{\overfullrule
+5pt}
+\@options
+
+
+\lineskip 1pt \normallineskip 1pt
+\def\baselinestretch{1.1}
+
+\def\@normalsize{\@setsize\normalsize{10pt}\xpt\@xpt
+\abovedisplayskip=3 mm plus6pt minus 4pt
+\belowdisplayskip=3 mm plus6pt minus 4pt
+\abovedisplayshortskip=0mm plus6pt minus 2pt
+\belowdisplayshortskip=2 mm plus4pt minus 4pt}
+
+\mathchardef\Gamma="0100
+\mathchardef\Delta="0101
+\mathchardef\Theta="0102
+\mathchardef\Lambda="0103
+\mathchardef\Xi="0104
+\mathchardef\Pi="0105
+\mathchardef\Sigma="0106
+\mathchardef\Upsilon="0107
+\mathchardef\Phi="0108
+\mathchardef\Psi="0109
+\mathchardef\Omega="010A
+
+% Spacing of 6pt in References (AS, 2021)
+\let\OLDthebibliography\thebibliography
+\renewcommand\thebibliography[1]{
+  \OLDthebibliography{#1}
+  \setlength{\parskip}{0pt}
+  \setlength{\itemsep}{6pt plus 0.3ex}
 }
 
-\label{first}
-\maketitle
+% Header environment
+% Header
+\RequirePackage{fancyhdr}
+\newcommand\header[1]{
+    \fancyhf{}
+    \fancyheadoffset[R]{3pt}
+    \renewcommand{\headrulewidth}{0pt} % remove lines as well
+    % Right header
+    \fancyhead[RO]{
+        \checkoddpage
+        \ifoddpage
+            \ifnum\thepage>\startingPage
+                {\fontsize{12}{12}\selectfont\thepage}
+            \fi
+        \else
+        \fi
+    }
+    
+    % Center header
+    \fancyhead[OC]{
+        {\ifnum\thepage=\startingPage
+        \begin{singlespace}
+            %\fontfamily{ptm}
+            \fontsize{8pt}{5pt}\selectfont{\itshape{\jucs, \jucsvol, \jucspages \\ submitted: \jucssubmitted, accepted: \jucsaccepted, appeared: \jucsappeared \jucslicence}}
+            \vspace{-5mm}
+        \end{singlespace}
+        \else
+            \lsstyle
+            %\parbox[t]{0.82\textwidth}
+            % {\fontsize{8pt}{5pt}\selectfont{\itshape{\paperauthor \papertitle}}} Tarkhanyan A., Harutyunyan A.: DSGD++: Reducing Uncertainty and Training Time in ...
 
-% --------------------- ABSTRACT & KEYWORDS -------------------
-{\fontfamily{ptm}\selectfont
-\begin{abstract}
-{\fontsize{9pt}{9pt}\selectfont{\vspace*{-2mm}
-Several studies have shown that the Dempster–Shafer theory (DST) can be successfully applied to scenarios where model interpretability is essential. Although DST-based algorithms offer significant benefits, they face challenges in terms of efficiency. We present a method for the Dempster-Shafer Gradient Descent (DSGD) algorithm that significantly reduces training time—by a factor of 1.6—and also reduces the uncertainty of each rule (a condition on features leading to a class label)  by a factor of 2.1, while preserving accuracy comparable to other statistical classification techniques. Our main contribution is the introduction of a "confidence" level for each rule. Initially, we define the "representativeness" of a data point as the distance from its class's center. Afterward, each rule's \textit{confidence} is calculated based on \textit{representativeness} of data points it covers. This confidence is incorporated into the initialization of the corresponding Mass Assignment Function (MAF), providing a better starting point for the DSGD's optimizer and enabling faster, more effective convergence. The code is available at \url{https://github.com/HaykTarkhanyan/DSGD-Enhanced}.
+            {\fontsize{8pt}{5pt}\selectfont{\itshape{Tarkhanyan A., Harutyunyan A.: DSGD++: Reducing Uncertainty and Training Time in ...}}}
+            \vspace{-0.5mm}
+        \fi}
+    }
+    
+    % Left header
+    \fancyhead[OL]{
+        \checkoddpage
+        \ifoddpage
+        \else
+            \ifnum\thepage>\startingPage
+                %\vspace{\vfill}
+                {\fontsize{12}{12}\selectfont \thepage}
+            \fi
+        \fi
+    }
+}
+
+% Acknowledgments environment
+\newenvironment{Acknowledgements}
+{\vspace{12pt}   
+    \begin{flushleft}
+        \fontsize{10pt}{10pt}\selectfont{\bfseries{Acknowledgements}}\\[6pt]
+    \end{flushleft}
+}{}
+
+% ORCID (AS, 2021)
+\RequirePackage{xcolor}
+\RequirePackage{tikz}
+\usetikzlibrary{svg.path}
+\definecolor{orcidlogocol}{HTML}{A6CE39}
+\tikzset{
+  orcidlogo/.pic={
+    \fill[orcidlogocol] svg{M256,128c0,70.7-57.3,128-128,128C57.3,256,0,198.7,0,128C0,57.3,57.3,0,128,0C198.7,0,256,57.3,256,128z};
+    \fill[white] svg{M86.3,186.2H70.9V79.1h15.4v48.4V186.2z}
+                 svg{M108.9,79.1h41.6c39.6,0,57,28.3,57,53.6c0,27.5-21.5,53.6-56.8,53.6h-41.8V79.1z M124.3,172.4h24.5c34.9,0,42.9-26.5,42.9-39.7c0-21.5-13.7-39.7-43.7-39.7h-23.7V172.4z}
+                 svg{M88.7,56.8c0,5.5-4.5,10.1-10.1,10.1c-5.6,0-10.1-4.6-10.1-10.1c0-5.6,4.5-10.1,10.1-10.1C84.2,46.7,88.7,51.3,88.7,56.8z};
+  }
+}
+
+\newcommand\orcidicon[1]{\href{https://orcid.org/#1}{\mbox{\scalerel*{
+\begin{tikzpicture}[yscale=-1,transform shape]
+\pic{orcidlogo};
+\end{tikzpicture}
+}{|}}}}
+\newcommand{\orcid}[1]{\orcidicon{#1} \href{https://orcid.org/#1}{https://orcid.org/#1}}
+
+% Set caption style
+
+\setlength{\abovecaptionskip}{12pt} % Space above caption
+\setlength{\belowcaptionskip}{-10pt} % Space below caption
+\setlength{\intextsep}{-10pt} % Space above and below figure
+
+
+\def\small{\@setsize\small{9pt}\ixpt\@ixpt
+\abovedisplayskip=2.5 mm plus5pt minus 3pt
+\belowdisplayskip=2.5 mm plus5pt minus 3pt
+\abovedisplayshortskip=0mm plus6pt minus 2pt
+\belowdisplayshortskip=2 mm plus4pt minus 4pt
+\def\@listi{\leftmargin\leftmargini\topsep 4pt plus 2pt minus 2pt}}
+
+\def\footnotesize{\@setsize\footnotesize{8pt}\ixpt\@ixpt
+\abovedisplayskip=2.5 mm plus5pt minus 3pt
+\belowdisplayskip=2.5 mm plus5pt minus 3pt
+\abovedisplayshortskip=0mm plus6pt minus 2pt
+\belowdisplayshortskip=2 mm plus4pt minus 4pt
+\def\@listi{\leftmargin\leftmargini\topsep 4pt plus 2pt minus 2pt}}
+
+\def\scriptsize{\@setsize\scriptsize{7pt}\viipt\@viipt}
+
+\def\tiny{\@setsize\tiny{6pt}\vpt\@vpt}
+\def\large{\@setsize\large{12pt}\xipt\@xipt}
+\def\Large{\@setsize\Large{14.4pt}\xiipt\@xiipt}
+\def\LARGE{\@setsize\LARGE{16.8pt}\xivpt\@xivpt}
+\def\huge{\@setsize\huge{22pt}\xxpt\@xxpt}
+\def\Huge{\@setsize\Huge{30pt}\xxvpt\@xxvpt}
+\@normalsize
+
+\if@twoside
+   \oddsidemargin  44pt
+   \evensidemargin 82pt
+   \marginparwidth 107pt
+\else \oddsidemargin 63pt \evensidemargin 63pt
+ \marginparwidth 90pt
+\fi
+\marginparsep 11pt
+\topmargin 11pt \headheight 12pt \headsep 13.66pt
+\textwidth 12.2truecm
+\textheight 19.3truecm
+\columnsep 1cc \columnseprule 0pt
+
+\footnotesep 7.7pt
+\skip\footins 9pt plus 4pt minus 2pt
+\floatsep 12pt plus 2pt minus 2pt
+\textfloatsep 8mm plus 2pt minus 4pt
+\intextsep 8mm plus 2pt minus 2pt
+
+\dblfloatsep 12pt plus 2pt minus 2pt
+\dbltextfloatsep 20pt plus 2pt minus 4pt
+
+\@fptop 0pt plus 1fil \@fpsep 8pt plus 2fil \@fpbot 0pt plus 1fil
+\@dblfptop0pt plus1fil \@dblfpsep8pt plus2fil\@dblfpbot 0pt plus1fil
+\marginparpush 5pt
+
+\parskip 0pt plus 1pt \parindent 1.5em \topsep 8pt plus 2pt minus 4pt
+\partopsep 2pt plus 1pt minus 1pt \itemsep \z@
+\@lowpenalty 51 \@medpenalty 151 \@highpenalty 301
+\@beginparpenalty-\@lowpenalty\@endparpenalty -\@lowpenalty\@itempenalty
+-\@lowpenalty
+
+\def\vec#1{\mathchoice{\mbox{\boldmath$\displaystyle\bf#1$}}
+{\mbox{\boldmath$\textstyle\bf#1$}}
+{\mbox{\boldmath$\scriptstyle\bf#1$}}
+{\mbox{\boldmath$\scriptscriptstyle\bf#1$}}}
+
+\def\@sect#1#2#3#4#5#6[#7]#8{\ifnum #2>\c@secnumdepth
+  \def\@svsec{}\else
+  \refstepcounter{#1}\edef\@svsec{\csname the#1\endcsname\quad }\fi
+  \@tempskipa #5\relax
+   \ifdim \@tempskipa>\z@
+  \begingroup #6\relax
+  \noindent{\hskip #3\relax\@svsec}{\interlinepenalty \@M #8\par}
+  \endgroup
+    \csname #1mark\endcsname{#7}\addcontentsline
+   {toc}{#1}{\ifnum #2>\c@secnumdepth \else
+            \protect\numberline{\csname the#1\endcsname}\fi
+          #7}\else
+  \def\@svsechd{#6\hskip #3\@svsec #8\csname #1mark\endcsname
+            {#7}\addcontentsline
+             {toc}{#1}{\ifnum #2>\c@secnumdepth \else
+               \protect\numberline{\csname the#1\endcsname}\fi
+             #7}}\fi
+  \@xsect{#5}}
+
+\def\part{\par \addvspace{4ex} \@afterindentfalse \secdef\@part\@spart}
+
+\def\@part[#1]#2{\ifnum \c@secnumdepth >\m@ne \refstepcounter{part}
+\addcontentsline{toc}{part}{\thepart \hspace{1em}#1}\else
+\addcontentsline{toc}{part}{#1}\fi { \parindent 0pt \raggedright
+ \ifnum \c@secnumdepth >\m@ne \Large \bf
+ Part\thepart\par\nobreak\fi\huge
+\bf #2\markboth{}{}\par } \nobreak \vskip 3ex \@afterheading }
+
+\def\@spart#1{{\parindent 0pt \raggedright
+ \huge \bf
+ #1\par} \nobreak \vskip 3ex \@afterheading }
+
+\def\section{\@startsection {section}{1}{\z@}{-18pt plus -4pt minus
+-4pt}{12pt plus 4pt minus 4pt}{\large\bf\boldmath
+\pretolerance=10000\relax\rightskip=0pt plus8em}}
+\def\subsection{\@startsection{subsection}{2}{\z@}{-18pt plus-4pt minus
+ -4pt}{8pt plus 4pt minus 4pt}{\normalsize\bf\boldmath
+\pretolerance=10000\relax\rightskip=0pt plus8em}}
+\def\subsubsection{\@startsection{subsubsection}{3}{\z@}{-18pt plus-4pt
+ minus -4pt}{8pt plus 4pt minus 4pt}{\normalsize\bf\boldmath}}
+\def\paragraph{\@startsection{paragraph}{4}{\z@}{-12pt plus -4pt minus
+ -4pt}{8pt plus 4pt minus 4pt}{\normalsize\it}}
+\def\subparagraph{\typeout{JUCS Warning: You should not use
+\protect\subparagraph \space in this style.}\vskip0.5cm
+You should not use $\backslash${\tt subparagraph} in this
+style.\vskip0.5cm}
+
+\setcounter{secnumdepth}{4}
+
+\def\appendix{\par
+ \setcounter{section}{0}
+ \setcounter{subsection}{0}
+ \def\thesection{\Alph{section}}}
+
+\leftmargini 17pt     \leftmarginii 17pt
+\leftmarginiii 17pt   \leftmarginiv 17pt
+\leftmarginv 10pt       \leftmarginvi 10pt
+\leftmargin\leftmargini \labelwidth\leftmargini
+\advance\labelwidth-\labelsep
+\labelsep 5pt
+\parsep 0pt plus 1pt
+\def\@listi{\leftmargin\leftmargini}
+\def\@listii{\leftmargin\leftmarginii
+ \labelwidth\leftmarginii\advance\labelwidth-\labelsep
+ \topsep 0pt plus 1pt}
+\def\@listiii{\leftmargin\leftmarginiii
+ \labelwidth\leftmarginiii\advance\labelwidth-\labelsep
+ \topsep 0pt plus 1pt}
+\def\@listiv{\leftmargin\leftmarginiv
+ \labelwidth\leftmarginiv\advance\labelwidth-\labelsep
+ \topsep 0pt plus 1pt}
+\def\@listv{\leftmargin\leftmarginv
+ \labelwidth\leftmarginv\advance\labelwidth-\labelsep
+ \topsep 0pt plus 1pt}
+\def\@listvi{\leftmargin\leftmarginvi
+ \labelwidth\leftmarginvi\advance\labelwidth-\labelsep
+ \topsep 0pt plus 1pt}
+
+\def\labelenumi{\arabic{enumi}.}
+\def\theenumi{\arabic{enumi}}
+\def\labelenumii{(\alph{enumii})}
+\def\theenumii{\alph{enumii}}
+\def\p@enumii{\theenumi}
+\def\labelenumiii{\roman{enumiii}.}
+\def\theenumiii{\roman{enumiii}}
+\def\p@enumiii{\theenumi(\theenumii)}
+\def\labelenumiv{\Alph{enumiv}.}
+\def\theenumiv{\Alph{enumiv}}
+\def\p@enumiv{\p@enumiii\theenumiii}
+
+\def\labelitemi{\bf --}
+\def\labelitemii{$\bullet$}
+\def\labelitemiii{$\ast$}
+\def\labelitemiv{$\cdot$}
+
+\def\verse{\let\\=\@centercr
+ \list{}{\itemsep\z@ \itemindent -1.5em\listparindent \itemindent
+ \rightmargin\leftmargin\advance\leftmargin 1.5em}\item[]}
+\let\endverse\endlist
+\def\quotation{\list{}{\listparindent 1.5em
+ \itemindent\listparindent
+ \rightmargin\leftmargin}\item[]}
+\let\endquotation=\endlist
+\def\quote{\list{}{\rightmargin\leftmargin}\item[]}
+\let\endquote=\endlist
+
+\def\descriptionlabel#1{\hspace\labelsep \bf #1}
+\def\description{\list{}{\labelwidth\z@ \itemindent-\leftmargin
+ \let\makelabel\descriptionlabel}}
+\let\enddescription\endlist
+
+\def\theequation{\arabic{equation}}
+
+\def\titlepage{\@restonecolfalse\if@twocolumn\@restonecoltrue\onecolumn
+ \else \newpage \fi \thispagestyle{empty}\c@page\z@}
+\def\endtitlepage{\if@restonecol\twocolumn \else \newpage \fi}
+
+\arraycolsep 1.4pt \tabcolsep 1.4pt \arrayrulewidth .4pt \doublerulesep
+2pt
+\tabbingsep \labelsep
+
+\skip\@mpfootins = \skip\footins
+\fboxsep = 3pt \fboxrule = .4pt
+
+%%\newcounter{part}
+%%\newcounter {section}
+%%\newcounter {subsection}[section]
+%%\newcounter {subsubsection}[subsection]
+%%\newcounter {paragraph}[subsubsection]
+
+\def\thepart{\Roman{part}}
+\def\thesection {\arabic{section}}
+\def\thesubsection {\thesection.\arabic{subsection}}
+\def\thesubsubsection {\thesubsection.\arabic{subsubsection}}
+\def\theparagraph {\thesubsubsection.\arabic{paragraph}}
+
+\def\@pnumwidth{1.55em}
+\def\@tocrmarg {2.55em}
+\def\@dotsep{4.5}
+\setcounter{tocdepth}{3}
+
+\def\tableofcontents{\section*{\contentsname}
+ \@starttoc{toc}}
+\def\l@part#1#2{\addpenalty{\@secpenalty}
+ \addvspace{2.25em plus 1pt} \begingroup
+ \@tempdima 3em \parindent \z@ \rightskip \@pnumwidth \parfillskip
+-\@pnumwidth
+ {\Large \bf \leavevmode #1\hfil \hbox to\@pnumwidth{\hss #2}}\par
+ \nobreak \endgroup}
+%
+\def\numberline#1{\advance\hangindent by\@tempdima%
+\hbox to\@tempdima{\hss#1\enspace}}
+%
+\def\bf@dottedtocline#1#2#3#4#5{\ifnum #1>\c@tocdepth \else
+  \vskip \z@ plus .2pt
+  {\leftskip #2\relax \rightskip \@tocrmarg \parfillskip -\rightskip
+    \parindent #2\relax\@afterindenttrue
+   \interlinepenalty\@M
+   \leavevmode
+   \@tempdima #3\relax \advance\leftskip \@tempdima \hbox{}\hskip
+   -\leftskip
+{\bf#4}\nobreak\leaders\hbox{$\m@th \mkern \@dotsep mu.\mkern \@dotsep
+       mu$}\hfill \nobreak \hbox to\@pnumwidth{\hfil\rm #5}\par}\fi}
+%
+\def\l@section{\vskip2mm\bf@dottedtocline{1}{0em}{1.7em}}
+\def\l@subsection{\@dottedtocline{2}{1.7em}{2.3em}}
+\def\l@subsubsection{\@dottedtocline{3}{4em}{2em}}
+\def\l@paragraph{\@dottedtocline{4}{6em}{2em}}
+\def\l@subparagraph{\@dottedtocline{5}{8em}{2em}}
+\def\listoffigures{\section*{\listoffiguresname\markboth
+ {\listoffiguresname}{\listoffiguresname}}\@starttoc{lof}}
+\def\l@figure{\@dottedtocline{1}{1.5em}{2.3em}}
+\def\listoftables{\section*{\listoftablesname\markboth
+ {\listoftablesname}{\listoftablesname}}\@starttoc{lot}}
+\let\l@table\l@figure
+
+\def\endthebibliography{\endlist\normalsize}
+
+\newif\if@restonecol
+\def\theindex{\@restonecoltrue\if@twocolumn\@restonecolfalse\fi
+\columnseprule \z@
+\columnsep 35pt\twocolumn[\section*{Index}]
+ \markboth{Index}{Index}\thispagestyle{plain}\parindent\z@
+ \parskip\z@ plus .3pt\relax\let\item\@idxitem}
+\def\@idxitem{\par\hangindent 40pt}
+\def\subitem{\par\hangindent 40pt \hspace*{20pt}}
+\def\subsubitem{\par\hangindent 40pt \hspace*{30pt}}
+\def\endtheindex{\if@restonecol\onecolumn\else\clearpage\fi}
+\def\indexspace{\par \vskip 10pt plus 5pt minus 3pt\relax}
+
+\def\footnoterule{\kern-3\p@\hrule width 2 true cm\kern 2.6\p@}
+
+\long\def\@makefntext#1{\@setpar{\@@par\@tempdima \hsize
+  \advance\@tempdima-1em\parshape \@ne 1em\@tempdima}\par
+  \parindent 1em\noindent \hbox to \z@{\hss$^{\@thefnmark}$\ }#1}
+
+\setcounter{topnumber}{2}
+\def\topfraction{.9}
+\setcounter{bottomnumber}{1}
+\def\bottomfraction{.3}
+\setcounter{totalnumber}{3}
+\def\textfraction{.15}
+\def\floatpagefraction{.85}
+\setcounter{dbltopnumber}{2}
+\def\dbltopfraction{.85}
+\def\dblfloatpagefraction{.85}
+
+\long\def\@makecaption#1#2{
+ \vskip 10pt
+ \setbox\@tempboxa\hbox{{\bf #1:} #2}
+ \ifdim \wd\@tempboxa >\hsize
+   #1: #2\par
+ \else
+   \hbox to\hsize{\hfil\box\@tempboxa\hfil}
+ \fi\vskip5pt}
+
+\long\def\@caption#1[#2]#3{\addcontentsline{\csname
+  ext@#1\endcsname}{#1}{\protect\numberline{\csname
+  the#1\endcsname}{\ignorespaces #2}}\par
+  \begingroup
+    \@parboxrestore
+    \@makecaption{\csname fnum@#1\endcsname}{\ignorespaces #3}\par
+  \endgroup}
+
+%%\newcounter{figure}
+%%\def\thefigure{\@arabic\c@figure}
+
+%%\def\fps@figure{htbp}
+%%\def\ftype@figure{1}
+%%\def\ext@figure{lof}
+%%\def\fnum@figure{\figurename\ \thefigure}
+%%\def\figure{\small\rm\@float{figure}}
+%%\def\endfigure{\vskip-5pt\end@float}
+%%\@namedef{figure*}{\@dblfloat{figure}}
+%%\@namedef{endfigure*}{\end@dblfloat}
+
+%%\newcounter{table}
+%%\def\thetable{\@arabic\c@table}
+%%\def\fps@table{htbp}
+%%\def\ftype@table{2}
+%%\def\ext@table{lot}
+%%\def\fnum@table{\tablename\ \thetable}
+%%\def\table{\small\rm\@float{table}}
+%%\let\endtable\end@float
+%%\@namedef{table*}{\@dblfloat{table}}
+%%\@namedef{endtable*}{\end@dblfloat}
+
+\def\authornames{\par
+ \begingroup
+ \parskip=\z@
+ \parindent=\z@
+ \def\and{\par\vskip2.5ex\normalsize}
+ \def\inst{\par\small}
+ \ignorespaces
+ {\normalsize
+   \@author\par}
+ \endgroup}
+
+\def\@thanks{}
+
+\def\@fnsymbol#1{\ifcase#1\or\star\or{\star\star}\or{\star\star\star}%
+   \or \dagger\or \ddagger\or
+   \mathchar "278\or \mathchar "27B\or \|\or **\or \dagger\dagger
+   \or \ddagger\ddagger\else\@ctrerr\fi\relax}
+
+\def\inst#1{\unskip$^{#1}$}
+
+\def\subtitle#1{\gdef\@subtitle{#1}}
+\def\@subtitle{}
+
+\def\maketitle{\par
+ \begingroup
+ \parindent=\z@
+ \@topnum\z@\@maketitle%\global\@topnum\z@\@maketitle
+ \endgroup
+ \let\maketitle\relax
+ \let\@maketitle\relax
+ \gdef\@thanks{}\gdef\@author{}\gdef\@title{}\gdef\@subtitle{}%
+ \let\thanks\relax}
+
+\def\@maketitle{
+  \begin{center}%
+    {\Large \bf\boldmath
+      \pretolerance=10000
+      \@title \par\vskip 5ex}
+    \if!\@subtitle!\else {\large \bf\boldmath
+      \vskip -3ex
+      \pretolerance=10000
+      \@subtitle \par \vskip 4ex}\fi
+    \authornames
+  \end{center}%
+  \vskip 6ex
+  }
+
+\mark{{}{}}
+
+% Define `abstract' environment
+\def\abstract{%
+\list{}{\leftmargin0cm\rightmargin0cm\topsep0cm\small\rm
+ \labelwidth=\z@
+ \listparindent=\z@
+ \itemindent\listparindent}
+\item[\hskip\labelsep\bf\abstractname]}
+\let\endabstract=\newline\endlist
+
+
+
+% Define `keywords' environment
+\def\keywords{
+\list{}{\leftmargin0cm\rightmargin0cm\topsep0cm\small\rm
+ \labelwidth=\z@
+ \listparindent=\z@
+ \itemindent\listparindent}
+\item[\hskip\labelsep\bf\keywordsname]}
+\let\endkeywords=\endlist
+
+% Define `catetory' environment
+\def\category{%
+\list{}{\leftmargin0cm\rightmargin0cm\topsep0cm\small\rm
+ \labelwidth=\z@
+ \listparindent=\z@
+ \itemindent\listparindent}
+\item[\hskip\labelsep\bf\categoryname]}
+\let\endcategory=\endlist
+
+% Define `doi' environment
+\def\doi{%
+\list{}{\leftmargin0cm\rightmargin0cm\topsep0cm\small\rm
+ \labelwidth=\z@
+ \listparindent=\z@
+ \itemindent\listparindent}
+\item[\hskip\labelsep\bf\doiname]}
+\let\enddoi=\endlist
+
+\def\quote{\list{}{\rightmargin\leftmargin}\item[]}
+\let\endquote=\endlist
+
+\def\ps@headings{\def\@evenhead{}%
+\let\@oddhead\@evenhead
+\let\@evenfoot\@evenhead
+\let\@oddfoot\@evenhead
+\def\sectionmark##1{}%
+\def\subsectionmark##1{}}
+
+\def\ps@myheadings{\let\@mkboth\@gobbletwo
+\def\@oddhead{\hbox{}\small\rm\rightmark \hfil\thepage}%
+\def\@oddfoot{}\def\@evenhead{\small\rm\thepage\hfil
+\leftmark\hbox {}}%
+\def\@evenfoot{}\def\sectionmark##1{}\def\subsectionmark##1{}}
+
+\def\today{\ifcase\month\or
+ January\or February\or March\or April\or May\or June\or
+ July\or August\or September\or October\or November\or December\fi
+ \space\number\day, \number\year}
+
+\ps@headings \pagenumbering{arabic} \onecolumn
+\if@twoside\else\raggedbottom\fi
+
+
+% new environments and theorems
+% borrowed form the LTMP-style of Springer-Verlag
+% designed by Dr. Christoph Ender
+%
+% define the new theorem like environments
+% define a new style of environments where it is possible to define
+% the font % used as the theorem name and the fontfamily for the text.
+%
+% \newstytheorem{name}{thefont}{txtfont}{Text}[Counter]
+% \newstytheorem{name}{thefont}{txtfont}[oldname]{Text}
+%
+% #1 - name of theorem
+% #2 - theorem font
+% #3 - text font
+%
+\def\newstytheorem#1#2#3{%
+\@ifnextchar[{\che@othm{#1}{#2}{#3}}{\che@nthm{#1}{#2}{#3}}}
+%
+% #1 - name of theorem
+% #2 - theorem font
+% #3 - text font
+% #4 - text string of thorem name
+%
+\def\che@nthm#1#2#3#4{%
+\@ifnextchar[{\che@xnthm{#1}{#2}{#3}{#4}}{\che@ynthm{#1}{#2}{#3}{#4}}}
+%
+% #1 - name of theorem
+% #2 - theorem font
+% #3 - text font
+% #4 - text string of thorem name
+% #5 - add theorem counter to reset list of another counter
+%
+\def\che@xnthm#1#2#3#4[#5]{\expandafter
+\@ifdefinable\csname #1\endcsname
+{\@definecounter{#1}\if@envcountreset\@addtoreset{#1}{#5}\fi
+\expandafter\xdef\csname the#1\endcsname{\@thmcounter{#1}}%
+%\global
+\@namedef{#1}{\che@thm{#1}{#4}{#2}{#3}}%\global
+\@namedef{end#1}{\@endtheorem}
 }}
-\end{abstract}
-}
-
-{\fontfamily{ptm}\selectfont
-\begin{keywords}
-{\fontsize{9pt}{9pt}\selectfont{
-Dempster-Shafer Theory, Interpretability, KMeans, Mass Assignment Functions, Classification}}
-\end{keywords}
-}
-
-% https://www.jucs.org/ujs/jucs/info/ACM_Categories.html
-{\fontfamily{ptm}\selectfont
-\begin{category}
-{\fontsize{9pt}{9pt}\selectfont{
-I.2.6, I.5, G.3
+%
+% #1 - name of theorem
+% #2 - theorem font
+% #3 - text font
+% #4 - text string of thorem name
+%
+\def\che@ynthm#1#2#3#4{\expandafter\@ifdefinable\csname #1\endcsname
+{\@definecounter{#1}%
+\expandafter\xdef\csname the#1\endcsname{\@thmcounter{#1}}%
+%\global
+\@namedef{#1}{\che@thm{#1}{#2}{#3}{#4}}%\global
+\@namedef{end#1}{\@endtheorem}
 }}
-\end{category}}
+%
+% change oldthm if oldname in specification is '*'
+% then don't use a counter
+% #1 - countername
+% #2 - theorem font
+% #3 - text font
+% #4 - counter used
+% #5 - string containing theorem name to print
+%
+\def\che@othm#1#2#3[#4]#5{\expandafter\@ifdefinable
+\csname#1\endcsname%
+{\@@othm@{#1}{#2}{#3}{#4}{#5}\@namedef{end#1}{\@endtheorem}}}%\global\@namedef{end#1}{\@endtheorem}}}
+%
+\def\@@othm@#1#2#3#4#5{\if *#4{\@namedef{the#1}{\relax}%\global\@namedef{the#1}{\relax}
+\@namedef{#1}{\@bthm@{}{#5}{#2}{#3}}}\else%\global\@namedef{#1}{\@bthm@{}{#5}{#2}{#3}}}\else
+{\@namedef{the#1}{\@nameuse{the#4}}%{\global\@namedef{the#1}{\@nameuse{the#4}}% define the counter
+\@namedef{#1}{\che@thm{#4}{#5}{#2}{#3}}}\fi}%\global\@namedef{#1}{\che@thm{#4}{#5}{#2}{#3}}}\fi}
+%
+% new defs for theorem environment che 17-MAR-1989
+% it improves the option possible
+%
+% #1 - countername  = theorem name
+% #2 - string containing theorem name to print
+% #3 - theorem font
+% #4 - text font
+\def\che@thm#1#2#3#4{\@ifnextchar({\@athm{#1}{#2}{#3}{#4}}{%
+\@ifnextchar *{\@bthm{#1}{#2}{#3}{#4}}%
+{\@@thm{#1}{#2}{#3}{#4}}}}
+%
+% \begin{thm}(A.1)[test]      results in:
+% \end{thm}                               thm A.1 (test) ....
+% #1 - theorem
+% #2 - string of theorem name
+% #3 - font for theorem name and label
+% #4 - Text font
+% #5 - is the new label
+% #6 - optional string
+%
+\def\@athm#1#2#3#4(#5){\@ifnextchar[{%
+\@aythm{#1}{#2}{#3}{#4}{#5}}{\@axthm{#1}{#2}{#3}{#4}{#5}}}
+\def\@axthm#1#2#3#4#5{\@@locthmlab{#1}{#5}%
+\@begintheorem{#2}{#5}{#3}{#4}\ignorespaces}
+\def\@aythm#1#2#3#4#5[#6]{\@@locthmlab{#1}{#5}%
+\fuh@opargbegintheorem{#2}{#5}{#6}{#3}{#4}\ignorespaces}
+%
+% \begin{thm}*[xytest]        results in:
+% \end{thm}                               thm (xytest) ....
+% #1 - theorem
+% #2 - string of theorem name
+% #3 - font for theorem name and label
+% #4 - Text font
+% #5 - optional string
+%
+\def\@bthm@#1#2#3#4{\@ifnextchar[{\@bythm{#1}{#2}{#3}{#4}}{%
+\@bxthm{#1}{#2}{#3}{#4}}}
+\def\@bthm#1#2#3#4*{\@ifnextchar[{\@bythm{#1}{#2}{#3}{#4}}{%
+\@bxthm{#1}{#2}{#3}{#4}}}
+\def\@bxthm#1#2#3#4{\if !#1!\relax\else\@@locthmlab{#1}{}\fi
+\@@begintheorem{#2}{#3}{#4}\ignorespaces}
+\def\@bythm#1#2#3#4[#5]{%
+\@@opargbegintheorem{#2}{#3}{#4}{#5}\ignorespaces}
+%
+% define local label
+%   if no number or a user specified label occured
+%
+\def\@@locthmlab#1#2{\expandafter\def\csname the#1\endcsname{#2}
+\let\@chetempa\protect\def\protect{\noexpand\protect\noexpand}%
+\edef\@currentlabel{\csname p@#1\endcsname\csname the#1\endcsname}%
+\let\protect\@chetempa}
+%
+% #1 - counter = theorem name
+% #2 - string with name
+% #3 - font for theorem name and label
+% #4 - font for text
+\def\@@thm#1#2#3#4{\refstepcounter
+    {#1}\@ifnextchar[{\che@ythm{#1}{#2}{#3}{#4}}{%
+    \che@xthm{#1}{#2}{#3}{#4}}}
+%
+\def\che@xthm#1#2#3#4{\che@begintheorem{#2}{\csname
+the#1\endcsname}{#3}{#4}\ignorespaces}
+\def\che@ythm#1#2#3#4[#5]{\che@opargbegintheorem{#2}{\csname
+       the#1\endcsname}{#5}{#3}{#4}\ignorespaces}
+%
+% #1 - name of theorem
+% #2 - label string
+% #3 - font for name and lable
+% #4 - text fomt
+%
+\def\che@begintheorem#1#2#3#4{#4\trivlist\item[\hskip\labelsep
+#3#1\ts #2.]}
+%
+% #1 - name of theorem
+% #2 - label string
+% #3 - additonal text
+% #4 - font for name and lable
+% #5 - text fomt
+%
+\def\che@opargbegintheorem#1#2#3#4#5{#5\trivlist
+\item[\hskip\labelsep#4#1\ts #2\ #3.]}
+%
+\def\fuh@opargbegintheorem#1#2#3{\it \trivlist
+      \item[\hskip \labelsep{\bf #1\ #2\ (#3).}]}
+%
+\def\@@begintheorem#1#2#3{#3\trivlist\item[\hskip\labelsep
+#2#1.]}
+\def\@@opargbegintheorem#1#2#3#4{#3\trivlist\item[\hskip\labelsep
+#2#1 #4.]}
+
+\newstytheorem{theorem}{\bf}{\it}{Theorem}[section]
+\newstytheorem{example}{\it}{\rm}{Example}[section]
+\newstytheorem{proposition}{\bf}{\it}[theorem]{Proposition}
+\newstytheorem{corollary}{\bf}{\it}[theorem]{Corollary}
+\newstytheorem{lemma}{\bf}{\it}[theorem]{Lemma}
+\newstytheorem{proof}{\it}{\rm}[*]{Proof}
+\newstytheorem{definition}{\bf}{\rm}[theorem]{Definition}
+\newstytheorem{remark}{\it}{\rm}[*]{Remark}
+\newstytheorem{exercise}{\it}{\rm}[theorem]{Exercise}
+\newstytheorem{problem}{\it}{\rm}[theorem]{Problem}
+\newstytheorem{solution}{\it}{\rm}[theorem]{Solution}
+\newstytheorem{note}{\it}{\rm}[theorem]{Note}
+\newstytheorem{question}{\it}{\rm}[theorem]{Question}
+
+\def\squareforqed{\hbox{\rlap{$\sqcap$}$\sqcup$}}
+\def\qed{\ifmmode\squareforqed\else{\unskip\nobreak\hfil
+\penalty50\hskip1em\null\nobreak\hfil\squareforqed
+\parfillskip=0pt\finalhyphendemerits=0\endgraf}\fi}
+
+\def\getsto{\mathrel{\mathchoice {\vcenter{\offinterlineskip
+\halign{\hfil
+$\displaystyle##$\hfil\cr\gets\cr\to\cr}}}
+{\vcenter{\offinterlineskip\halign{\hfil$\textstyle##$\hfil\cr\gets
+\cr\to\cr}}}
+{\vcenter{\offinterlineskip\halign{\hfil$\scriptstyle##$\hfil\cr\gets
+\cr\to\cr}}}
+{\vcenter{\offinterlineskip\halign{\hfil$\scriptscriptstyle##$\hfil\cr
+\gets\cr\to\cr}}}}}
+\def\lid{\mathrel{\mathchoice {\vcenter{\offinterlineskip\halign{\hfil
+$\displaystyle##$\hfil\cr<\cr\noalign{\vskip1.2pt}=\cr}}}
+{\vcenter{\offinterlineskip\halign{\hfil$\textstyle##$\hfil\cr<\cr
+\noalign{\vskip1.2pt}=\cr}}}
+{\vcenter{\offinterlineskip\halign{\hfil$\scriptstyle##$\hfil\cr<\cr
+\noalign{\vskip1pt}=\cr}}}
+{\vcenter{\offinterlineskip\halign{\hfil$\scriptscriptstyle##$\hfil\cr
+<\cr
+\noalign{\vskip0.9pt}=\cr}}}}}
+\def\gid{\mathrel{\mathchoice {\vcenter{\offinterlineskip\halign{\hfil
+$\displaystyle##$\hfil\cr>\cr\noalign{\vskip1.2pt}=\cr}}}
+{\vcenter{\offinterlineskip\halign{\hfil$\textstyle##$\hfil\cr>\cr
+\noalign{\vskip1.2pt}=\cr}}}
+{\vcenter{\offinterlineskip\halign{\hfil$\scriptstyle##$\hfil\cr>\cr
+\noalign{\vskip1pt}=\cr}}}
+{\vcenter{\offinterlineskip\halign{\hfil$\scriptscriptstyle##$\hfil\cr
+>\cr
+\noalign{\vskip0.9pt}=\cr}}}}}
+\def\grole{\mathrel{\mathchoice {\vcenter{\offinterlineskip
+\halign{\hfil
+$\displaystyle##$\hfil\cr>\cr\noalign{\vskip-1pt}<\cr}}}
+{\vcenter{\offinterlineskip\halign{\hfil$\textstyle##$\hfil\cr
+>\cr\noalign{\vskip-1pt}<\cr}}}
+{\vcenter{\offinterlineskip\halign{\hfil$\scriptstyle##$\hfil\cr
+>\cr\noalign{\vskip-0.8pt}<\cr}}}
+{\vcenter{\offinterlineskip\halign{\hfil$\scriptscriptstyle##$\hfil\cr
+>\cr\noalign{\vskip-0.3pt}<\cr}}}}}
+\def\bbbr{{\rm I\!R}} %reelle Zahlen
+\def\bbbm{{\rm I\!M}}
+\def\bbbn{{\rm I\!N}} %natuerliche Zahlen
+\def\bbbf{{\rm I\!F}}
+\def\bbbh{{\rm I\!H}}
+\def\bbbk{{\rm I\!K}}
+\def\bbbp{{\rm I\!P}}
+\def\bbbone{{\mathchoice {\rm 1\mskip-4mu l} {\rm 1\mskip-4mu l}
+{\rm 1\mskip-4.5mu l} {\rm 1\mskip-5mu l}}}
+\def\bbbc{{\mathchoice {\setbox0=\hbox{$\displaystyle\rm C$}\hbox{\hbox
+to0pt{\kern0.4\wd0\vrule height0.9\ht0\hss}\box0}}
+{\setbox0=\hbox{$\textstyle\rm C$}\hbox{\hbox
+to0pt{\kern0.4\wd0\vrule height0.9\ht0\hss}\box0}}
+{\setbox0=\hbox{$\scriptstyle\rm C$}\hbox{\hbox
+to0pt{\kern0.4\wd0\vrule height0.9\ht0\hss}\box0}}
+{\setbox0=\hbox{$\scriptscriptstyle\rm C$}\hbox{\hbox
+to0pt{\kern0.4\wd0\vrule height0.9\ht0\hss}\box0}}}}
+\def\bbbq{{\mathchoice {\setbox0=\hbox{$\displaystyle\rm
+Q$}\hbox{\raise
+0.15\ht0\hbox to0pt{\kern0.4\wd0\vrule height0.8\ht0\hss}\box0}}
+{\setbox0=\hbox{$\textstyle\rm Q$}\hbox{\raise
+0.15\ht0\hbox to0pt{\kern0.4\wd0\vrule height0.8\ht0\hss}\box0}}
+{\setbox0=\hbox{$\scriptstyle\rm Q$}\hbox{\raise
+0.15\ht0\hbox to0pt{\kern0.4\wd0\vrule height0.7\ht0\hss}\box0}}
+{\setbox0=\hbox{$\scriptscriptstyle\rm Q$}\hbox{\raise
+0.15\ht0\hbox to0pt{\kern0.4\wd0\vrule height0.7\ht0\hss}\box0}}}}
+\def\bbbt{{\mathchoice {\setbox0=\hbox{$\displaystyle\rm
+T$}\hbox{\hbox to0pt{\kern0.3\wd0\vrule height0.9\ht0\hss}\box0}}
+{\setbox0=\hbox{$\textstyle\rm T$}\hbox{\hbox
+to0pt{\kern0.3\wd0\vrule height0.9\ht0\hss}\box0}}
+{\setbox0=\hbox{$\scriptstyle\rm T$}\hbox{\hbox
+to0pt{\kern0.3\wd0\vrule height0.9\ht0\hss}\box0}}
+{\setbox0=\hbox{$\scriptscriptstyle\rm T$}\hbox{\hbox
+to0pt{\kern0.3\wd0\vrule height0.9\ht0\hss}\box0}}}}
+\def\bbbs{{\mathchoice
+{\setbox0=\hbox{$\displaystyle     \rm S$}\hbox{\raise0.5\ht0\hbox
+to0pt{\kern0.35\wd0\vrule height0.45\ht0\hss}\hbox
+to0pt{\kern0.55\wd0\vrule height0.5\ht0\hss}\box0}}
+{\setbox0=\hbox{$\textstyle        \rm S$}\hbox{\raise0.5\ht0\hbox
+to0pt{\kern0.35\wd0\vrule height0.45\ht0\hss}\hbox
+to0pt{\kern0.55\wd0\vrule height0.5\ht0\hss}\box0}}
+{\setbox0=\hbox{$\scriptstyle      \rm S$}\hbox{\raise0.5\ht0\hbox
+to0pt{\kern0.35\wd0\vrule height0.45\ht0\hss}\raise0.05\ht0\hbox
+to0pt{\kern0.5\wd0\vrule height0.45\ht0\hss}\box0}}
+{\setbox0=\hbox{$\scriptscriptstyle\rm S$}\hbox{\raise0.5\ht0\hbox
+to0pt{\kern0.4\wd0\vrule height0.45\ht0\hss}\raise0.05\ht0\hbox
+to0pt{\kern0.55\wd0\vrule height0.45\ht0\hss}\box0}}}}
+\def\bbbz{{\mathchoice {\hbox{$\sf\textstyle Z\kern-0.4em Z$}}
+{\hbox{$\sf\textstyle Z\kern-0.4em Z$}}
+{\hbox{$\sf\scriptstyle Z\kern-0.3em Z$}}
+{\hbox{$\sf\scriptscriptstyle Z\kern-0.2em Z$}}}}
+\def\ts{\thinspace}
+
+\def\typeset{\vfill\small\noindent \par}
+
+\def\enddocument{\par\typeset
+\@checkend{document}\clearpage\begingroup
+\if@filesw \immediate\closeout\@mainaux
+
+%\def\global\@namedef##1##2{}\def\newlabel{\@testdef r}%
+%\def\@namedef##1##2{}
+\def\newlabel{\@testdef r}%
+
+\def\bibcite{\@testdef b}\@tempswafalse\makeatletter\input \jobname.aux
+\if@tempswa \@warning{Label(s) may have changed. Rerun to get
+cross-references right}\fi\fi\endgroup\deadcycles\z@\@@end}
 
-{\fontfamily{ptm}\selectfont
-\begin{doi}
-{\fontsize{9pt}{9pt}\selectfont{
-10.3897/jucs.164745}}
-\end{doi}}
 
-
-% -------------------------------------------------------------
-%                     MAIN BODY
-% -------------------------------------------------------------
-
-\section{Introduction}\label{sec1}
-Dempster-Shafer theory \cite{dst} has emerged as a powerful framework for developing classification algorithms that prioritize interpretability. This theory provides a mathematical approach for combining evidence from different sources to calculate the probability of an event, utilizing Dempster's rule of combination. Peñafiel et al. \cite{sergio} have demonstrated {\color{black} for classification tasks} that an algorithm combining Dempster-Shafer theory with optimization techniques can offer substantial explainability, even when employing a limited number of rules, without sacrificing accuracy. {\color{black} The algorithm was further extended to the regression case by Baloian et al. \cite{Nelson} and to clustering by Valdivia et al. \cite{dsClustering}}. The algorithm is inherently explainable because it operates by combining relatively simple rules for inference. {\color{black}Additionally, recent work by Baloyan et al \cite{Aneta} demonstrates {\color{black}the} algorithm's robustness to class imbalance and its ability to capture various numeric interactions {\color{black} among the individual properties (i.e., features) that define each data point.}}
-
-To make improvements, two issues should be considered.  Firstly, the number of subsets in the frame of discernment, growing with a complexity of $\mathcal{O}(2^n)$, makes the inclusion of non-singleton classes nearly impossible. Secondly, given that each feature in the dataset typically generates three rules, combining even two rules significantly increases training time and further limits the predictive power of the rules. 
-\textcolor{black}
-{
-Moreover, one promising direction for improving DST-based methods lies in incorporating rules derived from rule mining algorithms \cite{ripper, c5, skoperules}. However, to make this approach truly feasible, it becomes evident that a strategy to reduce training time is crucial for enhancing DST-based models.
-}
-
-% Added transition to next section for better flow
-{\color{black}Below, we outline our methodology for addressing these challenges, focusing on improved Mass Assignment Function initialization to reduce training time and uncertainty.}
-
-Our approach significantly reduces the optimization time by improving the technique for initializing MAFs associated with the rules. Peñafiel et al. \cite{sergio} relied on random assignment, where the empty set's mass is set to 0, the entire set—which represents total uncertainty—is assigned a value of 0.8, and the remaining 0.2 is randomly distributed among singleton classes (other classes are not considered). {\color{black} Sedláček et al. \cite{czechs} have investigated the use of the statistical distribution of classes in allocating mass values}. Here{\color{black},} we propose a {\color{black} clustering-based} technique that incorporates additional information about each rule into the MAF. 
-
-To advance this method, we introduce the concept of rule "confidence". First of all, operating under the assumption that certain points are more representative of their class than others{\color{black},} we define "representativeness" for each point. This approach is inspired by the post-hoc interpretation technique commonly used in clustering algorithms. In these models, each cluster's "color" is treated as a label, upon which interpretable classifiers are constructed. In our framework, we not only assign a "color" to data points{\color{black},} but also attribute a numeric value representing their "opacity" which we refer to as "representativeness". For spherical data, we employ the $get\_representativeness\_KMeans$ function (see Algorithm \ref{alg:representativeness_kmeans}), which uses the KMeans clustering algorithm \cite{kmeans} to determine the most representative data point. {\color{black}In our previous work (\cite{menq}) we were simply setting the most representative data point to the arithmetic mean of the data points with the same label instead of using KMeans.} In scenarios where data is better suited for density-based clustering, we apply the $get\_representativeness\_DBSCAN$ function (see Algorithm \ref{alg:representativeness_DBSCAN}), {\color{black}which is based on DBSCAN \cite{DBSCAN} algorithm.} Once we have determined the representativeness of each data point, we then define the confidence of each rule based on the data points it covers, this is achieved by $get\_confidence$ function discussed in Section \ref{2}. The final step involves integrating this confidence into the MAF assignment, which will be discussed further at the end of Section \ref{2}.
-
-% Added roadmap for methodology subsections
-{\color{black}In Section \ref{2} we specify the concept of representativeness and its estimation, as well as the rule confidence computation, and the enhanced MAF initialization. Section \ref{3} describes evaluation results for our approaches, while Section \ref{4} concludes the paper with notes on the future work.}
-\section{Principles behind DSGD++}\label{2}
-\
-{\color{black}Let's start by introducing} the algorithms for \textbf{estimation of representativeness} using KMeans clustering (Algorithm \ref{alg:representativeness_kmeans}) and the DBSCAN-based (Algorithm \ref{alg:representativeness_DBSCAN}) approaches. Additionally, we present example figures for synthetic datasets (Figure \ref{fig:reprs}).
-
-In the \textbf{KMeans-based approach}, the data is standardized and then clustered into \(k\) groups (equal to the number of classes). Each data point’s representativeness is determined by its distance to the cluster centroid: points are first checked for outlier status using a Z-score threshold, and then distances are normalized within each cluster. The representativeness score is calculated as \(1\) minus the normalized distance (or \(0\) if the point is flagged as an outlier).
-
-In the \textbf{DBSCAN-based approach}, the algorithm begins with a small initial neighborhood radius (e.g., \(\varepsilon = 0.1\)) and then increases this radius in small increments until it either reaches \textit{maxEps} or yields the desired number of clusters. After each increment, DBSCAN is applied, and the resulting number of clusters is checked against the target \(k\). If there are too few clusters, \(\varepsilon\) is incremented further, leading to larger neighborhoods and fewer clusters merging. Once a specific \(\varepsilon\) value produces the target number of clusters, each data point’s representativeness is computed by counting how many points fall within that final radius, and these counts are then scaled via Min-Max normalization.
-
-\textbf{Note:} The following hyperparameters are used:
-\begin{enumerate}
-    \item KMeans-based approach: $zScoreThreshold = 2$
-    \item DBSCAN-based approach: $minPoints = 2 \times (\text{number of features})$; $maxEps = 20$; $step = 0.05$ 
-\end{enumerate}
-
-\begin{algorithm}
-\caption{Estimation of Representativeness using KMeans Clustering}
-\label{alg:representativeness_kmeans}
-\begin{algorithmic}[1]
-\Require $X$: Dataset, $k$: Number of clusters (same as dataset's number of classes), 
-\Ensure $representativenessList$: List of representativeness values for each data point
-\Function{get\_representativeness\_KMeans}{$X$, $k$}
-
-\State Standardize the dataset $X$ using standard scaling.
-\State Fit KMeans clustering on $X$ with $k$ clusters to obtain centroids $\{C_i\}_{i=0}^{k-1}$.
-\State $confidenceList \gets$ Empty list
-\For{each $dataPoint$ in $X$}
-    \State Calculate Euclidean distance from $dataPoint$ to its nearest centroid $C_i$.
-\EndFor
-\State Identify outliers among the data points using the Z-score technique, where a data point is considered an outlier if its distance's Z-score exceeds $zScoreThreshold$.
-    \If{$dataPoint$ is not an outlier}
-        \State $normRepr \gets dataPoint$'s distance after normalizing using min-max scaling within its cluster.
-        \State $representativeness \gets 1 - normRepr$
-    \Else
-        \State $representativeness \gets 0$
-    \State Append $representativeness$ to $representativenessList$
-    \EndIf
-\EndFor
-\State \Return $representativenessList$
-\EndFunction
-\end{algorithmic}
-\end{algorithm}
-
-
-\begin{algorithm}
-\caption{Estimation of Representativeness using Density Based Approach}
-\label{alg:representativeness_DBSCAN}
-\begin{algorithmic}[1]
-\Require $X$: Dataset, $k$: Number of clusters (same as number of unique classes), \Ensure $confidenceList$: List of confidence scores for each data point
-\Function{get\_representativeness\_DBSCAN}{$X$, $k$}
-\State Standardize the dataset $X$ using standard scaling.
-\State Initialize $eps \gets$ Initial small value (e.g., 0.1)
-\While{$numCentroids \neq k$ and $eps \leq maxEps$}
-    \State $model \gets$ DBSCAN($eps$, $minPoints$)
-    \State Fit DBSCAN on $X$
-    \State $numCentroids \gets$ Count of unique clusters formed (excluding noise)
-    \State $eps \gets eps + step$
-\EndWhile
-\State $radius \gets eps$
-\State Initialize $confidenceList \gets$ Empty list
-\For{each $dataPoint$ in $X$}
-    \State $representativeness \gets \sum\limits_{y \in X} \mathbf{1}_{\|y - x\| \leq radius}$ (number of data points within the specified radius)
-    \State Append $representativeness$ to $representativenessList$
-\EndFor
-\State $representativenessList \gets$ Min-Max Scaled version of $representativenessList$ 
-\State \Return $representativenessList$
-\EndFunction
-\end{algorithmic}
-\end{algorithm}
-
-\begin{figure}[H]
-    \centering
-    \begin{minipage}{0.49\textwidth}
-        \includegraphics[width=\linewidth]{figures/kmeans_opactiy.png} % First image
-    \end{minipage}\hfill
-    \begin{minipage}{0.49\textwidth}
-        \includegraphics[width=\linewidth]{figures/denisty_opactiy.png} % Second image
-    \end{minipage}
-    \caption{Illustrations of algorithms for estimation of representativeness for datasets with spherical shapes and density-based characteristics. Brighter colors indicate data points that are more representative of their respective classes.}
-    \label{fig:reprs}
-\end{figure}
-
-Our next step is aggregating the representativeness values for data points that follow the same rule into a measure of \textbf{rule confidence}.
-
-% \newpage
-% \subsection{Rule Confidence Estimation}\label{2.3}
-Utilizing the algorithms previously described, we calculate the representativeness for each data point. Afterward, we generalize this data point-specific estimate to an entire rule using the following steps (we encapsulate this in the $get\_confidence$ function):
-\begin{enumerate}
-    \item Filter the dataset to retain only the rows that comply with the rule.
-    \item If the rule does not apply to any rows, set its confidence to 0 (this corresponds to the full uncertainty). Otherwise:
-    \item Calculate the rule's confidence as the mean representativeness of the rows it covers.
-    \item If the rows are not homogeneous with respect to their labels, reduce the confidence based on the proportion of the most frequent label among these rows.
-\end{enumerate}
-
-Once we have obtained the confidence scores for the rules we can incorporate them into the \textbf{MAF initialization}.
-
-% \subsection{MAF Initialization}\label{2.4}
-In the DSGD classifier, MAFs are key components. Each rule has a MAF associated with it. For a new data point, MAFs of satisfied rules are combined using Dempster's rule. The class with the highest combined mass is typically chosen for prediction. The initial MAF values are crucial as they are the starting point for optimization, affecting convergence speed and model quality.
-
-Our approach uses the following values for initialization. Denote the confidence derived for a given rule by $c = get\_confidence(rule)$. The label $l_{\text{mode}}$, which is the most frequently occurring label within the subset of data points covered by the rule, receives the confidence value $c$. The remaining mass, $(1 - c)$, is evenly distributed among all the other labels present in the subset. Formally, for an element $l_i$ in the subset:
-\[
-m(l_i) = 
-\begin{cases} 
-c & \text{if } l_i = l_{\text{mode}}, \\
-\frac{1-c}{n-1} & \text{otherwise},
-\end{cases}
-\]
-where $m(l_i)$ denotes the mass assigned to label $l_i$, and $n$ is the total number of elements in the frame of discernment. Note that here by saying label we mean the original label of the data point, not the one assigned to it via clustering algorithm (the color). 
-
-% Smoother transition to Results section
-{\color{black}In the following section, we compare the results of initializing MAFs with the proposed approach and the traditional random initialization.}
-
-\section{Evaluation}\label{3}
-Here{\color{black},} we demonstrate the effects of the newly defined MAF initialization algorithm (KMeans-based) on the training time, accuracy, and the amount of rule uncertainties. We accomplish this by testing the approach both on controlled scenarios and on some classical datasets. The datasets used for evaluations are summarized in Table \ref{datasets}. 
-\\
-% --- add once in the preamble -----------------------------------
-\renewcommand{\arraystretch}{1.15}   % a little breathing room
-% ---------------------------------------------------------------
-
-\begin{longtable}{|>{\raggedright\arraybackslash}p{3cm}|
-                  >{\centering\arraybackslash}p{1.5cm}|
-                  >{\centering\arraybackslash}p{1.5cm}|
-                  >{\raggedright\arraybackslash}p{5.5cm}|}
-\hline
-\textbf{Dataset} & \textbf{Rows} & \textbf{Cols} & \textbf{Description} \\ \hline
-\endfirsthead
-\hline
-\textbf{Dataset} & \textbf{Rows} & \textbf{Cols} & \textbf{Description} \\ \hline
-\endhead
-Brain Tumor & 3762 & 14 & Includes first-order and texture features with target levels. \\ \hline
-Breast Cancer Wisconsin & 699 & 9 & Clinical reports detailing cell benignity or malignancy. \\ \hline
-Gaussian & 500 & 3 & Two 2D Gaussian distributions generate this dataset. \\ \hline
-Uniform & 500 & 3 & Uniform samples from [-5, 5], with class split by the sign of x. \\ \hline
-Rectangle & 1263 & 3 & Points in [-1, 1]×[-1, 1], class determined by the y component's sign. \\ \hline
-\caption{Datasets overview (binary classification)}\label{datasets}
-\end{longtable}
-
-
-The first two are real-life datasets (\cite{breastCancer,brainTumor}), while the last three are controlled scenarios.
-
-% Smoother transition to analysis subsections
-{\color{black}Now we will present accuracy and speedup analysis, and Section~\ref{sec:uncertainty-analysis} will cover uncertainty analysis (we also do an evaluation of our newly proposed definition of uncertainty)}.
-
-We focus on the KMeans approach, which we will refer to as the "clustering" MAF method. Additionally, we will use "MED." to denote the median and "AVG." to denote the average.
-
-Table \ref{comparison} presents a comparison of various metrics across different MAF initialization methods (Confidence and Random) and datasets. For evaluating the classifier's predictive power, we have calculated the accuracy (ratio of correctly predicted instances to the total instances) and F1 score. For evaluating the optimizer, we have reported the training time in seconds, the number of epochs, the minimum loss, and the initial loss.
-
-\begin{table}[H]
-    \centering
-    \begin{tabular}{l|l|r|r|r|r|r|r}
-    \toprule
-    MAF method & dataset & accuracy & f1 & training\_time & epochs & min\_loss & initial\_loss\\
-    \midrule
-    clustering & Brain Tumor & 0.981 & 0.98 & 138.469 & 117 & 0.018 & 0.181 \\
-    random & Brain Tumor & 0.983 & 0.981 & 157.075 & 132 & 0.026 & 0.245 \\
-    clustering & Breast Cancer & 0.976 & 0.966 & 17.243 & 73 & 0.023 & 0.228 \\
-    random & Breast Cancer & 0.976 & 0.966 & 19.63 & 117 & 0.031 & 0.308 \\
-    clustering & Gaussian & 0.987 & 0.988 & 15.792 & 100 & 0.017 & 0.083 \\
-    random & Gaussian & 0.987 & 0.988 & 39.059 & 264 & 0.024 & 0.265 \\
-    clustering & Rectangle & 1 & 1 & 61.032 & 167 & 0.006 & 0.252  \\
-    random & Rectangle & 1 & 1 & 98.64 & 275 & 0.008 & 0.235 \\
-    clustering & Uniform & 0.973 & 0.97 & 20.683 & 120 & 0.035 & 0.197  \\
-    random & Uniform & 0.973 & 0.97 & 39.208 & 273 & 0.037 & 0.255 \\
-        \bottomrule
-    \end{tabular}
-    \caption{Comparison of various metrics across different MAF initializations and datasets}
-    \label{comparison}
-\end{table}
-
-% \newpage
-{\color{black}We can see that although F1 scores and accuracies are nearly identical for both methods, our proposed methods consistently requires fewer epochs (on average by 42$\%$) to converge. Additionally, the results also support our hypothesis that MAF initialization provides a better starting point, for every dataset the optimizer starts from a better point and achieves a lower final loss.}
-
-
-\FloatBarrier
-
-\begin{figure}[htbp]
-    \centering
-    \label{talbe-ratios}
-    \begin{minipage}{0.49\textwidth}
-        \includegraphics[width=\linewidth]{figures/breast-cancer-wisconsin_loss.png} % First image
-    \end{minipage}\hfill
-    \begin{minipage}{0.49\textwidth}
-        \includegraphics[width=\linewidth]{figures/gaussian_df_loss.png} % Second image
-    \end{minipage}
-    \caption{The figure demonstrates the benefits offered by MAF initialization, mainly decreased number of epochs and better starting point.}
-    \label{fig:side_by_side}
-\end{figure}
-
-\newpage
-Table \ref{table-ratios} deals with the speedup and predictive performance tradeoff. \\
-
-\begin{table}[htbp]
-    \centering
-    \begin{tabular}{l|r|r|r}
-    \toprule
-    Dataset & Accuracy Ratio & F1 Ratio & Training Time Speedup, x \\
-    \midrule
-Brain Tumor & 1 & 1 & 1.13 \\
-Breast Cancer & 1 & 1 & 1.14 \\
-Gaussian & 1 & 1 & 2.47 \\
-Rectangle & 1 & 1 & 1.62 \\
-Uniform & 1 & 1 & 1.90 \\
-    \bottomrule
-    \end{tabular} \\
-    \caption{Ratios of accuracy, F1 score, and training time for Random and Confidence MAF initializations across datasets}
-    \label{table-ratios}
-\end{table}
-
-The results in Table \ref{table-ratios} were rounded up to 2 digits. We can infer that accuracy and the f1 score remain unchanged while we experience a speedup of 1.65x.
-
-
-\subsection{Uncertainty Analysis and a New Approach to Rule Importance Estimation}\label{sec:uncertainty-analysis}
-After the model has been trained, the question arises of how reliable the rules used by the model are. To determine this, we must examine the MAFs associated with these rules. In this subsection, we will describe the traditional definition of uncertainty, demonstrate its weaknesses, suggest an alternative definition, and analyze both traditional and newly suggested uncertainties for different MAF initialization methods.
-
-Traditionally, uncertainty has been defined by the mass of the complete set, with lower uncertainty indicating a more reliable rule. However, this is not always the best approach. Table \ref{table-pitfalls} demonstrates an example. 
-
-\begin{table}[ht]
-    \centering
-    \begin{tabular}{c|c|c|c|c}
-        \toprule
-        \textbf{Rule} & \textbf{Mass First Class} & \textbf{Mass Second Class} & \textbf{Uncertainty} & \textbf{Ratio} \\
-        \midrule
-        1 & 0.49 & 0.51 & 0 & 1.04 \\
-        2 & 0.01 & 0.09 & 0.9 & 9 \\
-        \bottomrule
-    \end{tabular}
-    \caption{Illustration of the Pitfalls of the Traditional Approach}
-    \label{table-pitfalls}
-\end{table}
-\newpage
-Rule 1 shows zero uncertainty, which might seem ideal. But the nearly equal masses for the two classes make it hard for the algorithm to distinguish between them. On the flip side, Rule 2, despite its high uncertainty, has a significant difference in class masses (a ratio of 9), which enhances its ability to clearly separate the classes.
-
-Given these insights, we propose a fresh approach that factors in both the uncertainty and the ratio between the most probable and second most probable masses.
-
-Our method is inspired by the F1 score, which is the harmonic mean of precision and recall. To optimize our evaluation, we focus on maximizing the value of $1 - \textit{uncertainty}$ and the class mass \textit{ratio}. This approach allows us to prioritize both a high ratio and low uncertainty simultaneously. To unify these metrics into a single measure, we calculate their harmonic mean. However, since 1 - \textit{uncertainty} ranges from 0 to 1 and the \textit{ratio} can vary widely, we first normalize the \textit{ratio} using min-max scaling across all rules before applying the harmonic mean. This scaling ensures that both metrics contribute equally to the final score.
-To put this formally 
-\begin{itemize}
-    \item \textbf{Uncertainty Adjustment:}
-    \[
-    U' = 1 - U
-    \]
-    where \( U \) is the original uncertainty.
-
-    \item \textbf{Normalization of the Ratio:}
-    \[
-    R' = \frac{R - \min(R)}{\max(R) - \min(R)}
-    \]
-    where \( R \) is the original ratio (when dividing the values of two masses we add $\varepsilon=0.01$ to denominator to avoid zero division error), and \( \min(R) \) and \( \max(R) \) are the minimum and maximum values of the ratio across all rules, respectively.
-
-    \item \textbf{Harmonic Mean Calculation:}
-    \[
-    H = \frac{2 \cdot U' \cdot R'}{U' + R'}
-    \]
-    where \( U' \) is the adjusted uncertainty value and \( R' \) is the normalized ratio.
-\end{itemize}
-
-% Transition to experimental results
-{\color{black}With these definitions in place, we now present the experimental evaluation of the effects of our new MAF initialization both based on traditional approach for importance calculation, and on newly proposed one.} Below, we will define improvement as the ratio of $MED. Random$ and $MED. Clustering$.
-
-\FloatBarrier
-
-\begin{table}[htbp]
-    \centering
-    \begin{tabular}{l|r|r|r|r|r}
-    \toprule
-    Dataset & AVG. Clust. & AVG. Rand. & Med. Clust. & Med. Rand. & Improvement \\
-    \midrule
-    Brain Tumor & 0.258 & 0.713 & 0.246 & 0.732 & 2.979 \\
-    Breast Cancer & 0.314 & 0.710 & 0.262 & 0.703 & 2.685 \\
-    Gaussian & 0.225 & 0.330 & 0.229 & 0.302 & 1.318 \\
-    Rectangle & 0.201 & 0.448 & 0.203 & 0.434 & 2.135 \\
-    Uniform & 0.150 & 0.262 & 0.096 & 0.144 & 1.493 \\
-    \bottomrule
-    \end{tabular}
-    \caption{Average and median uncertainties for Random and Clustering MAF initializations}
-    \label{uncerct_res}
-\end{table}
- Table \ref{uncerct_res} shows that on average the clustering approach yields in uncertainty reduction by a factor of 2.12.
-
-\newpage
-\FloatBarrier
-\begin{table}[htbp]
-    \centering
-    \begin{tabular}{l|r|r|r|r|r}
-    \toprule
-    Dataset & AVG. Clust. & AVG. Rand. & Med. Clust. & Med. Rand. & Improvement \\
-    \midrule
-    Brain Tumor & 0.247 & 0.313 & 0.075 & 0.336 & 4.471 \\
-    Breast Cancer & 0.156 & 0.359 & 0.075 & 0.411 & 5.486 \\
-    Gaussian & 0.633 & 0.625 & 0.807 & 0.757 & 0.937 \\
-    Rectangle & 0.473 & 0.536 & 0.457 & 0.571 & 1.249 \\
-    Uniform & 0.732 & 0.700 & 0.935 & 0.876 & 0.937 \\
-    \bottomrule
-
-    \end{tabular}
-    \caption{Average and median newly defined uncertainties for Random and Clustering MAF initializations}
-    \label{new_unce_res}
-
-\end{table}
-
-Table \ref{new_unce_res} shows that on average the clustering approach yields in uncertainty reduction (harmonic mean approach) by a factor of 2.61.
-
-{\color{black}
-See below Figure \ref{fig:bars} for an example of rule uncertainties for the Breast Cancer dataset \cite{breastCancer}.
-}
-% \FloatBarrier
-\begin{figure}[H]
-    \makebox[\textwidth][c]{\includegraphics[width=0.9\linewidth]{figures/bars.png}} 
-    \caption{Uncertainties per rule for different MAF initialization methods}
-    \label{fig:bars}
-\end{figure}
-
-
-\section{Conclusions and Future Work}\label{4}
-We saw that by introducing the concept of \textit{representativeness} for individual data points and using it to guide clustering-based MAF initialization—we achieved a 1.6× reduction in training time for DSGD classifier. The proposed initialization method not only offers a more favorable starting point for optimization{\color{black},} but also reduces the number of required epochs, all while preserving predictive performance equivalent to baseline method.
-
-We further addressed the need for a more flexible definition of rule uncertainty by proposing a measure that takes into account the ratio of masses of singleton classes. Our MAF initialization approach reduced uncertainty by a factor of 2.6 using the newly proposed measure and by 2.1 using the traditional measure.
-
-{\color{black}
-Future work could extend this approach to multi-label datasets, explore additional clustering techniques, and evaluate performance on larger datasets. Additionally, the reduced training time achieved by our method opens opportunities to experiment with incorporating non-singleton classes or generating a larger set of rules. Given that Dempster-Shafer theory effectively integrates evidence from multiple sources, comparing our approach with expert knowledge-based {\color{black}initialization} might yield valuable insights. Finally, employing rule-mining algorithms such as RIPPER, C5.0, or SkopeRules \cite{ripper, c5, skoperules} in combination with our MAF initialization strategy could potentially enhance model performance and further reduce uncertainty.
-}
-% -------------------------------------------------------------
-%              ACKNOWLEDGEMENTS (J.UCS)
-% -------------------------------------------------------------
-\begin{Acknowledgements}
-The research was supported by ADVANCE Research Grants from the Foundation for Armenian Science and Technology.
-\end{Acknowledgements}
-
-% -------------------------------------------------------------
-%                    REFERENCES (J.UCS)
-% -------------------------------------------------------------
-\begin{thebibliography}{}{
-\fontsize{9pt}{10pt}\selectfont
-\bibitem[Baloian, 24]{Nelson}
-Baloian, N., Davtyan, E., Petrosyan, K., Poghosyan, A., Harutyunyan, A., Penafiel, S.:
-"Embedded Interpretable Regression using Dempster-Shafer Theory";
-In: Proceedings of the 4th Codassca Workshop on Data Science and Reliable Machine Learning (2024).
-
-\bibitem[Baloyan, 24]{Aneta}
-Baloyan, A., Aramyan, A., Baloian, N., Poghosyan, A., Harutyunyan, A., Penafiel, S.:
-"An Empirical Analysis of Feature Engineering for Dempster-Shafer Classifier as a Rule Validator";
-In: Proceedings of the 4th Codassca Workshop on Data Science and Reliable Machine Learning (2024).
-
-\bibitem[Bohaju, 20]{brainTumor}
-Bohaju, J.: "Brain Tumor";
-In: Kaggle 2020, DOI: \url{10.34740/KAGGLE/DSV/1370629}, \url{https://www.kaggle.com/dsv/1370629}.
-
-\bibitem[Cohen, 95]{ripper}
-Cohen, W.W.: "Fast Effective Rule Induction";
-In: Prieditis, A., Russell, S. (eds.) Machine Learning Proceedings 1995,
-Morgan Kaufmann (1995), 115-123.
-
-\bibitem[Ester, 96]{DBSCAN}
-Ester, M., Kriegel, H.-P., Sander, J., Xu, X.:
-"A density-based algorithm for discovering clusters in large spatial databases with noise";
-Proc. 2nd Int. Conf. on Knowledge Discovery and Data Mining (KDD'96), AAAI Press (1996), 226-231.
-
-\bibitem[Goix, 20]{skoperules}
-Goix, N.: "skope-rules: Interpretable rules in Python";
-scikit-learn-contrib/skope-rules v1.0.1 (2020).
-
-\bibitem[MacQueen, 67]{kmeans}
-MacQueen, J.: "Some Methods for Classification and Analysis of Multivariate Observations";
-Proc. 5th Berkeley Symp. on Math. Statist. and Prob., Vol. 1 (1967), 281-297.
-
-\bibitem[Peñafiel, 20]{sergio}
-Peñafiel, S., Baloian, N., Sanson, H., Pino, J.A.: "Applying Dempster-Shafer Theory for Developing a Flexible, Accurate and Interpretable Classifier";
-Expert Systems with Applications, 148 (2020), 113262.
-
-\bibitem[Salzberg, 94]{c5}
-Salzberg, S.L.: "C4.5: Programs for Machine Learning by J. Ross Quinlan";
-Machine Learning, 16(3) (1994), 235-240.
-
-\bibitem[Sedláček, 24]{czechs}
-Sedláček, O., Bartoš, V.: "Fusing Heterogeneous Data for Network Asset Classification – A Two-layer Approach";
-In: 2024 IEEE Network Operations and Management Symposium (NOMS) (2024).
-
-\bibitem[Shafer, 76]{dst}
-Shafer, G.: "A Mathematical Theory of Evidence";
-Princeton University Press, Princeton (1976).
-
-\bibitem[Tarkhanyan, 24]{menq}
-Tarkhanyan, A., Harutyunyan, A.:
-"Improving the DSGD Classifier with an Initialization Technique for Mass Assignment Functions";
-Codassca 2024, Logos (2024), 137–142.
-
-\bibitem[Valdivia, 24]{dsClustering}
-Valdivia, R., Baloian, N., Chahverdian, M., Adamyan, A., Harutyunyan, A.:
-"An Explainable Clustering Algorithm using Dempster-Shafer Theory";
-In: Proceedings of the 4th Codassca Workshop on Data Science and Reliable Machine Learning (2024).
-
-\bibitem[Wolberg, 90]{breastCancer}
-Wolberg, W.H., Mangasarian, O.L.: "Multisurface Method of Pattern Separation for Medical Diagnosis Applied to Breast Cytology";
-Proc. Nat. Acad. Sci., 87(23) (1990), 9193-9196.
-
-}\end{thebibliography}
-
-\end{document}

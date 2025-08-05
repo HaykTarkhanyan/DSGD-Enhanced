@@ -17,18 +17,18 @@ DOI: 10.3897/jucs.164745
 \newcommand\startingPage{1012}
 \setcounter{page}{\startingPage}
 
-[] d) Please remove the line at the top of all pages.
+[x] d) Please remove the line at the top of all pages.
 
-[] e) Please make sure to use J.UCS pagination at the corners on top of the pages, not your pagination in the middle of the bottom of the pages.
+[x] e) Please make sure to use J.UCS pagination at the corners on top of the pages, not your pagination in the middle of the bottom of the pages.
 
-[] f) Please change the header on page 2 onwards exactly into the following (including the …), so that it does not exceed one line:
+[x] f) Please change the header on page 2 onwards exactly into the following (including the …), so that it does not exceed one line:
 
 Tarkhanyan A., Harutyunyan A.: DSGD++: Reducing Uncertainty and Training Time in ...
 
 You can do this in the jucs2e.sty-file in the LaTeX template, please replace „Musterfrau …“
 
-[] g) Please adjust all table captions to J.UCS Style, i.e. please place them below the tables, not above. Exactly like the figure captions.
+[x] g) Please adjust all table captions to J.UCS Style, i.e. please place them below the tables, not above. Exactly like the figure captions.
 
 [x] h) Please put all references in an alphabetical order.
-[] Table 6 (\label{new_unce_res})
+[x] Table 6 (\label{new_unce_res})
 [] Double check border exceeding
