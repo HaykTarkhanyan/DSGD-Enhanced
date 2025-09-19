@@ -1,5 +1,5 @@
 \documentclass[aspectratio=169]{beamer}
-\usepackage{graphicx} % Required for inserting images
+\usepackage{graphicx} % Required for \end{frame}
 
 % \usepackage{armtex}
 \usepackage{amsmath}
@@ -14,13 +14,7 @@
 \usepackage{longtable}
 \usepackage{booktabs}
 \usepackage{url}
-\newcommand{\doi}[1]{\texttt{doi:#1}}
-\makeatletter
-\def\thmhead@plain#1#2#3{%
-  \thmname{#1}\thmnumber{\@ifnotempty{#1}{ }\@upn{#2}}%
-  \thmnote{ {\the\thm@notefont#3}}}
-\let\thmhead\thmhead@plain
-\makeatother
+\newcommand{\doi}[1]
 
 \newcommand{\red}[1]{\textcolor{red}{#1}}
 \newcommand{\blue}[1]{\textcolor{blue}{#1}}
@@ -36,6 +30,9 @@
 
 \usetheme{Malmoe}
 
+%gets rid of section navigation in header
+\setbeamertemplate{headline}{}
+
 %gets rid of bottom navigation bars
 \setbeamertemplate{footline}[frame number]{}
 
@@ -46,6 +43,8 @@
 %will override 'frame number' instruction above
 %comment out to revert to previous/default definitions
 \setbeamertemplate{footline}{}
+
+
 
 \title{DSGD++: Reducing Uncertainty and Training Time in the DSGD Classifier through a Mass Assignment Function Initialization Technique}
 \author{Tarkhanyan, A. and Harutyunyan, A.}
@@ -58,8 +57,91 @@
 \end{frame}
 
 \begin{frame}
-{\small\tableofcontents}
+    \textbf{Outline}
+    \begin{enumerate}
+        \item Why Interpretable ML?
+        \item Quick intro to Dempster-Shafer theory (DST)
+        \item DST + Gradient Descent for Classification
+        \item Our modifications
+        \item Results
+        \item Q\&A
+    \end{enumerate}
 \end{frame}
+
+
+\section{Why Interpretable ML?}
+
+\begin{frame}
+    \begin{center}
+        \Huge Why Interpretable ML?
+    \end{center}
+\end{frame}
+
+\begin{frame}{The Rise of Complex Models}
+    \begin{itemize}
+        \item Deep learning and ensemble methods achieve \textbf{state-of-the-art performance}
+        \item But they operate as \textbf{"black boxes"}
+        \item High accuracy often comes at the cost of interpretability
+        \item Critical applications require \textbf{understanding} the decision process:
+        \begin{itemize}
+            \item Medical diagnosis
+            \item Financial lending
+            \item Legal decisions
+            \item Autonomous systems
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Accuracy vs. Interpretability Tradeoff}
+    \begin{overprint}
+        \onslide<1-2>\includegraphics[width=0.6\textwidth]{../../fig/interp_over_power.jpg}
+        \onslide<3>\includegraphics[width=0.6\textwidth]{../../fig/interp_over_power_accent.jpg}
+    \end{overprint}
+    
+    \onslide<2->{
+    \begin{itemize}
+        \item Traditional belief: \textbf{more accuracy = less interpretability}
+        \item Our goal: Find methods in the \textcolor{red}{\textbf{sweet spot}}
+    \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{Regulatory and Ethical Imperatives}
+    \begin{block}{GDPR Article 22 - Right to Explanation}
+        \textit{"The data subject shall have the right not to be subject to a decision based solely on automated processing... which produces legal effects concerning him or her..."}
+    \end{block}
+    \pause
+    
+    \begin{itemize}
+        \item \textbf{Legal requirement} for explainable AI in EU
+        \item \textbf{Algorithmic accountability} - understanding bias and fairness
+        \item \textbf{Trust and adoption} - users need to understand system decisions
+        \item \textbf{Debugging and improvement} - interpretability helps identify model failures
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Why Dempster-Shafer Theory?}
+    \begin{itemize}
+        \item \textbf{Inherently interpretable}: Based on simple, human-readable rules
+        \item \textbf{Uncertainty quantification}: Explicit modeling of uncertainty
+        \item \textbf{Competitive accuracy}: Performance comparable to black-box methods
+        \item \textbf{Rule-based explanations}: Easy to understand "if-then" logic
+    \end{itemize}
+    
+    \pause
+    \vspace{1em}
+    \begin{block}{Our Contribution}
+        DSGD++ improves training efficiency while maintaining interpretability and accuracy
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        \Huge Dempster-Shafer theory
+    \end{center}
+\end{frame}
+
+\section{Dempster-Shafer theory (DST)} 
 
 \begin{frame}
     \begin{center}
@@ -155,15 +237,15 @@ the probability of an event, utilizing Dempster's rule of combination.
   \end{itemize}
 \end{frame}
 
-\section{Old Approach}
+\section{DST + Gradient Descent}
 
 \begin{frame}
     \begin{center}
-        \Huge Old approach
+        \Huge DST + Gradient Descent
     \end{center}
 \end{frame}
 
-\begin{frame}{Old approach}
+\begin{frame}{DST + Gradient Descent}
     In order to get the prediction
 \begin{enumerate}
     \item For the given dataset $RS$ rule set is generated.
@@ -175,12 +257,12 @@ the probability of an event, utilizing Dempster's rule of combination.
 \begin{frame}
 \begin{figure}
     \centering
-    \includegraphics[width=0.45\linewidth]{../../fig/image.png}
+    \includegraphics[width=0.4\linewidth]{../../fig/image.png}
     \label{fig:image}
 \end{figure}
 \end{frame}
 
-\begin{frame}{Old approach}
+\begin{frame}{DST + Gradient Descent}
 \begin{align*}
 \mathcal{M}_x &= \left\{ m \mid (m, s) \in RS \land x \right\} \\
 m_f &= \bigoplus_{m \in \mathcal{M}_x} m \\
@@ -208,10 +290,10 @@ MSE = \frac{1}{n} \sum_{i=1}^{n} \left\| y_i - \hat{y}_i \right\|^2
 \end{figure}
 \end{frame}
 
-\section{Our approach}
+\section{DSGD++: DSGD with better initialization}
 \begin{frame}
     \begin{center}
-        \Huge Our approach
+        \Huge DSGD++: DSGD with better initialization
     \end{center}
 \end{frame}
 
@@ -385,9 +467,18 @@ On average the clustering approach yields in uncertainty reduction (harmonic mea
 \end{figure}
 \end{frame}
 
-\begin{frame}{Bibliography}
+\begin{frame}{Promising Next Steps}
+    \begin{itemize}
+        \item Extend to multi-class classification problems
+        \item Validate on larger, more complex datasets
+        \item Combine the approach with classical rule induction algorithms (e.g., RIPPER, C4.5, FOIL)
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Bibliography (1/3)}
 \begin{thebibliography}{8}
-{\rm
+{\footnotesize
 \bibitem{dst}
 Shafer, G.: A Mathematical Theory of Evidence. Princeton University Press, Princeton (1976)
 
@@ -399,22 +490,30 @@ MacQueen, J.: Some Methods for Classification and Analysis of Multivariate Obser
 
 \bibitem{DBSCAN}
 Ester, M., Kriegel, H.-P., Sander, J., Xu, X.: A density-based algorithm for discovering clusters in large spatial databases with noise. Proc. 2nd Int. Conf. on Knowledge Discovery and Data Mining (KDD'96), AAAI Press (1996), 226--231
+}
+\end{thebibliography}
+\end{frame}
 
+\begin{frame}{Bibliography (2/3)}
+\begin{thebibliography}{8}
+{\footnotesize
+\setcounter{enumiv}{4}
 \bibitem{Nelson}
 Baloian, N., Davtyan, E., Petrosyan, K., Poghosyan, A., Harutyunyan, A., Penafiel, S.: Embedded Interpretable Regression using Dempster-Shafer Theory. Proceedings of the 4th Codassca Workshop on Data Science and Reliable Machine Learning (2024)
 
 \bibitem{Aneta}
 Baloyan, A., Aramyan, A., Baloian, N., Poghosyan, A., Harutyunyan, A., Penafiel, S.: An Empirical Analysis of Feature Engineering for Dempster-Shafer Classifier as a Rule Validator. Proceedings of the 4th Codassca Workshop on Data Science and Reliable Machine Learning (2024)
+
+\bibitem{dsClustering}
+Valdivia, R., Baloian, N., Chahverdian, M., Adamyan, A., Harutyunyan, A.: An Explainable Clustering Algorithm using Dempster-Shafer Theory. Proceedings of the 4th Codassca Workshop on Data Science and Reliable Machine Learning (2024)
 }
 \end{thebibliography}
 \end{frame}
 
-\begin{frame}{Bibliography (continued)}
+\begin{frame}{Bibliography (3/3)}
 \begin{thebibliography}{8}
 {\rm
 \setcounter{enumiv}{6}
-\bibitem{dsClustering}
-Valdivia, R., Baloian, N., Chahverdian, M., Adamyan, A., Harutyunyan, A.: An Explainable Clustering Algorithm using Dempster-Shafer Theory. Proceedings of the 4th Codassca Workshop on Data Science and Reliable Machine Learning (2024)
 
 \bibitem{breastCancer}
 Wolberg, W. H., Mangasarian, O. L.: Multisurface method of pattern separation for medical diagnosis applied to breast cytology. Proceedings of the National Academy of Sciences \textbf{87}(23), 9193--9196 (1990)
@@ -431,14 +530,14 @@ Sedláček, O., Bartoš, V.: Fusing Heterogeneous Data for Network Asset Classif
 \end{thebibliography}
 \end{frame}
 
-\begin{frame}{Paper and Code Availability}
+\begin{frame}{Paper and Code}
 \begin{center}
 \begin{block}{Published Paper}
 \textbf{DSGD++: Reducing Uncertainty and Training Time in the DSGD Classifier through a Mass Assignment Function Initialization Technique}
 \\[0.5em]
 \textit{Journal of Universal Computer Science}
 \\[0.3em]
-DOI: \doi{10.3897/jucs.164745}
+DOI: 10.3897/jucs.164745
 \end{block}
 
 \begin{block}{Source Code}

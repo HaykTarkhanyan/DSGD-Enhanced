@@ -2,106 +2,128 @@
 \headcommand {\beamer@framepages {1}{1}}
 \headcommand {\slideentry {0}{0}{2}{2/2}{}{0}}
 \headcommand {\beamer@framepages {2}{2}}
-\headcommand {\slideentry {0}{0}{3}{3/3}{}{0}}
+\headcommand {\beamer@sectionpages {1}{2}}
+\headcommand {\beamer@subsectionpages {1}{2}}
+\headcommand {\sectionentry {1}{Why Interpretable ML?}{3}{Why Interpretable ML?}{0}}
+\headcommand {\slideentry {1}{0}{1}{3/3}{}{0}}
 \headcommand {\beamer@framepages {3}{3}}
-\headcommand {\beamer@sectionpages {1}{3}}
-\headcommand {\beamer@subsectionpages {1}{3}}
-\headcommand {\sectionentry {1}{Dempster-Shafer theory (DST)}{4}{Dempster-Shafer theory (DST)}{0}}
-\headcommand {\slideentry {1}{0}{1}{4/4}{}{0}}
+\headcommand {\slideentry {1}{0}{2}{4/4}{}{0}}
 \headcommand {\beamer@framepages {4}{4}}
-\headcommand {\beamer@subsectionpages {4}{4}}
-\headcommand {\beamer@subsectionentry {0}{1}{1}{5}{Mass Assignment functions}}
-\headcommand {\slideentry {1}{1}{1}{5/7}{Mass Assignment functions}{0}}
+\headcommand {\slideentry {1}{0}{3}{5/7}{}{0}}
 \headcommand {\beamer@framepages {5}{7}}
-\headcommand {\slideentry {1}{1}{2}{8/10}{Mass Assignment functions}{0}}
-\headcommand {\beamer@framepages {8}{10}}
-\headcommand {\beamer@subsectionpages {5}{10}}
-\headcommand {\beamer@subsectionentry {0}{1}{2}{11}{Belief and Plausibility}}
-\headcommand {\slideentry {1}{2}{1}{11/11}{Belief and Plausibility}{0}}
-\headcommand {\beamer@framepages {11}{11}}
-\headcommand {\beamer@subsectionpages {11}{11}}
-\headcommand {\beamer@subsectionentry {0}{1}{3}{12}{Dempster's Rule of Combination}}
-\headcommand {\slideentry {1}{3}{1}{12/14}{Dempster's Rule of Combination}{0}}
-\headcommand {\beamer@framepages {12}{14}}
-\headcommand {\beamer@sectionpages {4}{14}}
-\headcommand {\beamer@subsectionpages {12}{14}}
-\headcommand {\sectionentry {2}{Old Approach}{15}{Old Approach}{0}}
-\headcommand {\slideentry {2}{0}{1}{15/15}{}{0}}
-\headcommand {\beamer@framepages {15}{15}}
-\headcommand {\slideentry {2}{0}{2}{16/16}{}{0}}
-\headcommand {\beamer@framepages {16}{16}}
-\headcommand {\slideentry {2}{0}{3}{17/17}{}{0}}
-\headcommand {\beamer@framepages {17}{17}}
-\headcommand {\slideentry {2}{0}{4}{18/18}{}{0}}
-\headcommand {\beamer@framepages {18}{18}}
-\headcommand {\slideentry {2}{0}{5}{19/19}{}{0}}
-\headcommand {\beamer@framepages {19}{19}}
-\headcommand {\slideentry {2}{0}{6}{20/20}{}{0}}
-\headcommand {\beamer@framepages {20}{20}}
-\headcommand {\beamer@sectionpages {15}{20}}
+\headcommand {\slideentry {1}{0}{4}{8/9}{}{0}}
+\headcommand {\beamer@framepages {8}{9}}
+\headcommand {\slideentry {1}{0}{5}{10/11}{}{0}}
+\headcommand {\beamer@framepages {10}{11}}
+\headcommand {\slideentry {1}{0}{6}{12/12}{}{0}}
+\headcommand {\beamer@framepages {12}{12}}
+\headcommand {\beamer@sectionpages {3}{12}}
+\headcommand {\beamer@subsectionpages {3}{12}}
+\headcommand {\sectionentry {2}{Dempster-Shafer theory (DST)}{13}{Dempster-Shafer theory (DST)}{0}}
+\headcommand {\slideentry {2}{0}{1}{13/13}{}{0}}
+\headcommand {\beamer@framepages {13}{13}}
+\headcommand {\beamer@sectionpages {13}{13}}
+\headcommand {\beamer@subsectionpages {13}{13}}
+\headcommand {\sectionentry {3}{Dempster-Shafer theory (DST)}{14}{Dempster-Shafer theory (DST)}{0}}
+\headcommand {\slideentry {3}{0}{1}{14/14}{}{0}}
+\headcommand {\beamer@framepages {14}{14}}
+\headcommand {\beamer@subsectionpages {14}{14}}
+\headcommand {\beamer@subsectionentry {0}{3}{1}{15}{Mass Assignment functions}}
+\headcommand {\slideentry {3}{1}{1}{15/17}{Mass Assignment functions}{0}}
+\headcommand {\beamer@framepages {15}{17}}
+\headcommand {\slideentry {3}{1}{2}{18/20}{Mass Assignment functions}{0}}
+\headcommand {\beamer@framepages {18}{20}}
 \headcommand {\beamer@subsectionpages {15}{20}}
-\headcommand {\sectionentry {3}{Our approach}{21}{Our approach}{0}}
-\headcommand {\slideentry {3}{0}{1}{21/21}{}{0}}
+\headcommand {\beamer@subsectionentry {0}{3}{2}{21}{Belief and Plausibility}}
+\headcommand {\slideentry {3}{2}{1}{21/21}{Belief and Plausibility}{0}}
 \headcommand {\beamer@framepages {21}{21}}
 \headcommand {\beamer@subsectionpages {21}{21}}
-\headcommand {\beamer@subsectionentry {0}{3}{1}{22}{KMeans}}
-\headcommand {\slideentry {3}{1}{1}{22/22}{KMeans}{0}}
-\headcommand {\beamer@framepages {22}{22}}
-\headcommand {\slideentry {3}{1}{2}{23/23}{KMeans}{0}}
-\headcommand {\beamer@framepages {23}{23}}
-\headcommand {\beamer@subsectionpages {22}{23}}
-\headcommand {\beamer@subsectionentry {0}{3}{2}{24}{DBSCAN}}
-\headcommand {\slideentry {3}{2}{1}{24/24}{DBSCAN}{0}}
-\headcommand {\beamer@framepages {24}{24}}
-\headcommand {\slideentry {3}{2}{2}{25/25}{DBSCAN}{0}}
+\headcommand {\beamer@subsectionentry {0}{3}{3}{22}{Dempster's Rule of Combination}}
+\headcommand {\slideentry {3}{3}{1}{22/24}{Dempster's Rule of Combination}{0}}
+\headcommand {\beamer@framepages {22}{24}}
+\headcommand {\beamer@sectionpages {14}{24}}
+\headcommand {\beamer@subsectionpages {22}{24}}
+\headcommand {\sectionentry {4}{DST + Gradient Descent}{25}{DST + Gradient Descent}{0}}
+\headcommand {\slideentry {4}{0}{1}{25/25}{}{0}}
 \headcommand {\beamer@framepages {25}{25}}
-\headcommand {\beamer@subsectionpages {24}{25}}
-\headcommand {\beamer@subsectionentry {0}{3}{3}{26}{Rule confidence estimation}}
-\headcommand {\slideentry {3}{3}{1}{26/29}{Rule confidence estimation}{0}}
-\headcommand {\beamer@framepages {26}{29}}
-\headcommand {\beamer@subsectionpages {26}{29}}
-\headcommand {\beamer@subsectionentry {0}{3}{4}{30}{MAF Initialization}}
-\headcommand {\slideentry {3}{4}{1}{30/30}{MAF Initialization}{0}}
+\headcommand {\slideentry {4}{0}{2}{26/26}{}{0}}
+\headcommand {\beamer@framepages {26}{26}}
+\headcommand {\slideentry {4}{0}{3}{27/27}{}{0}}
+\headcommand {\beamer@framepages {27}{27}}
+\headcommand {\slideentry {4}{0}{4}{28/28}{}{0}}
+\headcommand {\beamer@framepages {28}{28}}
+\headcommand {\slideentry {4}{0}{5}{29/29}{}{0}}
+\headcommand {\beamer@framepages {29}{29}}
+\headcommand {\slideentry {4}{0}{6}{30/30}{}{0}}
 \headcommand {\beamer@framepages {30}{30}}
-\headcommand {\beamer@sectionpages {21}{30}}
-\headcommand {\beamer@subsectionpages {30}{30}}
-\headcommand {\sectionentry {4}{Results}{31}{Results}{0}}
-\headcommand {\slideentry {4}{0}{1}{31/31}{}{0}}
+\headcommand {\beamer@sectionpages {25}{30}}
+\headcommand {\beamer@subsectionpages {25}{30}}
+\headcommand {\sectionentry {5}{DSGD++: DSGD with better initialization}{31}{DSGD++: DSGD with better initialization}{0}}
+\headcommand {\slideentry {5}{0}{1}{31/31}{}{0}}
 \headcommand {\beamer@framepages {31}{31}}
 \headcommand {\beamer@subsectionpages {31}{31}}
-\headcommand {\beamer@subsectionentry {0}{4}{1}{32}{Data}}
-\headcommand {\slideentry {4}{1}{1}{32/32}{Data}{0}}
+\headcommand {\beamer@subsectionentry {0}{5}{1}{32}{KMeans}}
+\headcommand {\slideentry {5}{1}{1}{32/32}{KMeans}{0}}
 \headcommand {\beamer@framepages {32}{32}}
-\headcommand {\beamer@subsectionpages {32}{32}}
-\headcommand {\beamer@subsectionentry {0}{4}{2}{33}{Accuracy and Speedup Analysis}}
-\headcommand {\slideentry {4}{2}{1}{33/33}{Accuracy and Speedup Analysis}{0}}
+\headcommand {\slideentry {5}{1}{2}{33/33}{KMeans}{0}}
 \headcommand {\beamer@framepages {33}{33}}
-\headcommand {\slideentry {4}{2}{2}{34/34}{Accuracy and Speedup Analysis}{0}}
+\headcommand {\beamer@subsectionpages {32}{33}}
+\headcommand {\beamer@subsectionentry {0}{5}{2}{34}{DBSCAN}}
+\headcommand {\slideentry {5}{2}{1}{34/34}{DBSCAN}{0}}
 \headcommand {\beamer@framepages {34}{34}}
-\headcommand {\slideentry {4}{2}{3}{35/35}{Accuracy and Speedup Analysis}{0}}
+\headcommand {\slideentry {5}{2}{2}{35/35}{DBSCAN}{0}}
 \headcommand {\beamer@framepages {35}{35}}
-\headcommand {\beamer@subsectionpages {33}{35}}
-\headcommand {\beamer@subsectionentry {0}{4}{3}{36}{Uncertainty Analysis}}
-\headcommand {\slideentry {4}{3}{1}{36/36}{Uncertainty Analysis}{0}}
-\headcommand {\beamer@framepages {36}{36}}
-\headcommand {\slideentry {4}{3}{2}{37/39}{Uncertainty Analysis}{0}}
-\headcommand {\beamer@framepages {37}{39}}
-\headcommand {\slideentry {4}{3}{3}{40/40}{Uncertainty Analysis}{0}}
+\headcommand {\beamer@subsectionpages {34}{35}}
+\headcommand {\beamer@subsectionentry {0}{5}{3}{36}{Rule confidence estimation}}
+\headcommand {\slideentry {5}{3}{1}{36/39}{Rule confidence estimation}{0}}
+\headcommand {\beamer@framepages {36}{39}}
+\headcommand {\beamer@subsectionpages {36}{39}}
+\headcommand {\beamer@subsectionentry {0}{5}{4}{40}{MAF Initialization}}
+\headcommand {\slideentry {5}{4}{1}{40/40}{MAF Initialization}{0}}
 \headcommand {\beamer@framepages {40}{40}}
-\headcommand {\slideentry {4}{3}{4}{41/41}{Uncertainty Analysis}{0}}
+\headcommand {\beamer@sectionpages {31}{40}}
+\headcommand {\beamer@subsectionpages {40}{40}}
+\headcommand {\sectionentry {6}{Results}{41}{Results}{0}}
+\headcommand {\slideentry {6}{0}{1}{41/41}{}{0}}
 \headcommand {\beamer@framepages {41}{41}}
-\headcommand {\slideentry {4}{3}{5}{42/42}{Uncertainty Analysis}{0}}
+\headcommand {\beamer@subsectionpages {41}{41}}
+\headcommand {\beamer@subsectionentry {0}{6}{1}{42}{Data}}
+\headcommand {\slideentry {6}{1}{1}{42/42}{Data}{0}}
 \headcommand {\beamer@framepages {42}{42}}
-\headcommand {\slideentry {4}{3}{6}{43/43}{Uncertainty Analysis}{0}}
+\headcommand {\beamer@subsectionpages {42}{42}}
+\headcommand {\beamer@subsectionentry {0}{6}{2}{43}{Accuracy and Speedup Analysis}}
+\headcommand {\slideentry {6}{2}{1}{43/43}{Accuracy and Speedup Analysis}{0}}
 \headcommand {\beamer@framepages {43}{43}}
-\headcommand {\slideentry {4}{3}{7}{44/44}{Uncertainty Analysis}{0}}
+\headcommand {\slideentry {6}{2}{2}{44/44}{Accuracy and Speedup Analysis}{0}}
 \headcommand {\beamer@framepages {44}{44}}
-\headcommand {\slideentry {4}{3}{8}{45/45}{Uncertainty Analysis}{0}}
+\headcommand {\slideentry {6}{2}{3}{45/45}{Accuracy and Speedup Analysis}{0}}
 \headcommand {\beamer@framepages {45}{45}}
-\headcommand {\slideentry {4}{3}{9}{46/46}{Uncertainty Analysis}{0}}
+\headcommand {\beamer@subsectionpages {43}{45}}
+\headcommand {\beamer@subsectionentry {0}{6}{3}{46}{Uncertainty Analysis}}
+\headcommand {\slideentry {6}{3}{1}{46/46}{Uncertainty Analysis}{0}}
 \headcommand {\beamer@framepages {46}{46}}
-\headcommand {\beamer@partpages {1}{46}}
-\headcommand {\beamer@subsectionpages {36}{46}}
-\headcommand {\beamer@sectionpages {31}{46}}
-\headcommand {\beamer@documentpages {46}}
-\headcommand {\gdef \inserttotalframenumber {35}}
+\headcommand {\slideentry {6}{3}{2}{47/49}{Uncertainty Analysis}{0}}
+\headcommand {\beamer@framepages {47}{49}}
+\headcommand {\slideentry {6}{3}{3}{50/50}{Uncertainty Analysis}{0}}
+\headcommand {\beamer@framepages {50}{50}}
+\headcommand {\slideentry {6}{3}{4}{51/51}{Uncertainty Analysis}{0}}
+\headcommand {\beamer@framepages {51}{51}}
+\headcommand {\slideentry {6}{3}{5}{52/52}{Uncertainty Analysis}{0}}
+\headcommand {\beamer@framepages {52}{52}}
+\headcommand {\slideentry {6}{3}{6}{53/53}{Uncertainty Analysis}{0}}
+\headcommand {\beamer@framepages {53}{53}}
+\headcommand {\slideentry {6}{3}{7}{54/54}{Uncertainty Analysis}{0}}
+\headcommand {\beamer@framepages {54}{54}}
+\headcommand {\slideentry {6}{3}{8}{55/55}{Uncertainty Analysis}{0}}
+\headcommand {\beamer@framepages {55}{55}}
+\headcommand {\slideentry {6}{3}{9}{56/56}{Uncertainty Analysis}{0}}
+\headcommand {\beamer@framepages {56}{56}}
+\headcommand {\slideentry {6}{3}{10}{57/57}{Uncertainty Analysis}{0}}
+\headcommand {\beamer@framepages {57}{57}}
+\headcommand {\slideentry {6}{3}{11}{58/58}{Uncertainty Analysis}{0}}
+\headcommand {\beamer@framepages {58}{58}}
+\headcommand {\beamer@partpages {1}{58}}
+\headcommand {\beamer@subsectionpages {46}{58}}
+\headcommand {\beamer@sectionpages {41}{58}}
+\headcommand {\beamer@documentpages {58}}
+\headcommand {\gdef \inserttotalframenumber {43}}
