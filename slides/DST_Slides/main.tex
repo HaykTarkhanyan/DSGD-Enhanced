@@ -14,7 +14,35 @@
 \usepackage{longtable}
 \usepackage{booktabs}
 \makeatletter
-\def\thmhead@plain#1#2#3{%
+\def\th\begin{frame}
+\be\begin{frame}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\linewidth]{../../fig/d\begin{frame}
+\begin{figure}
+    \centering
+    \includegrap\begin{frame}
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{../../fig/unc_df.png}
+\end{figure}
+{\rm $improvement\_factor$}-ը սահմանված է որպես $median\_random$-ի և $median\_clustering$-ի հարաբերություն. \\ \pause
+Մեր մոտեցումը հանեգնում է  անորոշության միջինում \textbf{2.12} անգամ նվազեցման։
+    
+\end{frame}h=1\linewidth]{../../fig/speedup_groupby.png}
+\end{figure}
+\textbf{Արագության աճը միջինում - 1.65{\rm x}}
+    
+\end{frame}pactiy.png}
+    \label{fig:enter-label}
+\end{figure}
+\end{frame}ure}
+    \centering
+    \includegraphics[width=0.75\linewidth]{../../fig/alg_dbscan_opacity.png}
+    \label{fig:enter-label}
+\end{figure}
+    
+\end{frame}ain#1#2#3{%
   \thmname{#1}\thmnumber{\@ifnotempty{#1}{ }\@upn{#2}}%
   \thmnote{ {\the\thm@notefont#3}}}
 \let\thmhead\thmhead@plain
@@ -76,12 +104,12 @@
   \end{column}
   \pause
   \begin{column}{0.5\textwidth}
-    % \includegraphics[width=\textwidth]{"interp_over_power.jpg"}
+    % \includegraphics[width=\textwidth]{"../../fig/interp_over_power.jpg"}
     % \pause
-    % \includegraphics[width=\textwidth]{"interp_over_power_accent.jpg"}
+    % \includegraphics[width=\textwidth]{"../../fig/interp_over_power_accent.jpg"}
     \begin{overprint}
-        \onslide<3>\includegraphics[width=\textwidth]{"interp_over_power.jpg"}
-        \onslide<4>\includegraphics[width=\textwidth]{"interp_over_power_accent.jpg"}
+        \onslide<3>\includegraphics[width=\textwidth]{"../../fig/interp_over_power.jpg"}
+        \onslide<4>\includegraphics[width=\textwidth]{"../../fig/interp_over_power_accent.jpg"}
     \end{overprint}
 \end{column}  
 \end{columns}
@@ -287,7 +315,7 @@
 \begin{frame}
 \begin{figure}
     \centering
-    \includegraphics[width=0.45\linewidth]{image.png}
+    \includegraphics[width=0.45\linewidth]{../../fig/image.png}
     \label{fig:enter-label}
 \end{figure}
     
@@ -342,7 +370,7 @@ MSE = \frac{1}{n} \sum_{i=1}^{n} \left\| y_i - \hat{y}_i \right\|^2
 \end{frame}
 \begin{figure}
     \centering
-    \includegraphics[width=0.55\linewidth]{dst_ill.png}
+    \includegraphics[width=0.55\linewidth]{../../fig/dst_ill.png}
 \end{figure}
 
 
@@ -358,7 +386,7 @@ MSE = \frac{1}{n} \sum_{i=1}^{n} \left\| y_i - \hat{y}_i \right\|^2
 \begin{frame}
 \begin{figure}
     \centering
-    \includegraphics[width=0.68\linewidth]{alg_kmeans_opacity.png}
+    \includegraphics[width=0.68\linewidth]{../../fig/alg_kmeans_opacity.png}
     \caption{Enter Caption}
     \label{fig:enter-label}
 \end{figure}
@@ -367,7 +395,7 @@ MSE = \frac{1}{n} \sum_{i=1}^{n} \left\| y_i - \hat{y}_i \right\|^2
 \begin{frame}
 \begin{figure}
     \centering
-    \includegraphics[width=0.78\linewidth]{kmeans_opactiy.png}
+    \includegraphics[width=0.78\linewidth]{../../fig/kmeans_opactiy.png}
     \label{fig:enter-label}
 \end{figure}
 \end{frame}
@@ -469,7 +497,7 @@ Rectangle & 1263 & 3 & Points in [-1, 1]×[-1, 1], class determined by the y com
 \begin{frame}{Արագագործության և ճշգրտության վերլուծություն}
 \begin{figure}
     \centering
-    \includegraphics[width=0.95\linewidth]{acc_speedup_table.png}
+    \includegraphics[width=0.95\linewidth]{../../fig/acc_speedup_table.png}
     % \caption{Enter Caption}
     \label{fig:enter-label}
 \end{figure}
@@ -488,10 +516,10 @@ Rectangle & 1263 & 3 & Points in [-1, 1]×[-1, 1], class determined by the y com
     \begin{figure}
     \centering
     \begin{minipage}{0.49\textwidth}
-        \includegraphics[width=\linewidth]{breast-cancer-wisconsin_loss.png} % First image
+        \includegraphics[width=\linewidth]{../../fig/breast-cancer-wisconsin_loss.png} % First image
     \end{minipage}\hfill
     \begin{minipage}{0.49\textwidth}
-        \includegraphics[width=\linewidth]{gaussian_df_loss.png} % Second image
+        \includegraphics[width=\linewidth]{../../fig/gaussian_df_loss.png} % Second image
     \end{minipage}
     \caption{Այս պատկերը ցուցադրում է {\rm MAF initialization}-ի հանգեցրած բարելավումները։ Մասնավորապես՝ ավելի լավ սկզբնակետ և ավելի քիչ իտերացիաներով զուգամիտում}
     \label{fig:side_by_side}
@@ -502,7 +530,7 @@ Rectangle & 1263 & 3 & Points in [-1, 1]×[-1, 1], class determined by the y com
 \begin{frame}{{\rm Անորոշության գնահատման ներկա մոտեցման բացթողումը}}
 \begin{figure}
     \centering
-    \includegraphics[width=1\linewidth]{pitfalls.png}
+    \includegraphics[width=1\linewidth]{../../fig/pitfalls.png}
 \end{figure}
 \end{frame}
 
@@ -541,14 +569,14 @@ Rectangle & 1263 & 3 & Points in [-1, 1]×[-1, 1], class determined by the y com
 \begin{frame}
 \begin{figure}
     \centering
-    \includegraphics[width=1\linewidth]{score_df.png}
+    \includegraphics[width=1\linewidth]{../../fig/score_df.png}
 \end{figure}
 Մեր մոտեցումը հանեգնում է միջինում նոր ձևով սահմանված անորոշության \textbf{2.61} անգամ նվազեցման
 \end{frame}
 
 \begin{figure}
 \begin{figure}
-    \makebox[\textwidth][c]{\includegraphics[width=\linewidth]{bars.png}} 
+    \makebox[\textwidth][c]{\includegraphics[width=\linewidth]{../../fig/bars.png}} 
     \caption{Ըստ { \rm MAF initialization}-ի անորոշությունները տարատեսակ օրենքների համար}
     \label{fig:bars}
 \end{figure}
@@ -579,7 +607,7 @@ Bohaju, J.: Brain Tumor. In: Kaggle 2020, DOI: \doi{10.34740/KAGGLE/DSV/1370629}
 \begin{frame}
 \begin{figure}
     \centering
-    \includegraphics[scale=0.27]{AUA_Codassca2024_website-100-2048x596.jpg}
+    \includegraphics[scale=0.27]{../../fig/AUA_Codassca2024_website-100-2048x596.jpg}
 \end{figure}
     
 \end{frame}
